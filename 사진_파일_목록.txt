@@ -1,0 +1,44 @@
+메이트학원 홈페이지 사진 파일 목록
+(사진을 바꿀 때는 아래 "파일 이름"과 똑같은 이름·확장자로 덮어쓰면 됩니다)
+
+[강사 사진] img/teachers/  — 배경을 지운 사진(.webp), 정사각형 640x640
+김소진  kim-sojin.webp
+정예진  jeong-yejin.webp
+임한비  lim-hanbi.webp
+김동완  kim-dongwan.webp
+안호수  an-hosu.webp
+윤서은  yun-seoeun.webp
+이나경  lee-nagyeong.webp
+정아린  jeong-arin.webp
+최예빈  choi-yebin.webp
+권세은  kwon-seeun.webp
+정다혜  jeong-dahye.webp
+김경민  kim-gyeongmin.webp
+이승민  lee-seungmin.webp
+주윤겸  ju-yungyeom.webp
+김동률  kim-dongryul.webp  (일러스트 — 목동)
+김정윤  kim-jeongyun.webp  (일러스트 — 김포)
+박준형  park-junhyeong.jpg (현재 홈페이지에 안 나옴)
+정지애  jeong-jiae.jpg     (현재 홈페이지에 안 나옴)
+
+[팝업] img/popup/
+목동관 팝업  mokdong-popup.webp
+김포관 팝업  gimpo-popup.webp
+
+[로고] img/logo/
+목동관 헤더 로고  mokdong.png
+김포관 헤더 로고  gimpo.png
+메인 카드 마크    mokdong-mark.png / gimpo-mark.png / matelab-mark.png
+
+[올케어] img/allcare/
+주간 학습 플래너  planner-front.jpg (앞면) / planner-back.jpg (뒷면)
+피드백 사례       feedback-1.jpg ~ feedback-6.jpg (순서대로)
+
+[카톡 공유 미리보기] img/
+og-main.jpg / og-mokdong.jpg / og-gimpo.jpg / og-allcare.jpg  (1200x630)
+
+[파비콘(브라우저 탭 아이콘)] img/favicon/  + 맨 바깥 favicon.ico
+목동관   mokdong.svg / mokdong-32.png / mokdong-180.png  (주황+초록)
+김포관   gimpo.svg / gimpo-32.png / gimpo-180.png        (주황+파랑)
+메인·올케어  mate.svg / mate-32.png / mate-180.png      (흑백 — 탭이 밝으면 검정, 어두우면 흰색으로 자동 전환)
+-180.png는 아이폰 '홈 화면에 추가' 아이콘, favicon.ico는 구형 브라우저·검색결과용

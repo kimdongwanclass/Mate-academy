@@ -4,6 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>에듀메이트학원 | 목동관</title>
+<link rel="icon" href="img/favicon/mokdong-32.png" sizes="32x32" type="image/png"/>
+<link rel="icon" href="img/favicon/mokdong.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="img/favicon/mokdong-180.png"/>
 <meta name="description" content="목동 고등 내신·수능 관리형 단과 · 국어·수학·영어·사회·과학·논술 · 02-6736-9505"/>
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="메이트학원"/>
@@ -178,7 +181,7 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
 .str-tag{display:inline-block;margin-top:14px;font-size:11.5px;font-weight:700;color:var(--g);border:1px solid rgba(29,92,56,.22);padding:4px 10px;border-radius:3px;background:var(--g-lt)}
 
 /* ══ ABOUT ══ */
-#about{background:var(--wh)}
+#about{background:var(--bg);border-top:1px solid var(--ln)}
 .about-grid{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:center}
 .about-photo-frame{border-radius:6px;overflow:hidden;aspect-ratio:3/4;background:#F6F6F6}
 .about-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:top center}
@@ -195,7 +198,7 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
 .btn-g:hover{background:#333;transform:translateY(-1px)}
 
 /* ══ SCHEDULE ══ */
-#schedule{background:var(--bg);border-top:1px solid var(--ln)}
+#schedule{background:var(--wh);border-top:1px solid var(--ln)}
 .sched-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:12px}
 .sched-filters{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}
 .sf-btn{padding:7px 15px;font-size:12.5px;font-weight:700;border-radius:99px;border:1.5px solid var(--ln);background:var(--wh);color:var(--t3);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
@@ -309,7 +312,7 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
 .ft-logo img{height:22px;filter:brightness(0)invert(1);opacity:.75}
 .ft-links{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .ft-links a{font-size:11.5px;color:rgba(255,255,255,.26);transition:color .2s}.ft-links a:hover{color:rgba(255,255,255,.7)}
-.ft-fam{display:flex;align-items:center;gap:7px}
+.ft-fam{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 .ft-fam-lbl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.17)}
 .ft-fam a{font-size:11px;font-weight:600;color:rgba(255,255,255,.26);padding:3px 10px;border-radius:3px;border:1px solid rgba(255,255,255,.07);transition:color .2s,border-color .2s;display:flex;align-items:center;gap:4px}
 .ft-fam a.act{color:var(--or);border-color:rgba(232,96,26,.25)}
@@ -421,6 +424,120 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
   #topbar .tb-b .pip,#topbar .tb-b span[style*="opacity"]{display:none}
   .tb-r{display:none!important}
 }
+
+.sched-pick{grid-column:1/-1;text-align:center;padding:38px 22px 42px;border:1.5px dashed var(--ln);border-radius:8px;background:var(--wh)}
+.sp-t{font-size:18px;font-weight:800;color:var(--t1);letter-spacing:-.02em;margin-bottom:20px}
+.sp-s{font-size:13px;color:var(--t4);margin:6px 0 22px}
+.sp-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.sp-card{min-width:156px;padding:18px 22px;border:1.5px solid var(--ln);border-radius:8px;background:var(--wh);cursor:pointer;font-family:inherit;text-align:center;transition:border-color .2s,box-shadow .2s,transform .2s}
+.sp-card:hover{border-color:var(--or);box-shadow:0 4px 18px rgba(0,0,0,.07);transform:translateY(-2px)}
+.sp-g{display:block;font-size:17px;font-weight:800;color:var(--t1)}
+.sp-n{display:block;font-size:12px;font-weight:700;color:var(--or);margin-top:4px}
+@media(max-width:560px){.sp-row{flex-direction:column}.sp-card{width:100%;display:flex;justify-content:space-between;align-items:center;text-align:left;padding:15px 18px}.sp-n{margin-top:0}}
+
+/* 패밀리 사이트 드롭다운 */
+.fam-dd{position:relative}
+.fam-dd summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:168px;padding:7px 12px;border:1px solid rgba(255,255,255,.22);border-radius:4px;font-size:12px;font-weight:600;color:rgba(255,255,255,.75);transition:border-color .2s,color .2s;user-select:none}
+.fam-dd summary::-webkit-details-marker{display:none}
+.fam-dd summary:hover,.fam-dd[open] summary{color:#fff;border-color:rgba(255,255,255,.5)}
+.fam-dd .car{font-size:9px;transition:transform .2s;opacity:.7}
+.fam-dd[open] .car{transform:rotate(180deg)}
+.fam-menu{position:absolute;left:0;right:0;bottom:calc(100% + 6px);background:#1E1E1E;border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:5px;box-shadow:0 10px 30px rgba(0,0,0,.4);z-index:20}
+.fam-menu a{display:flex!important;align-items:center;justify-content:space-between;padding:8px 10px!important;border:0!important;border-radius:4px;font-size:12.5px!important;font-weight:600;color:rgba(255,255,255,.78)!important;background:none!important}
+.fam-menu a:hover{background:rgba(255,255,255,.07)!important;color:#fff!important}
+.fam-menu a.act{color:var(--or)!important}
+.fam-menu a .ext{font-size:10px;opacity:.55}
+
+/* 화면 밖에 숨겨 둔 패널: 닫혀 있을 땐 완전히 숨김 (모바일 줌아웃 시 비쳐 보이는 문제 방지) */
+html{overflow-x:clip}
+#page-detail{visibility:hidden;transition:transform .35s cubic-bezier(.4,0,.2,1),visibility 0s linear .35s}
+#page-detail.open{visibility:visible;transition:transform .35s cubic-bezier(.4,0,.2,1),visibility 0s}
+#mob{visibility:hidden;transition:transform .3s cubic-bezier(.4,0,.2,1),visibility 0s linear .3s}
+#mob.on{visibility:visible;transition:transform .3s cubic-bezier(.4,0,.2,1),visibility 0s}
+
+/* 수강후기: 카드가 자동으로 한 장씩 옆으로 넘어감 */
+.rv-grid{display:block!important;overflow:hidden;margin-top:40px;padding:4px 0 6px}
+.rv-track{display:flex;gap:12px;transition:transform .7s cubic-bezier(.25,.8,.25,1);will-change:transform}
+.rv-track .rv-card{flex:0 0 calc((100% - 24px) / 3);opacity:1!important;transform:none!important}
+.rv-dots{display:flex;justify-content:center;gap:6px;margin-top:16px}
+.rv-dot{width:7px;height:7px;border-radius:99px;border:0;padding:0;background:#CFCFCF;cursor:pointer;transition:width .25s,background .25s}
+.rv-dot.on{width:20px;background:var(--g)}
+@media(max-width:900px){.rv-track .rv-card{flex-basis:calc((100% - 12px) / 2)}}
+@media(max-width:560px){.rv-track .rv-card{flex-basis:100%}.rv-grid{margin-top:28px}}
+
+/* 강사 카드: 마우스를 올리면 확실히 구분 */
+.t-card{transition:border-color .2s,box-shadow .2s,transform .2s}
+.t-photo,.t-info,.t-name,.t-msg,.t-more{transition:background .2s,color .2s,border-color .2s}
+@media(hover:hover){
+  .t-card:hover{border-color:var(--g);box-shadow:0 12px 30px rgba(0,0,0,.14);transform:translateY(-4px)}
+  .t-card:hover .t-photo{background:var(--g-lt);border-bottom-color:var(--g)}
+  .t-card:hover .t-info{background:var(--g)}
+  .t-card:hover .t-name{color:#fff}
+  .t-card:hover .t-msg{color:rgba(255,255,255,.75)}
+  .t-card:hover .t-more{color:#fff;border-top-color:rgba(255,255,255,.25)}
+}
+/* 강사 상세: 사진 크게 */
+.detail-hero{padding:40px 0}
+.detail-avatar{width:240px;height:240px;border-radius:12px}
+@media(max-width:768px){
+  .detail-hero{padding:0 0 26px}
+  .detail-hero .wrap{padding:0}
+  .detail-hero-in{gap:0;align-items:stretch}
+  .detail-avatar{position:relative;width:100%;height:auto;aspect-ratio:1/1;max-height:68vh;border-radius:0}
+  .detail-avatar::after{content:'';position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(rgba(17,17,17,0),var(--bk));pointer-events:none}
+  .detail-hero-in>div:last-child{position:relative;z-index:1;padding:0 18px;margin-top:-30px}
+}
+
+/* 모바일 점검 보정 */
+section[id]{scroll-margin-top:50px}
+.burger{padding:12px 10px;margin-right:-10px}
+.rv-dot{box-sizing:content-box;padding:9px 5px;background-clip:content-box}
+.rv-dots{gap:0;margin-top:8px}
+.rv-grid{touch-action:pan-y}
+.sched-top>a{display:inline-block;padding:10px 0}
+.ft-links>a{display:inline-block;padding:10px 0}
+
+/* 라운드6: 후기 점 작게 · 강사 카드 글씨 크게 · 과목별 hover 색 */
+.rv-dots{gap:0;margin-top:10px}
+.rv-dot{box-sizing:border-box;width:18px;height:24px;padding:0;border:0;background:none!important;position:relative;cursor:pointer}
+.rv-dot::before{content:'';position:absolute;left:50%;top:50%;width:6px;height:6px;border-radius:99px;background:#CFCFCF;transform:translate(-50%,-50%);transition:width .25s,background .25s}
+.rv-dot.on{width:26px}
+.rv-dot.on::before{width:16px;background:var(--g)}
+.t-badge{font-size:12px;padding:3px 9px}
+.t-name{font-size:19px}
+.t-role{font-size:11px;padding:2px 7px}
+.t-msg{font-size:12.5px}
+@media(max-width:560px){.t-info{padding:11px 11px}.t-badge{font-size:11.5px;padding:3px 8px}.t-name{font-size:18px}.t-msg{font-size:12px}}
+@media(hover:hover){
+  .t-card:hover{border-color:var(--sc,var(--g))}
+  .t-card:hover .t-photo{background:var(--sc-lt,var(--g-lt));border-bottom-color:var(--sc,var(--g))}
+  .t-card:hover .t-info{background:var(--sc,var(--g))}
+}
+
+/* 강사 상세: 과목별 색 */
+#page-detail .detail-hero{background:var(--dh,var(--bk))}
+#page-detail .detail-avatar{background:var(--dc-lt,#F6F6F6)}
+#page-detail .detail-eyebrow{color:var(--dc-lt,var(--or))}
+#page-detail .detail-eyebrow::before{background:var(--dc-lt,var(--or))}
+#page-detail .detail-tag{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.22);color:rgba(255,255,255,.88)}
+#page-detail .d-sec-t{color:var(--dc,var(--t4))}
+#page-detail .d-sec-t::before{background:var(--dc,var(--or))}
+#page-detail .d-cr::before{background:var(--dc,var(--or))}
+#page-detail .blog-link-btn:hover,#page-detail .vid-card:hover{border-color:var(--dc,var(--or))}
+#page-detail .vid-play{background:var(--dc,var(--or))}
+#page-detail .btn-back:hover{color:var(--dc)}
+@media(max-width:768px){#page-detail .detail-avatar::after{background:linear-gradient(rgba(0,0,0,0),var(--dh,var(--bk)))}}
+
+/* 강사 카드 높이 맞춤(아래 흰 틈 제거) */
+.t-card{display:flex;flex-direction:column}
+.t-photo{flex-shrink:0}
+.t-info{flex:1;display:flex;flex-direction:column}
+.t-more{margin-top:auto}
+/* 강사 상세: 수업 시간표 */
+.d-sched{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:28px}
+.d-sched .s-card{margin:0}
+.d-sg{font-size:10px;background:var(--bg);padding:2px 6px;border-radius:3px;color:var(--t4);margin-left:5px;font-weight:700}
+@media(max-width:560px){.d-sched{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -449,6 +566,7 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
   <div class="detail-body"><div class="wrap"><div class="detail-grid">
     <div>
       <div class="d-sec-t">경력 및 학력</div><div class="d-career" id="d-career"></div>
+      <div class="d-sec-t" id="d-sch-title" style="display:none">수업 시간표</div><div class="d-sched" id="d-sched"></div>
       <div class="d-sec-t" id="d-blog-title" style="display:none">관련 블로그 링크</div><div class="blog-links" id="d-blog-links"></div>
       <div class="d-sec-t" id="d-vid-title" style="display:none;margin-top:28px">수업 맛보기</div><div class="vid-links" id="d-vid-links"></div>
     </div>
@@ -459,9 +577,9 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
 
 <!-- MOBILE BOTTOM NAV -->
 <nav id="mob-bar">
+  <a href="#teachers" class="mb-item ml2"><span class="mb-icon">👩‍🏫</span>강사진</a>
   <a href="#about" class="mb-item ml2"><span class="mb-icon">🏫</span>학원소개</a>
   <a href="#schedule" class="mb-item ml2"><span class="mb-icon">📅</span>시간표</a>
-  <a href="#teachers" class="mb-item ml2"><span class="mb-icon">👩‍🏫</span>강사진</a>
   <a href="#consult" class="mb-item ml2"><span class="mb-icon">💬</span>상담안내</a>
 </nav>
 
@@ -481,7 +599,7 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
 <header id="hd"><div class="wrap"><div class="hd-in">
   <a href="#hero" class="hd-logo"><img src="img/logo/mokdong.png" alt="에듀메이트학원"/></a>
   <nav class="hd-nav">
-    <a href="#about">학원소개</a><a href="#schedule">시간표</a><a href="#teachers">강사진</a><a href="#reviews">수강후기</a><a href="#consult">상담안내</a>
+    <a href="#teachers">강사진</a><a href="#about">학원소개</a><a href="#schedule">시간표</a><a href="#reviews">수강후기</a><a href="#consult">상담안내</a>
     <a href="https://blog.naver.com/edumate_mokdong" target="_blank" rel="noopener" style="color:var(--t3)">블로그<span class="ext-ic">↗</span></a>
   </nav>
   <div class="hd-r">
@@ -493,7 +611,7 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
 
 <!-- SLIDE MOBILE NAV -->
 <nav id="mob">
-  <a href="#about" class="ml">학원소개</a><a href="#schedule" class="ml">시간표</a><a href="#teachers" class="ml">강사진</a><a href="#reviews" class="ml">수강후기</a><a href="#consult" class="ml">상담안내</a>
+  <a href="#teachers" class="ml">강사진</a><a href="#about" class="ml">학원소개</a><a href="#schedule" class="ml">시간표</a><a href="#reviews" class="ml">수강후기</a><a href="#consult" class="ml">상담안내</a>
   <a href="https://blog.naver.com/edumate_mokdong" target="_blank" class="ml" style="color:var(--t3)">블로그 ↗</a>
   <div class="mob-cta">
     <a href="tel:0267369505" class="mob-btn-out">📞 02-6736-9505</a>
@@ -511,9 +629,9 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
       <p class="hero-sub" style="margin-bottom:4px;font-size:13px;color:rgba(255,255,255,.4);margin-top:4px">목동 고등 내신·수능 관리형 단과</p>
       <p class="hero-sub">대형학원의 강의력과 전문학원의 밀착 관리를 동시에,<br/>여러분의 마지막 학원이 되겠습니다.</p>
       <div class="hero-nav-row">
+        <a href="#teachers" class="hn-btn">강사진</a>
         <a href="#about" class="hn-btn">학원소개</a>
         <a href="#schedule" class="hn-btn">시간표</a>
-        <a href="#teachers" class="hn-btn">강사진</a>
         <a href="#reviews" class="hn-btn">수강후기</a>
         <a href="#consult" class="hn-btn">상담안내</a>
         <a href="https://blog.naver.com/edumate_mokdong" target="_blank" rel="noopener" class="hn-btn">블로그 ↗</a>
@@ -526,6 +644,24 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
     </div>
   </div></div>
 </section>
+
+<!-- TEACHERS -->
+<section id="teachers" class="sec"><div class="wrap">
+  <div class="sec-label">강사진</div>
+  <h2 class="sec-h2" style="margin-bottom:5px">함께 달리는 메이트</h2>
+  <p class="sec-desc" style="margin-bottom:18px">카드를 클릭하면 강사 상세 정보를 확인할 수 있습니다.</p>
+  <div class="t-filter-bar" id="t-filter-bar">
+    <button class="t-filter-btn on" data-f="전체">전체</button>
+    <button class="t-filter-btn" data-f="국어">국어</button>
+    <button class="t-filter-btn" data-f="수학">수학</button>
+    <button class="t-filter-btn" data-f="영어">영어</button>
+    <button class="t-filter-btn" data-f="사회">사회</button>
+    <button class="t-filter-btn" data-f="과학">과학</button>
+    <button class="t-filter-btn" data-f="논술">논술</button>
+    <button class="t-filter-btn" data-f="면접·컨설팅">면접·컨설팅</button>
+  </div>
+  <div class="t-grid" id="t-grid"></div>
+</div></section>
 
 <!-- ABOUT -->
 <section id="about" class="sec"><div class="wrap">
@@ -547,7 +683,7 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
     <div>
       <div class="sec-label">Schedule</div>
       <h2 class="sec-h2" style="margin-bottom:3px">수업 시간표</h2>
-      <p class="sec-desc" style="font-size:13px"><strong style="color:var(--t1)">2026년 11월 1일 기준</strong> · 학년과 과목을 선택해 보세요</p>
+      <p class="sec-desc" style="font-size:13px"><strong style="color:var(--t1)">2026년 11월 1일 기준</strong> · 선택한 학년 버튼을 한 번 더 누르면 처음으로 돌아가요</p>
     </div>
     <a href="https://blog.naver.com/PostList.naver?blogId=edumate_mokdong&from=postList&categoryNo=17" target="_blank" rel="noopener" style="font-size:13px;color:var(--or);font-weight:700">블로그 시간표 확인 ↗</a>
   </div>
@@ -569,23 +705,6 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
   <div class="sched-tip">위 시간표는 2026년 11월 1일 기준이며 변경될 수 있습니다. 정확한 시간표는 <a href="https://blog.naver.com/PostList.naver?blogId=edumate_mokdong&from=postList&categoryNo=17" target="_blank" style="color:var(--or);font-weight:700">블로그</a> 또는 전화 문의를 통해 확인해 주세요.</div>
 </div></section>
 
-<!-- TEACHERS -->
-<section id="teachers" class="sec"><div class="wrap">
-  <div class="sec-label">강사진</div>
-  <h2 class="sec-h2" style="margin-bottom:5px">함께 달리는 메이트</h2>
-  <p class="sec-desc" style="margin-bottom:18px">카드를 클릭하면 강사 상세 정보를 확인할 수 있습니다.</p>
-  <div class="t-filter-bar" id="t-filter-bar">
-    <button class="t-filter-btn on" data-f="전체">전체</button>
-    <button class="t-filter-btn" data-f="국어">국어</button>
-    <button class="t-filter-btn" data-f="수학">수학</button>
-    <button class="t-filter-btn" data-f="영어">영어</button>
-    <button class="t-filter-btn" data-f="사회">사회</button>
-    <button class="t-filter-btn" data-f="과학">과학</button>
-    <button class="t-filter-btn" data-f="논술">논술</button>
-    <button class="t-filter-btn" data-f="면접·컨설팅">면접·컨설팅</button>
-  </div>
-  <div class="t-grid" id="t-grid"></div>
-</div></section>
 
 <!-- REVIEWS -->
 <section id="reviews" class="sec"><div class="wrap">
@@ -631,10 +750,10 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
       <span class="cs-sec-icon">📍</span>
       <div><div class="cs-sec-lbl">위치 · 네이버 지도</div><div class="cs-sec-val">목동동로8길 17, 3층</div><div style="font-size:11px;color:var(--t4);margin-top:1px">14단지 / 신목초등학교 근처</div></div>
     </a>
-    <div class="cs-sec-card">
+    <a href="http://pf.kakao.com/_AALWX" target="_blank" rel="noopener" class="cs-sec-card">
       <span class="cs-sec-icon">💬</span>
-      <div><div class="cs-sec-lbl">카카오 채널</div><div class="cs-sec-val">에듀메이트학원</div><div style="font-size:11px;color:var(--t4);margin-top:1px">링크 추후 업데이트 예정</div></div>
-    </div>
+      <div><div class="cs-sec-lbl">카카오 채널</div><div class="cs-sec-val">에듀메이트학원</div><div style="font-size:11px;color:var(--or);margin-top:1px;font-weight:700">채널 바로가기 ↗</div></div>
+    </a>
     <a href="https://blog.naver.com/PostList.naver?blogId=edumate_mokdong&from=postList&categoryNo=17" target="_blank" rel="noopener" class="cs-sec-card">
       <span class="cs-sec-icon">📅</span>
       <div><div class="cs-sec-lbl">수업 시간표</div><div class="cs-sec-val">블로그에서 확인</div><div style="font-size:11px;color:var(--or);margin-top:1px;font-weight:700">바로가기 ↗</div></div>
@@ -647,17 +766,9 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
   <div class="ft-top-row">
     <a href="#hero" class="ft-logo"><img src="img/logo/mokdong.png" alt="에듀메이트"/></a>
     <div class="ft-links">
-      <div class="ft-fam">
-        <span class="ft-fam-lbl">패밀리</span>
-        <a href="mokdong.html" class="act"><span class="pip" style="display:inline-block;margin-right:2px"></span> 목동관</a>
-        <a href="gimpo.html"><span class="pip dim" style="display:inline-block;margin-right:2px"></span> 김포관</a>
-        <a href="allcare.html"><span class="pip dim" style="display:inline-block;margin-right:2px"></span> 올케어</a>
-        <a href="https://mate-lab.netlify.app/" target="_blank" rel="noopener"><span class="pip dim" style="display:inline-block;margin-right:2px"></span> 메이트랩 ↗</a>
-        <a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener"><span class="pip dim" style="display:inline-block;margin-right:2px"></span> 온메이트 ↗</a>
-      </div>
+      <details class="fam-dd"><summary>패밀리 사이트 <span class="car">▲</span></summary><div class="fam-menu"><a href="mokdong.html" class="act" aria-current="page">목동관<span class="ext">현재</span></a><a href="gimpo.html">김포관</a><a href="allcare.html">메이트 올케어</a><a href="https://mate-lab.netlify.app/" target="_blank" rel="noopener">메이트랩<span class="ext">↗</span></a><a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener">온메이트 (YouTube)<span class="ext">↗</span></a></div></details>
       <div class="ft-divr"></div>
       <a href="https://blog.naver.com/edumate_mokdong" target="_blank" rel="noopener">블로그 ↗</a>
-      <a href="#">개인정보처리방침</a>
     </div>
   </div>
   <div class="ft-biz">
@@ -665,7 +776,7 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
     서울특별시 양천구 목동동로8길 17, 3층 | ☎ 02-6736-9505 | 교습과정: 학교교과교습학원(보습·논술)<br/>
     <span style="opacity:.7">교습비 공시 [4주 기준] &ensp;국어 32·34만원 &ensp;수학 42·45·60만원 &ensp;영어 34·40·42만원 &ensp;사회/과학 30·34만원 &ensp;논술 36만원</span>
   </div>
-  <div class="ft-copy">© 2024 에듀메이트학원 목동관. All rights reserved.</div>
+  <div class="ft-copy">메이트학원 Since 2024 · © 에듀메이트학원 목동관. All rights reserved.</div>
 </div></div></footer>
 
 <button id="stb" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
@@ -675,7 +786,7 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
 const PHOTO_DATA={
   '김소진':'img/teachers/kim-sojin.webp','정예진':'img/teachers/jeong-yejin.webp','임한비':'img/teachers/lim-hanbi.webp','윤서은':'img/teachers/yun-seoeun.webp',
   '안호수':'img/teachers/an-hosu.webp','이나경':'img/teachers/lee-nagyeong.webp','박준형':'img/teachers/park-junhyeong.jpg','권세은':'img/teachers/kwon-seeun.webp',
-  '김동률':'img/teachers/kim-dongryul.jpg','최예빈':'img/teachers/choi-yebin.webp','김경민':'img/teachers/kim-gyeongmin.webp','이승민':'img/teachers/lee-seungmin.webp',
+  '김동률':'img/teachers/kim-dongryul.webp','최예빈':'img/teachers/choi-yebin.webp','김경민':'img/teachers/kim-gyeongmin.webp','이승민':'img/teachers/lee-seungmin.webp',
   '정다혜':'img/teachers/jeong-dahye.webp','정지애':'img/teachers/jeong-jiae.jpg','김동완':'img/teachers/kim-dongwan.webp',
   '정아린':'img/teachers/jeong-arin.webp',
   '주윤겸':'img/teachers/ju-yungyeom.webp'
@@ -693,51 +804,51 @@ const SC={
 
 const TEACHERS=[
   {name:'김소진',filters:['국어','논술'],role:null,subjects:['국어','논술'],
-   msg:'글을 제대로 읽는 전공자의 눈',tags:['부원장','연세대 국어국문학','국어 전임','2026년 이투스북 연간검토단'],
-   career:['연세대학교 국어국문학과','목동초등학교 · 목동중학교 졸업','이화여자대학교 인문논술 합격','연세대학교 편입논술 합격','2026년 이투스북 연간검토단','메이트학원 부원장','메이트학원 국어과 전임강사'],
+   msg:'글을 제대로 읽는 전공자의 눈',tags:['부원장','연세대 국어국문학','국어 전임'],
+   career:['메이트학원 부원장','메이트학원 국어과 전임강사','연세대학교 국어국문학과','목동초등학교 · 목동중학교 졸업','이화여자대학교 인문논술 합격','연세대학교 편입논술 합격','2026년 이투스북 연간검토단'],
    subjects_teach:['수능 국어','내신 국어','인문논술','약술논술'],target:'고1·2·3 / N수',blogLinks:[{title:'김소진T 강사 소개',url:'https://blog.naver.com/yourmate_gimpo/224362103359'},{title:'인문논술 수업 방식',url:'https://blog.naver.com/edumate_mokdong/224350956422'},{title:'[후기] 국어 김소진T 수강후기',url:'https://blog.naver.com/edumate_mokdong/224271700457'},{title:'[후기] 약술 논술 수강후기',url:'https://blog.naver.com/edumate_mokdong/224184462106'},{title:'[합격수기] 한양대 음대 합격생 합격수기',url:'https://blog.naver.com/edumate_mokdong/224182881117'}]},
   {name:'정예진',filters:['국어'],role:null,subjects:['국어'],
    msg:'수능 국어는 정예진',tags:['과외어플 전국 상위 0.2%','대치명인학원'],
-   career:['중앙대학교','과외어플 전국 상위 0.2%','現) 대치명인학원 후곡캠퍼스','메이트학원 국어과 강사'],
+   career:['메이트학원 국어과 강사','과외어플 전국 상위 0.2%','現) 대치명인학원 후곡캠퍼스'],
    subjects_teach:['수능 국어','내신 국어'],target:'고1·2·3 / N수',videos:[{title:'2027학년도 9월 평가원 모의고사 해설강의(주요문항)',id:'PA1M5m0x0jI'}],blogLinks:[]},
   {name:'임한비',filters:['국어'],role:null,subjects:['국어'],
    msg:'국어의 단비',tags:['국어 전임'],
-   career:['숙명여자대학교 한국어문학과','메이트학원 국어과 전임강사'],
+   career:['메이트학원 국어과 전임강사'],
    subjects_teach:['수능 국어','내신 국어'],target:'고1·2·3',
    blogLinks:[{title:'임한비T 강사 소개',url:'https://blog.naver.com/edumate_mokdong/224376926987'},{title:'고1/고2 국어 내신 공부 방법',url:'https://blog.naver.com/edumate_mokdong/224379916436'}]},
   {name:'김동완',filters:['국어','논술','면접·컨설팅'],role:null,
    subjects:['국어','논술','면접·컨설팅'],
-   msg:'너의 마지막 입시 메이트',tags:['원장','연세대 국어국문학','국어학 석사과정','2026년 이투스북 연간검토단'],
-   career:['연세대학교 국어국문학과 · 정치외교학과','연세대학교 일반대학원 국어학 석사과정','정교사 2급 교원자격증 취득','중앙대학교 · 연세대학교 인문논술 합격','2026년 이투스북 연간검토단','메이트학원 대표원장','김포 당신을위한유어랩학원 국어 담당'],
+   msg:'너의 마지막 입시 메이트',tags:['원장','연세대 국어국문학','국어학 석사과정'],
+   career:['메이트학원 대표원장','연세대학교 국어국문학과 · 정치외교학과','연세대학교 일반대학원 국어학 석사과정','정교사 2급 교원자격증 취득','중앙대학교 · 연세대학교 인문논술 합격','2026년 이투스북 연간검토단','김포 당신을위한유어랩학원 국어 담당'],
    subjects_teach:['국어(고3·N수)','인문논술','약술논술','면접·컨설팅'],target:'고3 / N수',blogLinks:[{title:'김동완T 강사 소개',url:'https://blog.naver.com/edumate_mokdong/223439213179'},{title:'인문논술 수업 방식',url:'https://blog.naver.com/edumate_mokdong/224350956422'},{title:'생기부 기반 면접 대비반 진행 방식',url:'https://blog.naver.com/yourmate_gimpo/224448440567'},{title:'[후기] 국어 김동완T 수강후기',url:'https://blog.naver.com/edumate_mokdong/224207132313'},{title:'[합격수기] 한양대 음대 합격생 합격수기',url:'https://blog.naver.com/edumate_mokdong/224182881117'}]},
   {name:'안호수',filters:['수학','논술'],role:null,subjects:['수학','논술'],
    msg:'내 사전에 수포자는 없다',tags:['과외어플 전국 상위 2%','유어랩학원','수학 전임'],
-   career:['국민대학교','김포 당신을위한유어랩학원 S반(특목반) 담당','과외어플 전국 상위 2%','메이트학원 수학과 전임강사'],
+   career:['메이트학원 수학과 전임강사','김포 당신을위한유어랩학원 S반(특목반) 담당','과외어플 전국 상위 2%'],
    subjects_teach:['수능 수학','내신 수학','약술논술(수학)'],target:'고1·2·3 / N수',videos:[{title:'고2 2026년 3월 교육청 모의고사 해설강의(주요문항)',id:'RoNBmnzKfE0'}],blogLinks:[{title:'수학 개인관리반 진행 방식',url:'https://blog.naver.com/edumate_mokdong/224375783358'},{title:'[후기] 약술 논술 수강후기',url:'https://blog.naver.com/edumate_mokdong/224184462106'}]},
   {name:'윤서은',filters:['수학'],role:null,subjects:['수학'],
    msg:'당신을 위한 수학, 실전 수학',tags:['연세대'],
-   career:['연세대학교','前) 광주 E학원','메이트학원 수학과 강사'],
+   career:['메이트학원 수학과 강사','연세대학교','前) 광주 E학원'],
    subjects_teach:['수능 수학','내신 수학'],target:'고1·2·3 / N수',blogLinks:[{title:'수학 개인관리반 진행 방식',url:'https://blog.naver.com/edumate_mokdong/224375783358'},{title:'관리형 수학 수업 성과 공개 (학생 후기 포함)',url:'https://blog.naver.com/edumate_mokdong/224339373781'},{title:'[후기] 수학 윤서은T 수강후기',url:'https://blog.naver.com/edumate_mokdong/224213075509'}]},
   {name:'이나경',filters:['수학'],role:null,subjects:['수학'],
    msg:'너만을 위한 수학 멘토',tags:['서울대 컴퓨터공학'],
-   career:['서울대학교 컴퓨터공학부','메이트학원 수학과 강사'],
+   career:['메이트학원 수학과 강사','서울대학교 컴퓨터공학부'],
    subjects_teach:['수능 수학','내신 수학'],target:'예비고1·고1·2',blogLinks:[{title:'이나경T 강사 소개',url:'https://blog.naver.com/edumate_mokdong/224368407374'},{title:'수학 개인관리반 진행 방식',url:'https://blog.naver.com/edumate_mokdong/224375783358'}]},
   {name:'최예빈',filters:['영어'],role:null,subjects:['영어'],
    msg:'전략 과목을 대하는 가장 전략적인 방법',tags:['영어 전임'],
-   career:['성신여자대학교','동두천외국어고등학교 졸업','前) 경기 C학원','메이트학원 영어과 전임강사'],
+   career:['메이트학원 영어과 전임강사','동두천외국어고등학교 졸업','前) 경기 C학원'],
    subjects_teach:['수능 영어','내신 영어'],target:'고1·2·3',blogLinks:[]},
   {name:'권세은',filters:['영어'],role:null,subjects:['영어'],
-   msg:'감이 아니라 구조로 보는 영어',tags:['영어 전임'],
-   career:['경희대학교','목동초등학교 · 목동중학교 · 진명여고 졸업','메이트학원 영어과 전임강사'],
+   msg:'감이 아니라 구조로 보는 영어',tags:['영어 전임','과외어플 전국 상위 0.2%'],
+   career:['메이트학원 영어과 전임강사','과외어플 전국 상위 0.2%','목동초등학교 · 목동중학교 · 진명여고 졸업'],
    subjects_teach:['수능 영어','내신 영어'],target:'고1·2·3 / N수',
    videos:[{title:'2027학년도 9월 평가원 모의고사 해설강의(주요문항)',id:'ee_qijo6E3M'},{title:'수능 영어 어법 총정리',id:'OxbckhhrfeA'}],blogLinks:[{title:'권세은T 강사 소개',url:'https://blog.naver.com/yourmate_gimpo/224333383667'},{title:'신목고2 내신 분석',url:'https://blog.naver.com/edumate_mokdong/224434115070'},{title:'권세은T 수능 영어 커리큘럼',url:'https://blog.naver.com/yourmate_gimpo/224359529122'},{title:'[후기] 영어 권세은T 수강후기',url:'https://blog.naver.com/edumate_mokdong/224264042226'}]},
   {name:'김동률',filters:['영어'],role:null,subjects:['영어'],
    msg:'눈이 아니라 머리로 읽는 영어',tags:['연세대 영어영문학','MATE VOCA'],
-   career:['연세대학교 영어영문학과','메이트학원 영단어교재 &lt;MATE VOCA&gt; 집필','메이트학원 영어과 강사'],
+   career:['메이트학원 영어과 강사','메이트학원 영단어교재 &lt;MATE VOCA&gt; 집필','연세대학교 영어영문학과'],
    subjects_teach:['수능 영어','내신 영어'],target:'예비고1·고1·2·3',blogLinks:[]},
   {name:'김경민',filters:['사회'],role:null,subjects:['사회'],
    msg:'티칭과 코칭으로 사회의 정답',tags:['과외어플 전국 상위 0.2%','2026년 이투스북 연간검토단'],
-   career:['과외어플 전국 상위 0.2%','2026년 이투스북 연간검토단','메이트학원 사회과 강사'],
+   career:['메이트학원 사회과 강사','과외어플 전국 상위 0.2%','2026년 이투스북 연간검토단'],
    subjects_teach:['통합사회'],target:'고1',blogLinks:[{title:'[후기] 통합사회 김경민T 수강후기',url:'https://blog.naver.com/edumate_mokdong/224215404135'}]}
 ];
 
@@ -754,7 +865,7 @@ function renderTeachers(filter){
     const ph=ps?`<img src="${ps}" alt="${t.name}" loading="lazy"/>`
       :`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;color:rgba(255,255,255,.9);background:${primaryC.avatar}">${t.name.charAt(0)}</div>`;
     const badgesHtml=t.subjects.map(s=>{const c=SC[s]||{bg:'#eee',text:'#444'};return `<span class="t-badge" style="background:${c.bg};color:${c.text}">${s}</span>`;}).join('');
-    return `<div class="t-card" ${hidden} onclick="openTeacher(${idx})">
+    return `<div class="t-card" ${hidden} style="--sc:${primaryC.avatar};--sc-lt:${primaryC.bg}" onclick="openTeacher(${idx})">
       <div class="t-photo">${ph}</div>
       <div class="t-info">
         <div class="t-badges">${badgesHtml}</div>
@@ -814,9 +925,13 @@ let curGrade=null,curSubj='전체';
 function renderSchedule(){
   const grid=document.getElementById('sched-grid');
   if(!curGrade){
-    grid.innerHTML='<div class="sched-prompt" style="grid-column:1/-1"><strong>학년을 선택해 주세요</strong>학년 탭을 누르면 해당 시간표가 표시됩니다.</div>';
+    document.getElementById('subj-btns').style.display='none';
+    const gb=[...document.querySelectorAll('#grade-btns .sf-btn')].filter(b=>b.dataset.g!=='전체');
+    grid.innerHTML='<div class="sched-pick"><div class="sp-t">학년을 선택해 주세요.</div><div class="sp-row">'+gb.map(b=>{const list=(SCHEDULE[b.dataset.g]||[]).filter(i=>!i.closed&&!i.any);return `<button type="button" class="sp-card" data-pick="${b.dataset.g}"><span class="sp-g">${b.textContent}</span><span class="sp-n">${list.length?'수업 '+list.length+'개 →':'학원 문의 →'}</span></button>`;}).join('')+'</div></div>';
+    grid.querySelectorAll('.sp-card').forEach(c=>c.addEventListener('click',()=>document.querySelector('#grade-btns .sf-btn[data-g="'+c.dataset.pick+'"]').click()));
     return;
   }
+  document.getElementById('subj-btns').style.display='';
   let items=[];
   const grades=curGrade==='전체'?Object.keys(SCHEDULE):Object.keys(SCHEDULE).filter(g=>g===curGrade);
   grades.forEach(g=>SCHEDULE[g].forEach(item=>{if(curSubj==='전체'||item.subj===curSubj||item.any)items.push({...item,grade:g});}));
@@ -831,19 +946,29 @@ function renderSchedule(){
   }).join('');
 }
 renderSchedule();
-document.getElementById('grade-btns').addEventListener('click',e=>{const btn=e.target.closest('.sf-btn');if(!btn)return;document.querySelectorAll('.sf-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');curGrade=btn.dataset.g;renderSchedule();});
+document.getElementById('grade-btns').addEventListener('click',e=>{const btn=e.target.closest('.sf-btn');if(!btn)return;const was=btn.classList.contains('on');document.querySelectorAll('.sf-btn').forEach(b=>b.classList.remove('on'));if(was){curGrade=null;}else{btn.classList.add('on');curGrade=btn.dataset.g;}renderSchedule();});
 document.getElementById('subj-btns').addEventListener('click',e=>{const btn=e.target.closest('.ss-btn');if(!btn)return;document.querySelectorAll('.ss-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');curSubj=btn.dataset.s;renderSchedule();});
 
 /* Detail */
 const dp=document.getElementById('page-detail');let savedScroll=0;
 function openTeacher(idx){
   const t=TEACHERS[idx];const primaryC=SC[t.subjects[0]]||SC['국어'];
+  {const h=primaryC.avatar.replace('#','');const mix=i=>Math.round(parseInt(h.substr(i,2),16)*.32+17*.68);
+   dp.style.setProperty('--dc',primaryC.avatar);dp.style.setProperty('--dc-lt',primaryC.bg);
+   dp.style.setProperty('--dh','rgb('+mix(0)+','+mix(2)+','+mix(4)+')');}
   document.getElementById('d-photo').src=PHOTO_DATA[t.name]||'';
   document.getElementById('d-subject').textContent=t.subjects.join(' · ');
   document.getElementById('d-breadcrumb').textContent=t.name+' 강사 프로필';
   document.getElementById('d-name').innerHTML=t.name+(t.role?` <span class="detail-role-badge">${t.role}</span>`:'');
   document.getElementById('d-msg').textContent=t.msg?'"'+t.msg+'"':'';
-  document.getElementById('d-tags').innerHTML=t.tags.map(tg=>`<span class="detail-tag">${tg}</span>`).join('');
+  document.getElementById('d-tags').innerHTML=t.tags.slice(0,3).map(tg=>`<span class="detail-tag">${tg}</span>`).join('');
+  {const st=document.getElementById('d-sch-title'),sb=document.getElementById('d-sched');const rows=[];
+   Object.keys(SCHEDULE).forEach(g=>SCHEDULE[g].forEach(it=>{if(it.any||!it.teacher)return;const ns=it.teacher.split('·').map(x=>x.trim().replace(/T$/,''));if(ns.includes(t.name))rows.push({...it,grade:g});}));
+   if(rows.length){st.style.display='';sb.innerHTML=rows.map(it=>{const c=SC_S[it.subj]||{text:'#444',border:'#bbb'};
+     const badge=it.closed?'<span class="sc-badge">마감</span>':it.status==='dec'?`<span class="sc-badge sc-new">${it.badge||'12월 개강'}</span>`:it.status==='wait'?'<span class="sc-badge sc-wait">개강 예정</span>':it.isNew?'<span class="sc-badge sc-new">신규</span>':'';
+     const co=it.teacher.includes('·')?`<div class="sc-teacher">${it.teacher}</div>`:'';
+     return `<div class="s-card" style="border-left-color:${c.border};${it.closed?'opacity:.5':''}"><div class="sc-subj" style="color:${c.text}">${it.subj}<span class="d-sg">${it.grade}</span>${badge}</div><div class="sc-class">${it.class_name}</div>${co}<span class="sc-time">${it.time}</span>${it.desc?`<div class="sc-desc">${it.desc}</div>`:''}</div>`;}).join('');}
+   else{st.style.display='none';sb.innerHTML='';}}
   document.getElementById('d-career').innerHTML=t.career.map(c=>`<div class="d-cr">${c}</div>`).join('');
   const bt=document.getElementById('d-blog-title');const bl=document.getElementById('d-blog-links');
   if(t.blogLinks&&t.blogLinks.length){bt.style.display='';bl.innerHTML=t.blogLinks.map(b=>`<a href="${b.url}" target="_blank" rel="noopener" class="blog-link-btn">${b.title} ↗</a>`).join('');}
@@ -859,7 +984,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&dp.classList.contai
 /* Header & scroll */
 const hd=document.getElementById('hd');const tb=document.getElementById('topbar');
 const mbItems=document.querySelectorAll('.mb-item');
-const sections=['about','schedule','teachers','reviews','consult'];
+const sections=['teachers','about','schedule','reviews','consult'];
 let py=0;
 window.addEventListener('scroll',()=>{
   const y=window.scrollY;
@@ -896,5 +1021,40 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 })();
 </script>
 
+<script>
+/* 패밀리 드롭다운: 바깥 클릭 시 닫기 */
+document.addEventListener('click',function(e){document.querySelectorAll('details.fam-dd[open]').forEach(function(d){if(!d.contains(e.target))d.removeAttribute('open');});});
+</script>
+<script>
+/* 수강후기 자동 넘김: 3.5초마다 한 장씩, 끝나면 처음으로 자연스럽게 이어짐 */
+(function(){
+  const g=document.querySelector('.rv-grid');if(!g)return;
+  const cards=[...g.children];const n=cards.length;
+  const tr=document.createElement('div');tr.className='rv-track';
+  cards.forEach(c=>{c.classList.remove('reveal');c.style.transitionDelay='';tr.appendChild(c);});
+  cards.forEach(c=>{const k=c.cloneNode(true);k.setAttribute('aria-hidden','true');tr.appendChild(k);});
+  g.appendChild(tr);
+  const dots=document.createElement('div');dots.className='rv-dots';
+  dots.innerHTML=cards.map((_,k)=>`<button type="button" class="rv-dot" aria-label="${k+1}번째 후기"></button>`).join('');
+  g.after(dots);
+  let i=0,timer=null,hover=false;
+  const step=()=>tr.children[1].offsetLeft-tr.children[0].offsetLeft;
+  function place(anim){tr.style.transition=anim?'':'none';tr.style.transform='translateX('+(-i*step())+'px)';if(!anim){void tr.offsetWidth;tr.style.transition='';}
+    [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===((i%n)+n)%n));}
+  function go(k){if(k<0){i+=n;place(false);}i=k<0?i-1:k;place(true);}
+  tr.addEventListener('transitionend',()=>{if(i>=n){i-=n;place(false);}});
+  function start(){clearInterval(timer);timer=setInterval(()=>{if(!hover&&!document.hidden)go(i+1);},3500);}
+  g.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')hover=true;});
+  g.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')hover=false;});
+  let sx=null;
+  g.addEventListener('pointerdown',e=>{sx=e.clientX;});
+  g.addEventListener('pointerup',e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40){go(dx<0?i+1:i-1);start();}});
+  g.addEventListener('pointercancel',()=>{sx=null;});
+  g.addEventListener('dragstart',e=>e.preventDefault());
+  [...dots.children].forEach((d,k)=>d.addEventListener('click',()=>{i=((i%n)+n)%n;go(k);start();}));
+  window.addEventListener('resize',()=>place(false));
+  place(false);start();
+})();
+</script>
 </body>
 </html>

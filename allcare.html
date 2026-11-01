@@ -4,6 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>메이트 올케어 프로그램 | 메이트학원</title>
+<link rel="icon" href="img/favicon/mate-32.png" sizes="32x32" type="image/png"/>
+<link rel="icon" href="img/favicon/mate.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="img/favicon/mate-180.png"/>
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="메이트학원"/>
 <meta property="og:url" content="https://mate4u.netlify.app/allcare"/>
@@ -237,6 +240,62 @@ a.tb-b:hover{color:#fff;background:rgba(255,255,255,.08)}
   #topbar .tb-b .pip,#topbar .tb-b span[style*="opacity"]{display:none}
   .tb-r{display:none!important}
 }
+
+/* 패밀리 사이트 드롭다운 */
+.fam-dd{position:relative}
+.fam-dd summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:168px;padding:7px 12px;border:1px solid rgba(255,255,255,.22);border-radius:4px;font-size:12px;font-weight:600;color:rgba(255,255,255,.75);transition:border-color .2s,color .2s;user-select:none}
+.fam-dd summary::-webkit-details-marker{display:none}
+.fam-dd summary:hover,.fam-dd[open] summary{color:#fff;border-color:rgba(255,255,255,.5)}
+.fam-dd .car{font-size:9px;transition:transform .2s;opacity:.7}
+.fam-dd[open] .car{transform:rotate(180deg)}
+.fam-menu{position:absolute;left:0;right:0;bottom:calc(100% + 6px);background:#1E1E1E;border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:5px;box-shadow:0 10px 30px rgba(0,0,0,.4);z-index:20}
+.fam-menu a{display:flex!important;align-items:center;justify-content:space-between;padding:8px 10px!important;border:0!important;border-radius:4px;font-size:12.5px!important;font-weight:600;color:rgba(255,255,255,.78)!important;background:none!important}
+.fam-menu a:hover{background:rgba(255,255,255,.07)!important;color:#fff!important}
+.fam-menu a.act{color:var(--or)!important}
+.fam-menu a .ext{font-size:10px;opacity:.55}
+
+html{overflow-x:clip}
+
+.cf-planner .cf-stage{height:clamp(400px,52vw,640px)}
+.cf-planner .cf-item{width:clamp(250px,30vw,400px);margin-left:calc(clamp(250px,30vw,400px) / -2)}
+
+/* 관리 흐름 5단계: 모바일에서 짧게 */
+@media(max-width:560px){
+  .flow{gap:8px}
+  .flow li{display:grid;grid-template-columns:30px 1fr auto;column-gap:12px;row-gap:3px;align-items:center;padding:13px 14px}
+  .flow li::before{content:counter(f);grid-row:1/3;align-self:start;width:30px;height:30px;border-radius:50%;background:var(--cr);color:var(--nv);display:flex;align-items:center;justify-content:center;font-size:13px;letter-spacing:0;margin:0}
+  .flow li.hl::before{background:var(--gd);color:var(--nv)}
+  .flow b{font-size:15px;margin:0}
+  .flow .who{margin:0;grid-column:3;grid-row:1;font-size:10.5px;padding:2px 7px}
+  .flow span{grid-column:2/4;font-size:12.5px;line-height:1.6}
+}
+
+/* 맨 위 줄: 목동·김포와 글자 간격 통일 */
+#topbar .tb-b{letter-spacing:.02em}
+
+/* 모바일 점검 보정 */
+section[id]{scroll-margin-top:70px}
+.cf-dot{box-sizing:content-box;padding:9px 4px;background-clip:content-box}
+.cf-dots{gap:0}
+
+/* 라운드8 */
+.flow li{transition:transform .2s,box-shadow .2s,border-color .2s}
+@media(hover:hover){
+  .flow li:hover{transform:translateY(-4px);border-color:var(--gd);box-shadow:0 12px 26px rgba(14,27,44,.12)}
+  .flow li.hl:hover{border-color:var(--gd);box-shadow:0 12px 26px rgba(14,27,44,.3)}
+}
+.cf-dots{gap:0}
+.cf-dot{box-sizing:border-box;width:18px;height:24px;padding:0;border:0;background:none!important;position:relative;cursor:pointer}
+.cf-dot::before{content:'';position:absolute;left:50%;top:50%;width:6px;height:6px;border-radius:99px;background:#CFCFCF;transform:translate(-50%,-50%);transition:width .25s,background .25s}
+.cf-dot.on{width:26px}
+.cf-dot.on::before{width:16px;background:var(--nv)}
+.tg-card.dk{display:flex;flex-direction:column}
+.tg-card.dk .subjects{flex:1;margin-bottom:0;align-items:stretch}
+.tg-card.dk .subjects span{display:flex;align-items:center;justify-content:center;font-size:20px;min-height:52px}
+.faq{max-width:none}
+
+.tg-card.dk .subjects span{flex-direction:column;gap:4px}
+.tg-card.dk .subjects small{display:block;font-size:11px;font-weight:500;line-height:1.45;color:var(--on1,rgba(255,255,255,.7));padding:0 10px;word-break:keep-all}
 </style>
 </head>
 <body>
@@ -287,8 +346,7 @@ a.tb-b:hover{color:#fff;background:rgba(255,255,255,.08)}
 <section id="program" class="sec gray"><div class="wrap">
   <div class="sec-head">
     <div class="sec-label">Program</div>
-    <h2 class="sec-h2">메이트 올케어가<br/><em>하는 일</em></h2>
-    <p class="sec-desc">국어·수학·영어 세 기둥이 모여 메이트의 M을 이루고, 그 모두를 담임 컨설턴트의 관리가 받칩니다.</p>
+    <h2 class="sec-h2">당신을 위한 입시 메이트,<br/><em>함께 뛰는 올케어</em></h2>
   </div>
   <div class="ac-grid">
     <div class="ac-card"><div class="ac-n">01</div><div class="ac-tit">3+1 관리 시스템</div><p class="ac-txt">정기적으로(월 2~4회) 국어·수학·영어 선생님과 담임 컨설턴트가 소통하며 학생별 학습 상황을 점검합니다.</p></div>
@@ -362,10 +420,10 @@ a.tb-b:hover{color:#fff;background:rgba(255,255,255,.08)}
   <div class="sec-head">
     <div class="sec-label">Management cycle</div>
     <h2 class="sec-h2">이렇게<br/><em>관리합니다</em></h2>
-    <p class="sec-desc">학생은 주간 학습 플래너로 계획하고 기록하며, 담임 컨설턴트가 정기적으로(월 2~4회) 점검하고 조정합니다.</p>
+    <p class="sec-desc">계획은 학생과 담임 컨설턴트가 함께 세우고, 학생은 주간 학습 플래너에 실행을 기록하며, 담임 컨설턴트가 정기적으로(월 2~4회) 점검하고 조정합니다.</p>
   </div>
   <ol class="flow">
-    <li><b>계획 세우기</b><span>이번 주 목표와 과목별 학습 범위를 구체적으로 적습니다.</span><div class="who">학생</div></li>
+    <li class="hl"><b>계획 세우기</b><span>담임 컨설턴트와 함께 이번 주 목표와 과목별 학습 범위를 구체적으로 정합니다.</span><div class="who">학생 + 담임</div></li>
     <li><b>실행·기록</b><span>요일별 할 일을 체크하고 순공 시간과 컨디션을 기록합니다.</span><div class="who">학생</div></li>
     <li><b>돌아보기</b><span>점검 전날까지 달성도, 잘한 점, 아쉬운 점, 질문을 정리합니다.</span><div class="who">학생</div></li>
     <li class="hl"><b>정기 점검 (월 2~4회)</b><span>국·수·영 선생님과 소통한 내용을 바탕으로 플래너를 점검하고 다음 과제를 정합니다.</span><div class="who">국·수·영T + 담임</div></li>
@@ -379,11 +437,19 @@ a.tb-b:hover{color:#fff;background:rgba(255,255,255,.08)}
   <div class="sec-head">
     <div class="sec-label">Weekly planner</div>
     <h2 class="sec-h2">올케어 전용<br/><em>주간 학습 플래너</em></h2>
-    <p class="sec-desc">앞면에는 한 주의 계획을, 뒷면에는 돌아보기와 담임 점검을 기록합니다. 이미지를 누르면 크게 볼 수 있어요.</p>
+    <p class="sec-desc">앞면에는 한 주의 계획을, 뒷면에는 돌아보기와 담임 점검을 기록합니다. 옆으로 넘겨 보고, 가운데 이미지를 누르면 크게 볼 수 있어요.</p>
   </div>
-  <div class="planner">
-    <figure class="pl-fig"><button type="button" class="zoom" data-g="planner" aria-label="앞면 크게 보기"><img src="img/allcare/planner-front.jpg" alt="주간 학습 플래너 앞면: 이번 주 목표, 주요 일정, 과목별 주간 계획, 요일별 할 일 체크" loading="lazy"/></button><figcaption>앞면 · 주간 학습 계획</figcaption></figure>
-    <figure class="pl-fig"><button type="button" class="zoom" data-g="planner" aria-label="뒷면 크게 보기"><img src="img/allcare/planner-back.jpg" alt="주간 학습 플래너 뒷면: 학생 돌아보기와 담임 점검, 학생·담임·학부모 확인 서명" loading="lazy"/></button><figcaption>뒷면 · 돌아보기 &amp; 담임 점검</figcaption></figure>
+  <div class="cf cf-planner" id="cf-planner">
+    <div class="cf-stage">
+      <button type="button" class="cf-item zoom" data-g="planner" aria-label="플래너 앞면"><img src="img/allcare/planner-front.jpg" alt="주간 학습 플래너 앞면: 이번 주 목표, 주요 일정, 과목별 주간 계획, 요일별 할 일 체크" loading="lazy"/></button>
+      <button type="button" class="cf-item zoom" data-g="planner" aria-label="플래너 뒷면"><img src="img/allcare/planner-back.jpg" alt="주간 학습 플래너 뒷면: 학생 돌아보기와 담임 점검, 학생·담임·학부모 확인 서명" loading="lazy"/></button>
+    </div>
+    <div class="cf-cap"></div>
+    <div class="cf-nav">
+      <button type="button" class="cf-btn cf-prev" aria-label="이전">‹</button>
+      <div class="cf-dots"><button type="button" class="cf-dot" aria-label="앞면"></button><button type="button" class="cf-dot" aria-label="뒷면"></button></div>
+      <button type="button" class="cf-btn cf-next" aria-label="다음">›</button>
+    </div>
   </div>
 </div></section>
 
@@ -405,9 +471,9 @@ a.tb-b:hover{color:#fff;background:rgba(255,255,255,.08)}
     </div>
     <div class="cf-cap" id="cf-cap"></div>
     <div class="cf-nav">
-      <button type="button" class="cf-btn" id="cf-p" aria-label="이전 사례">‹</button>
+      <button type="button" class="cf-btn cf-prev" id="cf-p" aria-label="이전 사례">‹</button>
       <div class="cf-dots" id="cf-dots"><button type="button" class="cf-dot" data-k="0" aria-label="1번째"></button><button type="button" class="cf-dot" data-k="1" aria-label="2번째"></button><button type="button" class="cf-dot" data-k="2" aria-label="3번째"></button><button type="button" class="cf-dot" data-k="3" aria-label="4번째"></button><button type="button" class="cf-dot" data-k="4" aria-label="5번째"></button><button type="button" class="cf-dot" data-k="5" aria-label="6번째"></button></div>
-      <button type="button" class="cf-btn" id="cf-n" aria-label="다음 사례">›</button>
+      <button type="button" class="cf-btn cf-next" id="cf-n" aria-label="다음 사례">›</button>
     </div>
   </div>
 </div></section>
@@ -421,7 +487,7 @@ a.tb-b:hover{color:#fff;background:rgba(255,255,255,.08)}
   <div class="tg">
     <div class="tg-card dk">
       <h3>메이트학원 국어·수학·영어 수강생</h3>
-      <div class="subjects"><span style="background:#17283F">국어</span><span style="background:#17283F">수학</span><span style="background:#17283F">영어</span></div>
+      <div class="subjects"><span style="background:#FEF9C3;color:#854D0E">국어</span><span style="background:#DCFCE7;color:#166534">수학</span><span style="background:#FCE7F3;color:#9D174D">영어</span></div>
       <p>목동관 · 김포관 모두 신청할 수 있습니다.</p>
     </div>
     <div class="tg-card lt">
@@ -466,17 +532,10 @@ a.tb-b:hover{color:#fff;background:rgba(255,255,255,.08)}
 <footer id="ft"><div class="wrap"><div class="ft-in">
   <div class="ft-top-row">
     <a href="#hero" class="ft-logo"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M24 92 V24 L60 60 L96 24 V92" fill="none" stroke="#F3F1EB" stroke-width="20" stroke-linejoin="round"/><path d="M60 60 V92" fill="none" stroke="#F3F1EB" stroke-width="20"/><rect x="14" y="100" width="92" height="10" rx="3" fill="#E2A03F"/></svg>MATE ALL-CARE</a>
-    <div class="ft-fam">
-      <span class="ft-fam-lbl">패밀리</span>
-      <a href="mokdong.html"><span class="pip dim" style="display:inline-block;margin-right:2px"></span> 목동관</a>
-      <a href="gimpo.html"><span class="pip dim" style="display:inline-block;margin-right:2px"></span> 김포관</a>
-      <a href="allcare.html" class="act"><span class="pip" style="display:inline-block;margin-right:2px"></span> 올케어</a>
-      <a href="https://mate-lab.netlify.app/" target="_blank" rel="noopener"><span class="pip dim" style="display:inline-block;margin-right:2px"></span> 메이트랩 ↗</a>
-      <a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener"><span class="pip dim" style="display:inline-block;margin-right:2px"></span> 온메이트 ↗</a>
-    </div>
+    <details class="fam-dd"><summary>패밀리 사이트 <span class="car">▲</span></summary><div class="fam-menu"><a href="mokdong.html">목동관</a><a href="gimpo.html">김포관</a><a href="allcare.html" class="act" aria-current="page">메이트 올케어<span class="ext">현재</span></a><a href="https://mate-lab.netlify.app/" target="_blank" rel="noopener">메이트랩<span class="ext">↗</span></a><a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener">온메이트 (YouTube)<span class="ext">↗</span></a></div></details>
   </div>
   <div class="ft-biz">메이트 올케어 프로그램 | 메이트학원 목동관 · 김포관 | 문자 신청 010-5528-9505</div>
-  <div class="ft-copy">© 메이트학원. All rights reserved.</div>
+  <div class="ft-copy">Since 2024 · © 메이트학원. All rights reserved.</div>
 </div></div></footer>
 
 <div id="lb" role="dialog" aria-modal="true" aria-label="이미지 크게 보기">
@@ -503,10 +562,11 @@ a.tb-b:hover{color:#fff;background:rgba(255,255,255,.08)}
 })();
 </script>
 <script>
-(function(){
-  var stage=document.getElementById('cf-stage');if(!stage)return;
-  var items=[].slice.call(stage.querySelectorAll('.cf-item')),dots=[].slice.call(document.querySelectorAll('.cf-dot'));
-  var cap=document.getElementById('cf-cap'),CAP=[['표지','과목별 로드맵 요약'],['12월까지의 흐름','과목별 한눈에 보기'],['국어','현재 진행 방식과 계획'],['영어','성적·선생님 의견·계획'],['수학','진도 현황과 선생님 전달 사항'],['소통 계획 안내','앞으로의 공유 일정']],cur=0,n=items.length;
+function initCF(root,CAP){
+  if(!root)return;
+  var stage=root.querySelector('.cf-stage');
+  var items=[].slice.call(stage.querySelectorAll('.cf-item')),dots=[].slice.call(root.querySelectorAll('.cf-dot'));
+  var cap=root.querySelector('.cf-cap'),cur=0,n=items.length,moved=false,sx=null;
   function lay(){
     var w=stage.clientWidth,step=Math.min(w*0.22,230);
     items.forEach(function(el,k){
@@ -523,15 +583,21 @@ a.tb-b:hover{color:#fff;background:rgba(255,255,255,.08)}
   function go(k){cur=Math.max(0,Math.min(n-1,k));lay();}
   items.forEach(function(el,k){el.addEventListener('click',function(){if(moved)return;if(k===cur&&window.__openLb)window.__openLb(el);else go(k);});});
   dots.forEach(function(dt,k){dt.addEventListener('click',function(){go(k);});});
-  document.getElementById('cf-p').onclick=function(){go(cur-1);};
-  document.getElementById('cf-n').onclick=function(){go(cur+1);};
-  var sx=null,moved=false;
+  root.querySelector('.cf-prev').onclick=function(){go(cur-1);};
+  root.querySelector('.cf-next').onclick=function(){go(cur+1);};
   stage.addEventListener('pointerdown',function(e){sx=e.clientX;moved=false;});
   stage.addEventListener('pointermove',function(e){if(sx!==null&&Math.abs(e.clientX-sx)>10)moved=true;});
   stage.addEventListener('pointerup',function(e){if(sx===null)return;var dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40){go(cur+(dx<0?1:-1));}setTimeout(function(){moved=false;},0);});
   stage.addEventListener('pointerleave',function(){sx=null;});
+  stage.addEventListener('pointercancel',function(){sx=null;moved=false;});
   window.addEventListener('resize',lay);lay();
-})();
+}
+initCF(document.getElementById('cf-planner'),[['앞면','이번 주 목표 · 과목별 계획 · 요일별 할 일'],['뒷면','돌아보기 · 담임 점검 · 확인 서명']]);
+initCF(document.getElementById('cf'),[['표지','과목별 로드맵 요약'],['12월까지의 흐름','과목별 한눈에 보기'],['국어','현재 진행 방식과 계획'],['영어','성적·선생님 의견·계획'],['수학','진도 현황과 선생님 전달 사항'],['소통 계획 안내','앞으로의 공유 일정']]);
+</script>
+<script>
+/* 패밀리 드롭다운: 바깥 클릭 시 닫기 */
+document.addEventListener('click',function(e){document.querySelectorAll('details.fam-dd[open]').forEach(function(d){if(!d.contains(e.target))d.removeAttribute('open');});});
 </script>
 </body>
 </html>
