@@ -213,7 +213,7 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
 .ss-btn.on.과학{background:#E0F2FE;color:#075985;border-color:#0EA5E9}
 .ss-btn.on.인문논술{background:#DBEAFE;color:#1E40AF;border-color:#3B82F6}
 .ss-btn.on.수리논술{background:#CCFBF1;color:#0F766E;border-color:#0D9488}
-.ss-btn.on.논술{background:#FFEDD5;color:#C2410C;border-color:#F97316}
+.ss-btn.on.논술{background:#DBEAFE;color:#1E40AF;border-color:#3B82F6}
 .sched-grid{display:grid;gap:9px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));animation:fup .3s ease;margin-top:18px}
 @keyframes fup{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .s-card{background:var(--wh);border-radius:6px;padding:14px 16px;border:1px solid var(--ln);border-left-width:3px;transition:box-shadow .2s}
@@ -538,6 +538,16 @@ section[id]{scroll-margin-top:50px}
 .d-sched .s-card{margin:0}
 .d-sg{font-size:10px;background:var(--bg);padding:2px 6px;border-radius:3px;color:var(--t4);margin-left:5px;font-weight:700}
 @media(max-width:560px){.d-sched{grid-template-columns:1fr}}
+
+/* 여러 과목 색 · 후기 화살표 */
+@media(hover:hover){
+  .t-card:hover .t-photo{background:var(--sc-lt-grad,var(--sc-lt,var(--g-lt)))}
+}
+#page-detail .detail-avatar{background:var(--dc-lt-grad,var(--dc-lt,#F6F6F6))}
+.rv-nav{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px}
+.rv-nav .rv-dots{margin-top:0}
+.rv-arr{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--ln);background:var(--wh);color:var(--t1);font-size:22px;line-height:1;padding:0 0 3px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s,color .2s}
+@media(hover:hover){.rv-arr:hover{border-color:var(--g);background:var(--g);color:#fff}}
 </style>
 </head>
 <body>
@@ -702,7 +712,7 @@ section[id]{scroll-margin-top:50px}
     <button class="ss-btn 과학" data-s="과학">과학</button>
   </div>
   <div class="sched-grid" id="sched-grid"></div>
-  <div class="sched-tip">위 시간표는 2026년 11월 1일 기준이며 변경될 수 있습니다. 정확한 시간표는 <a href="https://blog.naver.com/PostList.naver?blogId=edumate_mokdong&from=postList&categoryNo=17" target="_blank" style="color:var(--or);font-weight:700">블로그</a> 또는 전화 문의를 통해 확인해 주세요.</div>
+  <div class="sched-tip">위 시간표는 2026년 11월 4일 기준이며 변경될 수 있습니다. 정확한 시간표는 <a href="https://blog.naver.com/PostList.naver?blogId=edumate_mokdong&from=postList&categoryNo=17" target="_blank" style="color:var(--or);font-weight:700">블로그</a> 또는 전화 문의를 통해 확인해 주세요.</div>
 </div></section>
 
 
@@ -798,8 +808,8 @@ const SC={
   '영어':     {bg:'#FCE7F3',text:'#9D174D',avatar:'#BE185D'},
   '사회':     {bg:'#EDE9FE',text:'#5B21B6',avatar:'#7C3AED'},
   '과학':     {bg:'#E0F2FE',text:'#075985',avatar:'#0369A1'},
-  '논술':     {bg:'#FFEDD5',text:'#C2410C',avatar:'#EA580C'},
-  '면접·컨설팅':{bg:'#F1F5F9',text:'#1E293B',avatar:'#334155'},
+  '논술':     {bg:'#DBEAFE',text:'#1E40AF',avatar:'#2563EB'},
+  '면접·컨설팅':{bg:'#E4E9F1',text:'#1E293B',avatar:'#334155'},
 };
 
 const TEACHERS=[
@@ -853,7 +863,13 @@ const TEACHERS=[
 ];
 
 const SUBJ_ORDER=['국어','수학','영어','사회','과학'];
-TEACHERS.sort((a,b)=>{const ia=SUBJ_ORDER.indexOf(a.subjects[0]),ib=SUBJ_ORDER.indexOf(b.subjects[0]);return (ia<0?99:ia)-(ib<0?99:ib);});
+const T_FIRST=['임한비','정예진','김소진','김동완','윤서은','이나경','안호수'];
+{const base=TEACHERS.map((t,k)=>{const si=SUBJ_ORDER.indexOf(t.subjects[0]);return {t,k:T_FIRST.includes(t.name)?T_FIRST.indexOf(t.name):100+(si<0?99:si)*100+k};});
+ base.sort((a,b)=>a.k-b.k);TEACHERS.splice(0,TEACHERS.length,...base.map(x=>x.t));}
+/* 여러 과목 강사는 과목 색을 섞어 보여 줌 */
+function gradOf(cols,deg){if(cols.length===1)return cols[0];const n=cols.length;return 'linear-gradient('+(deg||135)+'deg,'+cols.map((c,i)=>c+' '+(i/n*100).toFixed(2)+'% '+((i+1)/n*100).toFixed(2)+'%').join(',')+')';}
+function darkOf(hex){const h=hex.replace('#','');const m=i=>Math.round(parseInt(h.substr(i,2),16)*.32+17*.68);return 'rgb('+m(0)+','+m(2)+','+m(4)+')';}
+function sCols(t,key){return t.subjects.map(x=>(SC[x]||SC['국어'])[key]);}
 
 function renderTeachers(filter){
   const grid=document.getElementById('t-grid');
@@ -865,7 +881,7 @@ function renderTeachers(filter){
     const ph=ps?`<img src="${ps}" alt="${t.name}" loading="lazy"/>`
       :`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;color:rgba(255,255,255,.9);background:${primaryC.avatar}">${t.name.charAt(0)}</div>`;
     const badgesHtml=t.subjects.map(s=>{const c=SC[s]||{bg:'#eee',text:'#444'};return `<span class="t-badge" style="background:${c.bg};color:${c.text}">${s}</span>`;}).join('');
-    return `<div class="t-card" ${hidden} style="--sc:${primaryC.avatar};--sc-lt:${primaryC.bg}" onclick="openTeacher(${idx})">
+    return `<div class="t-card" ${hidden} style="--sc:${primaryC.avatar};--sc-lt:${primaryC.bg};--sc-grad:${gradOf(sCols(t,'avatar'))};--sc-lt-grad:${gradOf(sCols(t,'bg'))}" onclick="openTeacher(${idx})">
       <div class="t-photo">${ph}</div>
       <div class="t-info">
         <div class="t-badges">${badgesHtml}</div>
@@ -895,22 +911,23 @@ const SCHEDULE={
   '고1':[
     {subj:'국어',teacher:'김소진T',class_name:'고1 국어',time:'토 1–4 + 클리닉',desc:'부원장 직강 · 학교별 내신 대비 (개인별 조정) · 모의고사 3~6등급 입학 가능'},
     {subj:'국어',teacher:'임한비T',class_name:'고1 국어',time:'일 2–5 + 클리닉',status:'dec',desc:'학교별 내신 대비 (개인별 조정)'},
-    {subj:'수학',teacher:'안호수T',class_name:'고1 수학',time:'화토 또는 목토 · 평일 6–10 (클리닉 포함) · 토요일 시간 학원 문의',status:'wait',desc:'내신 종료 후 〈대수〉 개념 + 유형별 문제풀이 · 매주 복습테스트 · 주말 수학 클리닉 필수'},
     {subj:'수학',teacher:'윤서은T',class_name:'고1 수학',time:'수 6–8 수업 · 8–10 클리닉 / 일 2–4 수업 · 4–6 클리닉',desc:'개념 공통 설명 + 개인 수준별 문제풀이'},
+    {subj:'수학',teacher:'안호수T',class_name:'고1 수학',time:'화 8–10 수업 · 6–8 클리닉 / 토 12–2 + 클리닉',desc:'현행 + 내신 종료 후 〈대수〉 개념 + 유형별 문제풀이 · 매주 복습테스트 · 주말 수학 클리닉 필수 (토·일 4–10)'},
     {subj:'영어',teacher:'김송은T',class_name:'고1 영어',time:'월금 6–8 수업 · 8–10 클리닉',desc:'내신 대비 (개인별 조정) + 모의고사 3~5등급'},
     {subj:'사회',teacher:'김경민T',class_name:'고1 사회',time:'토 오전 10–1',desc:'통합사회2 내신 대비'},
-    {subj:'과학',teacher:'정지애T',class_name:'고1 과학',time:'일 2–5',desc:'통합과학2 내신 대비'},
+    {subj:'과학',teacher:'정지애T',class_name:'고1 과학',time:'일 2–5',closed:true,desc:'통합과학2 내신 대비'},
   ],
   '고2':[
     {subj:'국어',teacher:'김소진T',class_name:'고2 국어',time:'토 4–7 + 클리닉',desc:'부원장 직강 · 학교별 내신 대비 (개인별 조정) · 모의고사 1~3등급 입학 가능 · 1월부터 고3 수능 + 내신반으로 개편'},
     {subj:'국어',teacher:'임한비T',class_name:'고2 국어',time:'일 6–9 + 클리닉',desc:'화법과 언어(문법) 내신 대비 · 1월부터 수능반으로 개편'},
     {subj:'국어',teacher:'정예진T',class_name:'고2 국어 정시반',time:'일 3–6 (12월부터 수 6–9)',desc:'자체 제작 교재로 수능 대비만 진행 (내신 X)'},
     {subj:'수학',teacher:'윤서은T',class_name:'고2 수학',time:'수 8–10 수업 · 6–8 클리닉 / 일 4–6 수업 · 2–4 클리닉',desc:'개념 공통 설명 + 개인 수준별 문제풀이'},
-    {subj:'수학',teacher:'이나경T',class_name:'고2 수학 정시반',time:'월금 6–10 (클리닉 포함)',status:'dec'},
+    {subj:'수학',teacher:'안호수T',class_name:'고2 수학',time:'화 6–8 수업 · 8–10 클리닉 / 토 오전 10–12 수업 · 12–2 클리닉',desc:'내신과 수능을 동시에 · 매주 복습테스트'},
+    {subj:'수학',teacher:'이나경T',class_name:'고2 수학 정시반',time:'월금 6–10 (클리닉 포함)',status:'dec',desc:'자체 교재 기출 〈Rebirth〉로 수업 · 숙제는 〈Rebirth〉 변형 문제 + 추가 자료 · 클리닉에서 EBS 수특·수완 진행 예정'},
     {subj:'영어',teacher:'이준호T · 권세은T',class_name:'신목고2 영어',time:'화목 6–8 수업 · 8–10 클리닉 (화 8–10은 권세은T 추가 수업)',desc:'신목고2 내신 대비 · 12월 중 권세은T 단독 진행, 1월부터 수능 대비'},
     {subj:'영어',teacher:'권세은T · 김송은T',class_name:'고2 영어 정시반',time:'화 8–10 수업 · 6–8 클리닉 / 토 4–6 수업 · 2–4 클리닉',desc:'고2 마더텅 영어 독해 + 개인별 단어 · 12월까지 팀티칭 (화 권세은T / 토 김송은T) · 1월부터 권세은T 화목 수능반'},
     {subj:'사회',teacher:'김경민T',class_name:'수능 통합사회',time:'토 5–8',status:'dec',desc:'2028 수능 대비 통합사회 개념 설명 + 기출 문제'},
-    {subj:'과학',teacher:'정지애T',class_name:'물질과 에너지',time:'일 6–9'},
+    {subj:'과학',teacher:'정지애T',class_name:'물질과 에너지',time:'일 6–9',closed:true},
   ]
 };
 const SC_S={
@@ -919,7 +936,7 @@ const SC_S={
   '영어':{bg:'#FCE7F3',text:'#9D174D',border:'#EC4899'},
   '사회':{bg:'#EDE9FE',text:'#5B21B6',border:'#7C3AED'},
   '과학':{bg:'#E0F2FE',text:'#075985',border:'#0EA5E9'},
-  '논술':{bg:'#FFEDD5',text:'#C2410C',border:'#F97316'},
+  '논술':{bg:'#DBEAFE',text:'#1E40AF',border:'#3B82F6'},
 };
 let curGrade=null,curSubj='전체';
 function renderSchedule(){
@@ -955,7 +972,8 @@ function openTeacher(idx){
   const t=TEACHERS[idx];const primaryC=SC[t.subjects[0]]||SC['국어'];
   {const h=primaryC.avatar.replace('#','');const mix=i=>Math.round(parseInt(h.substr(i,2),16)*.32+17*.68);
    dp.style.setProperty('--dc',primaryC.avatar);dp.style.setProperty('--dc-lt',primaryC.bg);
-   dp.style.setProperty('--dh','rgb('+mix(0)+','+mix(2)+','+mix(4)+')');}
+   dp.style.setProperty('--dh','rgb('+mix(0)+','+mix(2)+','+mix(4)+')');
+   dp.style.setProperty('--dh-grad',gradOf(sCols(t,'avatar').map(darkOf),110));dp.style.setProperty('--dc-lt-grad',gradOf(sCols(t,'bg'),135));}
   document.getElementById('d-photo').src=PHOTO_DATA[t.name]||'';
   document.getElementById('d-subject').textContent=t.subjects.join(' · ');
   document.getElementById('d-breadcrumb').textContent=t.name+' 강사 프로필';
@@ -1036,7 +1054,9 @@ document.addEventListener('click',function(e){document.querySelectorAll('details
   g.appendChild(tr);
   const dots=document.createElement('div');dots.className='rv-dots';
   dots.innerHTML=cards.map((_,k)=>`<button type="button" class="rv-dot" aria-label="${k+1}번째 후기"></button>`).join('');
-  g.after(dots);
+  const nav=document.createElement('div');nav.className='rv-nav';
+  nav.innerHTML='<button type="button" class="rv-arr" aria-label="이전 후기">‹</button><button type="button" class="rv-arr" aria-label="다음 후기">›</button>';
+  nav.insertBefore(dots,nav.lastChild);g.after(nav);
   let i=0,timer=null,hover=false;
   const step=()=>tr.children[1].offsetLeft-tr.children[0].offsetLeft;
   function place(anim){tr.style.transition=anim?'':'none';tr.style.transform='translateX('+(-i*step())+'px)';if(!anim){void tr.offsetWidth;tr.style.transition='';}
@@ -1051,6 +1071,8 @@ document.addEventListener('click',function(e){document.querySelectorAll('details
   g.addEventListener('pointerup',e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40){go(dx<0?i+1:i-1);start();}});
   g.addEventListener('pointercancel',()=>{sx=null;});
   g.addEventListener('dragstart',e=>e.preventDefault());
+  nav.firstChild.addEventListener('click',()=>{go(i-1);start();});
+  nav.lastChild.addEventListener('click',()=>{go(i+1);start();});
   [...dots.children].forEach((d,k)=>d.addEventListener('click',()=>{i=((i%n)+n)%n;go(k);start();}));
   window.addEventListener('resize',()=>place(false));
   place(false);start();
