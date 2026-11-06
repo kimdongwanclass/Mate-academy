@@ -1,0 +1,103 @@
+/* 김포관 데이터: 강사·시간표·사진 — 내용 수정은 이 파일에서 */
+const POPUP_KEY='popup_skip_gimpo';
+const PHOTO_DATA={'남매논술팀':'img/teachers/nammae-nonsul.webp',
+  '김소진':'img/teachers/kim-sojin.webp','정예진':'img/teachers/jeong-yejin.webp','임한비':'img/teachers/lim-hanbi.webp','윤서은':'img/teachers/yun-seoeun.webp',
+  '안호수':'img/teachers/an-hosu.webp','이나경':'img/teachers/lee-nagyeong.webp','박준형':'img/teachers/park-junhyeong.jpg','권세은':'img/teachers/kwon-seeun.webp',
+  '김동률':'img/teachers/kim-dongryul.webp','김정윤':'img/teachers/kim-jeongyun.webp','최예빈':'img/teachers/choi-yebin.webp','김경민':'img/teachers/kim-gyeongmin.webp','이승민':'img/teachers/lee-seungmin.webp',
+  '정다혜':'img/teachers/jeong-dahye.webp','정지애':'img/teachers/jeong-jiae.jpg','김동완':'img/teachers/kim-dongwan.webp',
+  '정아린':'img/teachers/jeong-arin.webp',
+  '주윤겸':'img/teachers/ju-yungyeom.webp'
+};
+
+/* Subject colors — clearly distinct */
+const SC={
+  '국어':     {bg:'#FEF9C3',text:'#854D0E',avatar:'#A16207'},
+  '수학':     {bg:'#DCFCE7',text:'#166534',avatar:'#15803D'},
+  '영어':     {bg:'#FCE7F3',text:'#9D174D',avatar:'#BE185D'},
+  '사회':     {bg:'#EDE9FE',text:'#5B21B6',avatar:'#7C3AED'},
+  '과학':     {bg:'#E0F2FE',text:'#075985',avatar:'#0369A1'},
+  '논술':     {bg:'#E4ECF7',text:'#2F558C',avatar:'#4F75AB'},
+  '면접·컨설팅':{bg:'#E4E9F1',text:'#1E293B',avatar:'#334155'},
+};
+
+const TEACHERS=[
+  {name:'김소진',filters:['국어'],role:null,subjects:['국어'],
+   msg:'글을 제대로 읽는 전공자의 눈',tags:['부원장','연세대 국어국문학','국어 전임'],
+   career:['메이트학원 부원장','메이트학원 국어과 전임강사','연세대학교 국어국문학과','목동초등학교 · 목동중학교 졸업','이화여자대학교 인문논술 합격','연세대학교 편입논술 합격','2026년 이투스북 연간검토단'],
+   subjects_teach:['수능 국어','내신 국어'],target:'고1·2·3 / N수',blogLinks:[{title:'김소진T 강사 소개',url:'https://blog.naver.com/yourmate_gimpo/224362103359'},{title:'[후기] 국어 김소진T 수강후기',url:'https://blog.naver.com/edumate_mokdong/224271700457'},{title:'[합격수기] 한양대 음대 합격생 합격수기',url:'https://blog.naver.com/edumate_mokdong/224182881117'}]},
+  {name:'임한비',filters:['국어'],role:null,subjects:['국어'],
+   msg:'국어의 단비',tags:['국어 전임'],
+   career:['메이트학원 국어과 전임강사'],
+   subjects_teach:['수능 국어','내신 국어'],target:'고1·2·3',
+   blogLinks:[{title:'임한비T 강사 소개',url:'https://blog.naver.com/edumate_mokdong/224376926987'},{title:'고1/고2 국어 내신 공부 방법',url:'https://blog.naver.com/edumate_mokdong/224379916436'},{title:'고2 화법과언어(문법) 수업 및 관리 안내',url:'https://blog.naver.com/edumate_mokdong/224465053036'}]},
+  {name:'김동완',filters:['국어','면접·컨설팅'],role:null,
+   subjects:['국어','면접·컨설팅'],
+   msg:'너의 마지막 입시 메이트',tags:['원장','연세대 국어국문학','국어학 석사과정'],
+   career:['메이트학원 대표원장','연세대학교 국어국문학과 · 정치외교학과','연세대학교 일반대학원 국어학 석사과정','정교사 2급 교원자격증 취득','중앙대학교 · 연세대학교 인문논술 합격','2026년 이투스북 연간검토단','김포 당신을위한유어랩학원 국어 담당'],
+   subjects_teach:['국어(고3·N수)','면접·컨설팅'],target:'고3 / N수',blogLinks:[{title:'김동완T 강사 소개',url:'https://blog.naver.com/edumate_mokdong/223439213179'},{title:'생기부 기반 면접 대비반 진행 방식',url:'https://blog.naver.com/yourmate_gimpo/224448440567'},{title:'[후기] 국어 김동완T 수강후기',url:'https://blog.naver.com/edumate_mokdong/224207132313'},{title:'[합격수기] 한양대 음대 합격생 합격수기',url:'https://blog.naver.com/edumate_mokdong/224182881117'}]},
+  {name:'권세은',filters:['영어'],role:null,subjects:['영어'],
+   msg:'감이 아니라 구조로 보는 영어',tags:['영어 전임','과외어플 전국 상위 0.2%'],
+   career:['메이트학원 영어과 전임강사','과외어플 전국 상위 0.2%','목동초등학교 · 목동중학교 · 진명여고 졸업'],
+   subjects_teach:['수능 영어','내신 영어'],target:'고1·2·3 / N수',
+   videos:[{title:'2027학년도 9월 평가원 모의고사 해설강의(주요문항)',id:'ee_qijo6E3M'},{title:'수능 영어 어법 총정리',id:'OxbckhhrfeA'}],blogLinks:[{title:'권세은T 강사 소개',url:'https://blog.naver.com/yourmate_gimpo/224333383667'},{title:'권세은T 수능 영어 커리큘럼',url:'https://blog.naver.com/yourmate_gimpo/224359529122'},{title:'김포고1 영어 수업 방식',url:'https://blog.naver.com/yourmate_gimpo/224344054577'},{title:'[후기] 영어 권세은T 수강후기',url:'https://blog.naver.com/edumate_mokdong/224264042226'}]},
+  {name:'정다혜',filters:['영어'],role:null,subjects:['영어'],
+   msg:'영어를 마스터하는 가장 빠르고 정확한 방법',tags:[],
+   career:['메이트학원 영어과 강사'],
+   subjects_teach:['수능 영어','내신 영어','클리닉'],target:'고1·2·3',blogLinks:[]},
+  {name:'이승민',filters:['사회'],role:null,subjects:['사회'],
+   msg:'세상을 보는 가장 정확한 눈',tags:['대치다원교육'],
+   career:['메이트학원 사회과 강사','現) 대치 다원교육 고2 사회탐구','現) 인천 리브아카데미학원 통합사회','前) 대치 에듀퍼스트'],
+   subjects_teach:['통합사회(고1·2)','사회와 문화','현대사회와 윤리','세계시민과 지리'],target:'고1·2 / N수',
+   blogLinks:[]},
+  {name:'정아린',filters:['수학'],role:null,subjects:['수학'],
+   msg:'수학의 본질, 너를 위한 수학 메이트',tags:['수학 전임'],
+   career:['메이트학원 수학과 전임강사','前) 인천 M학원, 목동 H학원'],
+   subjects_teach:['수능 수학','내신 수학'],target:'고1·2·3 / N수',blogLinks:[]},
+  {name:'김정윤',filters:['영어'],role:null,subjects:['영어'],
+   msg:'실력으로 증명하는 영어 수업',tags:[],
+   career:['메이트학원 영어과 강사'],
+   subjects_teach:['수능 영어','내신 영어'],target:'고1·2·3 / N수',blogLinks:[]},
+  {name:'주윤겸',filters:['과학'],role:null,subjects:['과학'],
+   msg:'대치동이 인정한 강의력',tags:['연세대 화학','대성마이맥 스타강사코리아4 입상','대치두각학원'],
+   career:['메이트학원 과학과 강사','연세대학교 화학과','대성마이맥 스타강사코리아4 과학과 입상','現) 대치 두각학원, 분당 두각학원, 중계 명인학원','現) 강남대성학원 윈터스쿨, 두각학원 썸머/윈터스쿨'],
+   subjects_teach:['수능 과학','내신 과학'],target:'고1·2·3 / N수',videos:[{title:'[두각학원] 주윤겸T 통합과학 설명회 영상 (2026년)',id:'XZ_AV6-kN4k'},{title:'[두각학원] 주윤겸T의 통합과학 암기팁 대방출',id:'SuQIYhtWcQg'}],blogLinks:[{title:'2027 겨울방학 특강 : 통합과학 9주 완성',url:'https://blog.naver.com/yourmate_gimpo/224452723821'}]},
+  {name:'남매논술팀',team:true,filters:['논술'],role:null,subjects:['논술'],
+   msg:'네 번의 합격이 말해주는 인문논술의 정답',tags:['김동완 · 김소진','연세대 국어국문학'],
+   career:[],careerGroups:[
+    {name:'김동완',items:['메이트학원 대표원장','연세대학교 국어국문학과 · 정치외교학과','연세대학교 일반대학원 국어학 석사과정','중앙대학교 · 연세대학교 인문논술 합격']},
+    {name:'김소진',items:['메이트학원 부원장','연세대학교 국어국문학과','이화여자대학교 인문논술 합격','연세대학교 편입논술 합격']}],
+   subjects_teach:['인문논술','약술논술'],target:'고3 / N수',blogLinks:[{title:'인문논술 수업 방식',url:'https://blog.naver.com/edumate_mokdong/224350956422'},{title:'[후기] 약술 논술 수강후기',url:'https://blog.naver.com/edumate_mokdong/224184462106'}]}
+];
+
+const T_FIRST=['임한비','김소진','김동완'];
+
+const SCHEDULE={
+  '예비고1':[
+    {subj:'국어',teacher:'김소진T',class_name:'예비고1 국어 A',time:'일 2–5',status:'wait',desc:'부원장 직강 · 국어 개념어 + 모의고사 유형별 접근, 3월 중하순부터 학교별 내신 대비'},
+    {subj:'국어',teacher:'김소진T',class_name:'예비고1 국어 B',time:'일 5–8',status:'wait',desc:'부원장 직강 · 국어 개념어 + 모의고사 유형별 접근, 3월 중하순부터 학교별 내신 대비'},
+    {subj:'수학',teacher:'정아린T',class_name:'예비고1 수학 S',time:'수 6–8 수업 · 8–10 클리닉 / 토 오전 11–1 수업 · 1–3 클리닉',closed:true,desc:'공통수학1 · 공통수학2 심화 문제풀이 · 2월 말 종강'},
+    {subj:'수학',teacher:'정아린T',class_name:'예비고1 수학 A',time:'화목 6–8 수업 · 8–10 클리닉',closed:true,desc:'공통수학1 심화 문제풀이'},
+    {subj:'수학',teacher:'정아린T',class_name:'예비고1 수학 B',time:'월금 6–10 (클리닉 포함)',status:'dec',badge:'11/30 개강',desc:'공통수학1 개념 + 유형부터 시작 · 겨울방학 특강 공통수학2 수강 필수'},
+    {subj:'수학',teacher:'정아린T',class_name:'예비고1 수학 C',time:'화목 8–10 수업 · 6–8 클리닉',status:'dec',desc:'공통수학1 개념 + 유형부터 시작 · 겨울방학 특강 공통수학2 수강 필수'},
+    {subj:'영어',teacher:'권세은T',class_name:'예비고1 영어',time:'월금 6–10',closed:true,desc:'자체 교재'},
+    {subj:'영어',teacher:'김정윤T',class_name:'예비고1 영어',time:'화목 6–10 (클리닉 포함)',status:'dec',desc:'구문 트랙(천일문 완성 – 문법·문장 해석) + 독해 트랙(자이스토리 고1 영어 – 논리 독해)'},
+  ],
+  '고1':[
+    {subj:'국어',teacher:'김동완T',class_name:'고1 국어',time:'토 · 시간 학원 문의',status:'wait',desc:'11월 개강 가능'},
+  ],
+  '고2':[
+    {subj:'안내',teacher:'',class_name:'고2 수업',time:'학원 문의',any:true},
+  ]
+};
+/* 겨울방학 특강 (2027 겨울방학) — 학년 표기: ★상위권 가능 / ●추천 / ○노베 추천
+   학년 키: 예비고1(현 중3), 고1, 고2 = 문서의 1·2·3학년 */
+const WINTER=[
+  {subj:'국어',teacher:'김동완T',class_name:'문법 전범위',time:'금 오전 10–1',lv:{'예비고1':'●','고1':'●','고2':'○'}},
+  {subj:'수학',teacher:'정아린T',class_name:'공통수학2 개념완성',time:'월수 12–2',lv:{'예비고1':'●'}},
+  {subj:'수학',teacher:'정아린T',class_name:'대수 문제풀이',time:'월수 2–4',lv:{'예비고1':'★','고1':'●','고2':'○'}},
+  {subj:'수학',teacher:'정아린T',class_name:'확률과통계 개념 + 문제풀이',time:'화목 1–4',lv:{'예비고1':'★','고1':'●','고2':'●'}},
+  {subj:'영어',teacher:'권세은T',class_name:'고1·2를 위한 실전 모의고사',time:'금 2–5',lv:{'예비고1':'●','고1':'●','고2':'○'}},
+  {subj:'사회',teacher:'이승민T',class_name:'통합사회 1+2 10주 완성',time:'일 오전 10–1',lv:{'예비고1':'●','고2':'●'},link:'https://blog.naver.com/yourmate_gimpo/224457255490'},
+  {subj:'과학',teacher:'주윤겸T',class_name:'통합과학 1+2 9주 완성',time:'목 6:30–9:30',desc:'1/14 휴강',lv:{'예비고1':'●','고2':'○'},link:'https://blog.naver.com/yourmate_gimpo/224452723821'},
+];
+WINTER.forEach(w=>Object.keys(w.lv).forEach(g=>{(SCHEDULE[g]=SCHEDULE[g]||[]).push({...w,winter:true,lvs:[[g,w.lv[g]]]});}));
