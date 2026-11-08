@@ -61,11 +61,17 @@ let SCHEDULE={};            /* {학년:[반,…]} — 시트에서 받아 채움
 let schedState='loading';   /* loading | ok | fail */
 let curGrade=null,curSubj='전체';
 
+/* 시트 시간 표기 → 화면 표기: 클 → 클리닉, a10 → 오전 10, 시간 칸이 요일로 시작하면 요일 칸은 생략 */
+function timeText(days,time){
+  const t=String(time||'').trim().replace(/클(?!리닉)/g,'클리닉').replace(/(^|[^A-Za-z])a(\d)/g,'$1 오전 $2').replace(/\s+/g,' ').trim();
+  const d=String(days||'').trim();
+  return (!d||/^[월화수목금토일]/.test(t))?t:(t?d+' '+t:d);
+}
 function toItem(c){
   const ns=(Array.isArray(c.teachers)?c.teachers:String(c.teachers||'').split(/[·,]/)).map(x=>String(x).trim().replace(/T$/,'')).filter(Boolean);
   const grades=String(c.grade||'').split(/[·,\/]/).map(x=>x.trim()).filter(Boolean);
   return {id:c.id,subj:c.subject||'',tnames:ns,teacher:ns.map(n=>n+'T').join(' · '),class_name:c.name||'',
-    time:[c.days,c.time].filter(Boolean).join(' '),desc:c.intro||'',recommend:c.recommend||'',period:c.period||'',
+    time:timeText(c.days,c.time),desc:c.intro||'',recommend:c.recommend||'',period:c.period||'',
     status:c.status||'',kind:c.kind||'정규',gradeText:c.grade||'',grades:grades.length?grades:['기타']};
 }
 function buildSchedule(data){
@@ -101,9 +107,7 @@ function renderFilters(){
 }
 function badgeOf(it){
   if(it.status==='마감')return '<span class="sc-badge">마감</span>';
-  if(it.status==='개강예정')return '<span class="sc-badge sc-new">개강 예정</span>';
-  if(it.status==='개강대기')return '<span class="sc-badge sc-wait">개강 대기</span>';
-  if(it.status==='미정')return '<span class="sc-badge sc-wait">일정 미정</span>';
+  if(['개강예정','개강대기','미정'].includes(it.status))return '<span class="sc-badge sc-new">개강 예정</span>';
   return '';
 }
 /* 반 카드 한 장 — 시간표·강사 상세 공용 */
