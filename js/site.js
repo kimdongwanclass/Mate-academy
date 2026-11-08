@@ -36,12 +36,16 @@ document.getElementById('t-filter-bar').addEventListener('click',e=>{
   btn.classList.add('on');renderTeachers(btn.dataset.f);
 });
 
-/* Schedule */
-
-const LV_T={'★':'상위권 가능','●':'추천','○':'노베 추천'};
-function mergeW(items){const out=[],wo=[],seen={};items.forEach(it=>{if(!it.winter){out.push(it);return;}const k=it.class_name;if(seen[k]){seen[k].lvs=seen[k].lvs.concat(it.lvs);seen[k].grade+='·'+it.grade;return;}const c={...it,lvs:[...it.lvs]};seen[k]=c;wo.push(c);});return out.concat(wo);}
-function wExtra(it,showLv){if(!it.winter)return '';const lvs=showLv?it.lvs.filter(([g,m])=>m!=='●'):[];const lv=!lvs.length?'':`<div class="sc-lv">${lvs.map(([g,m])=>`<span class="lv-chip">${LV_T[m]}</span>`).join('')}</div>`;return lv+(it.link?`<a class="sc-link" href="${it.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()">블로그에서 자세히 보기 ↗</a>`:'');}
-const W_BADGE='<span class="sc-badge sc-winter">❄ 겨울방학 특강</span>';
+/* Schedule — 「메이트 강의목록」 시트(Apps Script 웹 앱)에서 페이지가 열릴 때 읽어 옴
+   반·시간표는 여기나 data 파일에 손으로 적지 않는다. 시트만 고치면 5분 안에 반영됨. */
+const CLASS_API='https://script.google.com/macros/s/AKfycbyJaGLC1QJplM-Ij3PmnwtXrygEDW8kVNqvuJp6MOQdpUNGszal6AbzbzFYKm3_sb1E/exec?site=home';
+const CLASS_CACHE='mate_classes_home';
+const GRADE_BASE=['예비고1','고1','고2'];          /* 수업이 없어도 늘 보이는 학년 버튼 */
+const GRADE_ORDER=['예비고1','고1','고2','고3','N수'];
+const GRADE_LABEL={'예비고1':'예비고1·중3'};
+const KIND_ORDER={'정규':0,'겨울':1,'여름':2};
+const SEASON={'겨울':{cls:'s-winter',badge:'<span class="sc-badge sc-winter">❄ 겨울방학 특강</span>'},
+              '여름':{cls:'s-summer',badge:'<span class="sc-badge sc-summer">☀ 여름방학 특강</span>'}};
 const SC_S={
   '국어':{bg:'#FEF9C3',text:'#854D0E',border:'#EAB308'},
   '수학':{bg:'#DCFCE7',text:'#166534',border:'#22C55E'},
@@ -49,36 +53,99 @@ const SC_S={
   '사회':{bg:'#EDE9FE',text:'#5B21B6',border:'#7C3AED'},
   '과학':{bg:'#E0F2FE',text:'#075985',border:'#0EA5E9'},
   '논술':{bg:'#E4ECF7',text:'#2F558C',border:'#7C9FD0'},
+  '면접·컨설팅':{bg:'#E4E9F1',text:'#1E293B',border:'#334155'},
 };
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
+let SCHEDULE={};            /* {학년:[반,…]} — 시트에서 받아 채움 */
+let schedState='loading';   /* loading | ok | fail */
 let curGrade=null,curSubj='전체';
+
+function toItem(c){
+  const ns=(Array.isArray(c.teachers)?c.teachers:String(c.teachers||'').split(/[·,]/)).map(x=>String(x).trim().replace(/T$/,'')).filter(Boolean);
+  const grades=String(c.grade||'').split(/[·,\/]/).map(x=>x.trim()).filter(Boolean);
+  return {id:c.id,subj:c.subject||'',tnames:ns,teacher:ns.map(n=>n+'T').join(' · '),class_name:c.name||'',
+    time:[c.days,c.time].filter(Boolean).join(' '),desc:c.intro||'',recommend:c.recommend||'',period:c.period||'',
+    status:c.status||'',kind:c.kind||'정규',gradeText:c.grade||'',grades:grades.length?grades:['기타']};
+}
+function buildSchedule(data){
+  const list=(data&&Array.isArray(data.classes)?data.classes:[])
+    .filter(c=>c&&c.branch===BRANCH&&c.status!=='종강').map(toItem);
+  const ko=k=>KIND_ORDER[k]==null?9:KIND_ORDER[k],so=s=>{const i=SUBJ_ORDER.indexOf(s);return i<0?99:i;};
+  list.sort((a,b)=>ko(a.kind)-ko(b.kind)||so(a.subj)-so(b.subj));
+  const out={};
+  list.forEach(it=>it.grades.forEach(g=>(out[g]=out[g]||[]).push(it)));
+  SCHEDULE=out;
+}
+function gradeKeys(){
+  const ks=[...GRADE_BASE];
+  Object.keys(SCHEDULE).forEach(g=>{if(!ks.includes(g))ks.push(g);});
+  const gi=g=>{const i=GRADE_ORDER.indexOf(g);return i<0?50:i;};
+  return ks.sort((a,b)=>gi(a)-gi(b));
+}
+function allItems(){const seen={},out=[];gradeKeys().filter(g=>SCHEDULE[g]).forEach(g=>SCHEDULE[g].forEach(it=>{if(!seen[it.id]){seen[it.id]=1;out.push(it);}}));return out;}
+function setUpdated(iso){
+  const d=iso?new Date(iso):null,txt=d&&!isNaN(d)?`${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일 기준`:'';
+  document.querySelectorAll('.sched-updated').forEach(el=>{el.textContent=txt||'시간표 확인 중';});
+  document.querySelectorAll('.sched-updated-wrap').forEach(el=>{el.style.display=txt?'':'none';});
+}
+function renderFilters(){
+  const gb=document.getElementById('grade-btns'),sb=document.getElementById('subj-btns');
+  if(schedState!=='ok'){gb.innerHTML='';sb.innerHTML='';return;}
+  if(curGrade&&curGrade!=='전체'&&!gradeKeys().includes(curGrade))curGrade=null;
+  gb.innerHTML=['전체',...gradeKeys()].map(g=>`<button type="button" class="sf-btn${curGrade===g?' on':''}" data-g="${esc(g)}">${esc(GRADE_LABEL[g]||g)}</button>`).join('');
+  const subs=[];allItems().forEach(it=>{if(it.subj&&!subs.includes(it.subj))subs.push(it.subj);});
+  const so=s=>{const i=SUBJ_ORDER.indexOf(s);return i<0?99:i;};subs.sort((a,b)=>so(a)-so(b));
+  if(curSubj!=='전체'&&!subs.includes(curSubj))curSubj='전체';
+  sb.innerHTML=['전체',...subs].map(s=>`<button type="button" class="ss-btn ${esc(s)}${curSubj===s?' on':''}" data-s="${esc(s)}">${esc(s)}</button>`).join('');
+}
+function badgeOf(it){
+  if(it.status==='마감')return '<span class="sc-badge">마감</span>';
+  if(it.status==='개강예정')return '<span class="sc-badge sc-new">개강 예정</span>';
+  if(it.status==='개강대기')return '<span class="sc-badge sc-wait">개강 대기</span>';
+  if(it.status==='미정')return '<span class="sc-badge sc-wait">일정 미정</span>';
+  return '';
+}
+/* 반 카드 한 장 — 시간표·강사 상세 공용 */
+function cardHtml(it,o){
+  const c=SC_S[it.subj]||{bg:'#f5f5f5',text:'#444',border:'#bbb'},se=SEASON[it.kind];
+  const gt=o.gradeChip?`<span class="d-sg">${esc(it.gradeText)}</span>`:'';
+  const teacher=o.teacher&&it.teacher?`<div class="sc-teacher">${esc(it.teacher)}</div>`:'';
+  const extra=(it.period?`<div class="sc-meta"><b>기간</b> ${esc(it.period)}</div>`:'')+(it.recommend?`<div class="sc-meta"><b>추천</b> ${esc(it.recommend)}</div>`:'');
+  return `<div class="s-card${se?' '+se.cls:''}" style="border-left-color:${c.border};${it.status==='마감'?'opacity:.5':''}"><div class="sc-subj" style="color:${c.text}">${esc(it.subj)}${gt}${se?se.badge:''}${badgeOf(it)}</div><div class="sc-class">${esc(it.class_name)}</div>${teacher}${it.time?`<span class="sc-time">${esc(it.time)}</span>`:''}${it.desc?`<div class="sc-desc">${esc(it.desc)}</div>`:''}${extra}</div>`;
+}
 function renderSchedule(){
-  const grid=document.getElementById('sched-grid');
+  const grid=document.getElementById('sched-grid'),subjBar=document.getElementById('subj-btns');
+  renderFilters();
+  if(schedState==='loading'){subjBar.style.display='none';grid.innerHTML='<div class="sched-empty" style="grid-column:1/-1">시간표를 불러오는 중입니다…</div>';return;}
+  if(schedState==='fail'){subjBar.style.display='none';grid.innerHTML='<div class="sched-empty" style="grid-column:1/-1">시간표 준비 중입니다.<br>블로그 또는 전화로 문의해 주세요.</div>';return;}
   if(!curGrade){
-    document.getElementById('subj-btns').style.display='none';
-    const gb=[...document.querySelectorAll('#grade-btns .sf-btn')].filter(b=>b.dataset.g!=='전체');
-    grid.innerHTML='<div class="sched-pick"><div class="sp-t">학년을 선택해 주세요.</div><div class="sp-row">'+gb.map(b=>{const list=(SCHEDULE[b.dataset.g]||[]).filter(i=>!i.closed&&!i.any);return `<button type="button" class="sp-card" data-pick="${b.dataset.g}"><span class="sp-g">${b.textContent}</span><span class="sp-n">${list.length?'수업 '+list.length+'개 →':'학원 문의 →'}</span></button>`;}).join('')+'</div></div>';
-    grid.querySelectorAll('.sp-card').forEach(c=>c.addEventListener('click',()=>document.querySelector('#grade-btns .sf-btn[data-g="'+c.dataset.pick+'"]').click()));
+    subjBar.style.display='none';
+    grid.innerHTML='<div class="sched-pick"><div class="sp-t">학년을 선택해 주세요.</div><div class="sp-row">'+gradeKeys().map(g=>{const n=(SCHEDULE[g]||[]).filter(i=>i.status!=='마감').length;return `<button type="button" class="sp-card" data-pick="${esc(g)}"><span class="sp-g">${esc(GRADE_LABEL[g]||g)}</span><span class="sp-n">${n?'수업 '+n+'개 →':'학원 문의 →'}</span></button>`;}).join('')+'</div></div>';
+    grid.querySelectorAll('.sp-card').forEach(c=>c.addEventListener('click',()=>{curGrade=c.dataset.pick;renderSchedule();}));
     return;
   }
-  document.getElementById('subj-btns').style.display='';
-  let items=[];
-  const grades=curGrade==='전체'?Object.keys(SCHEDULE):Object.keys(SCHEDULE).filter(g=>g===curGrade);
-  grades.forEach(g=>SCHEDULE[g].forEach(item=>{if(curSubj==='전체'||item.subj===curSubj||item.any)items.push({...item,grade:g});}));
-  items=mergeW(items);
-  if(!items.length){grid.innerHTML='<div class="sched-empty" style="grid-column:1/-1">해당 조건의 수업이 없습니다.</div>';return;}
-  grid.innerHTML=items.map(it=>{
-    const c=SC_S[it.subj]||{bg:'#f5f5f5',text:'#444',border:'#bbb'};
-    const gt=curGrade==='전체'?`<span style="font-size:10px;background:var(--bg);padding:2px 6px;border-radius:3px;color:var(--t4);margin-left:5px">${it.grade}</span>`:'';
-    const badge=it.closed?'<span class="sc-badge">마감</span>':it.status==='dec'?`<span class="sc-badge sc-new">${it.badge||'12월 개강'}</span>`:it.status==='wait'?'<span class="sc-badge sc-wait">개강 예정</span>':it.isNew?'<span class="sc-badge sc-new">신규</span>':'';
-    const desc=it.desc?`<div class="sc-desc">${it.desc}</div>`:'';
-    const teacher=it.teacher?`<div class="sc-teacher">${it.teacher}</div>`:'';
-    return `<div class="s-card${it.winter?' s-winter':''}" style="border-left-color:${c.border};${it.closed?'opacity:.5':''}"><div class="sc-subj" style="color:${c.text}">${it.subj}${gt}${it.winter?W_BADGE:''}${badge}</div><div class="sc-class">${it.class_name}</div>${teacher}<span class="sc-time">${it.time}</span>${desc}${wExtra(it,curGrade!=='전체')}</div>`;
-  }).join('');
+  subjBar.style.display='';
+  const base=curGrade==='전체'?allItems():(SCHEDULE[curGrade]||[]);
+  const items=base.filter(it=>curSubj==='전체'||it.subj===curSubj);
+  if(!items.length){grid.innerHTML=`<div class="sched-empty" style="grid-column:1/-1">${base.length?'해당 조건의 수업이 없습니다.':'현재 안내 중인 수업이 없습니다. 학원으로 문의해 주세요.'}</div>`;return;}
+  grid.innerHTML=items.map(it=>cardHtml(it,{teacher:true,gradeChip:curGrade==='전체'})).join('');
 }
-renderSchedule();
-document.getElementById('grade-btns').addEventListener('click',e=>{const btn=e.target.closest('.sf-btn');if(!btn)return;const was=btn.classList.contains('on');document.querySelectorAll('.sf-btn').forEach(b=>b.classList.remove('on'));if(was){curGrade=null;}else{btn.classList.add('on');curGrade=btn.dataset.g;}renderSchedule();});
-document.getElementById('subj-btns').addEventListener('click',e=>{const btn=e.target.closest('.ss-btn');if(!btn)return;document.querySelectorAll('.ss-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');curSubj=btn.dataset.s;renderSchedule();});
+function applyClasses(data){buildSchedule(data);schedState='ok';setUpdated(data.updated);renderSchedule();}
+function loadSchedule(){
+  let cached=null;try{cached=JSON.parse(localStorage.getItem(CLASS_CACHE)||'null');}catch(e){}
+  if(cached&&Array.isArray(cached.classes))applyClasses(cached);   /* 지난번 내용 먼저 보여 주고 */
+  else{setUpdated(null);renderSchedule();}
+  const ctl=window.AbortController?new AbortController():null,timer=setTimeout(()=>ctl&&ctl.abort(),12000);
+  fetch(CLASS_API,ctl?{signal:ctl.signal}:{}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json();})
+    .then(data=>{clearTimeout(timer);if(!data||!Array.isArray(data.classes))throw new Error('format');
+      try{localStorage.setItem(CLASS_CACHE,JSON.stringify(data));}catch(e){}
+      applyClasses(data);})                                          /* 새 내용으로 바꿔 그림 */
+    .catch(()=>{clearTimeout(timer);if(schedState!=='ok'){schedState='fail';setUpdated(null);renderSchedule();}});
+}
+document.getElementById('grade-btns').addEventListener('click',e=>{const btn=e.target.closest('.sf-btn');if(!btn)return;curGrade=curGrade===btn.dataset.g?null:btn.dataset.g;renderSchedule();});
+document.getElementById('subj-btns').addEventListener('click',e=>{const btn=e.target.closest('.ss-btn');if(!btn)return;curSubj=btn.dataset.s;renderSchedule();});
+loadSchedule();
 
 /* Detail */
 const dp=document.getElementById('page-detail');let savedScroll=0;
@@ -94,13 +161,9 @@ function openTeacher(idx){
   document.getElementById('d-name').innerHTML=t.name+(t.role?` <span class="detail-role-badge">${t.role}</span>`:'');
   document.getElementById('d-msg').textContent=t.msg?'"'+t.msg+'"':'';
   document.getElementById('d-tags').innerHTML=t.tags.slice(0,3).map(tg=>`<span class="detail-tag">${tg}</span>`).join('');
-  {const st=document.getElementById('d-sch-title'),sb=document.getElementById('d-sched');const rows=[];
-   Object.keys(SCHEDULE).forEach(g=>SCHEDULE[g].forEach(it=>{if(it.any||!it.teacher)return;const ns=it.teacher.split('·').map(x=>x.trim().replace(/T$/,''));if(ns.includes(t.name))rows.push({...it,grade:g});}));
-   rows.splice(0,rows.length,...mergeW(rows));
-   if(rows.length){st.style.display='';sb.innerHTML=rows.map(it=>{const c=SC_S[it.subj]||{text:'#444',border:'#bbb'};
-     const badge=it.closed?'<span class="sc-badge">마감</span>':it.status==='dec'?`<span class="sc-badge sc-new">${it.badge||'12월 개강'}</span>`:it.status==='wait'?'<span class="sc-badge sc-wait">개강 예정</span>':it.isNew?'<span class="sc-badge sc-new">신규</span>':'';
-     const co=it.teacher.includes('·')?`<div class="sc-teacher">${it.teacher}</div>`:'';
-     return `<div class="s-card${it.winter?' s-winter':''}" style="border-left-color:${c.border};${it.closed?'opacity:.5':''}"><div class="sc-subj" style="color:${c.text}">${it.subj}${it.winter?'':`<span class="d-sg">${it.grade}</span>`}${it.winter?W_BADGE:''}${badge}</div><div class="sc-class">${it.class_name}</div>${co}<span class="sc-time">${it.time}</span>${it.desc?`<div class="sc-desc">${it.desc}</div>`:''}${wExtra(it,false)}</div>`;}).join('');}
+  {const st=document.getElementById('d-sch-title'),sb=document.getElementById('d-sched');
+   const rows=allItems().filter(it=>it.tnames.includes(t.name));
+   if(rows.length){st.style.display='';sb.innerHTML=rows.map(it=>cardHtml(it,{teacher:it.tnames.length>1,gradeChip:!SEASON[it.kind]})).join('');}
    else{st.style.display='none';sb.innerHTML='';}}
   document.getElementById('d-career').innerHTML=t.careerGroups?t.careerGroups.map(g=>`<div class="d-cr-h">${g.name}</div>`+g.items.map(c=>`<div class="d-cr">${c}</div>`).join('')).join(''):t.career.map(c=>`<div class="d-cr">${c}</div>`).join('');
   const bt=document.getElementById('d-blog-title');const bl=document.getElementById('d-blog-links');

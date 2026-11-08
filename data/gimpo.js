@@ -1,4 +1,5 @@
-/* 김포관 데이터: 강사·시간표·사진 — 내용 수정은 이 파일에서 */
+/* 김포관 데이터: 강사·사진 — 내용 수정은 이 파일에서 */
+const BRANCH='gimpo';   /* 시트에서 이 지점 반만 골라 보여 줌 */
 const POPUP_KEY='popup_skip_gimpo';
 const PHOTO_DATA={'남매논술팀':'img/teachers/nammae-nonsul.webp',
   '김소진':'img/teachers/kim-sojin.webp','정예진':'img/teachers/jeong-yejin.webp','임한비':'img/teachers/lim-hanbi.webp','윤서은':'img/teachers/yun-seoeun.webp',
@@ -71,33 +72,5 @@ const TEACHERS=[
 
 const T_FIRST=['임한비','김소진','김동완'];
 
-const SCHEDULE={
-  '예비고1':[
-    {subj:'국어',teacher:'김소진T',class_name:'예비고1 국어 A',time:'일 2–5',status:'wait',desc:'부원장 직강 · 국어 개념어 + 모의고사 유형별 접근, 3월 중하순부터 학교별 내신 대비'},
-    {subj:'국어',teacher:'김소진T',class_name:'예비고1 국어 B',time:'일 5–8',status:'wait',desc:'부원장 직강 · 국어 개념어 + 모의고사 유형별 접근, 3월 중하순부터 학교별 내신 대비'},
-    {subj:'수학',teacher:'정아린T',class_name:'예비고1 수학 S',time:'수 6–8 수업 · 8–10 클리닉 / 토 오전 11–1 수업 · 1–3 클리닉',closed:true,desc:'공통수학1 · 공통수학2 심화 문제풀이 · 2월 말 종강'},
-    {subj:'수학',teacher:'정아린T',class_name:'예비고1 수학 A',time:'화목 6–8 수업 · 8–10 클리닉',closed:true,desc:'공통수학1 심화 문제풀이'},
-    {subj:'수학',teacher:'정아린T',class_name:'예비고1 수학 B',time:'월금 6–10 (클리닉 포함)',status:'dec',badge:'11/30 개강',desc:'공통수학1 개념 + 유형부터 시작 · 겨울방학 특강 공통수학2 수강 필수'},
-    {subj:'수학',teacher:'정아린T',class_name:'예비고1 수학 C',time:'화목 8–10 수업 · 6–8 클리닉',status:'dec',desc:'공통수학1 개념 + 유형부터 시작 · 겨울방학 특강 공통수학2 수강 필수'},
-    {subj:'영어',teacher:'권세은T',class_name:'예비고1 영어',time:'월금 6–10',closed:true,desc:'자체 교재'},
-    {subj:'영어',teacher:'김정윤T',class_name:'예비고1 영어',time:'화목 6–10 (클리닉 포함)',status:'dec',desc:'구문 트랙(천일문 완성 – 문법·문장 해석) + 독해 트랙(자이스토리 고1 영어 – 논리 독해)'},
-  ],
-  '고1':[
-    {subj:'국어',teacher:'김동완T',class_name:'고1 국어',time:'토 · 시간 학원 문의',status:'wait',desc:'11월 개강 가능'},
-  ],
-  '고2':[
-    {subj:'안내',teacher:'',class_name:'고2 수업',time:'학원 문의',any:true},
-  ]
-};
-/* 겨울방학 특강 (2027 겨울방학) — 학년 표기: ★상위권 가능 / ●추천 / ○노베 추천
-   학년 키: 예비고1(현 중3), 고1, 고2 = 문서의 1·2·3학년 */
-const WINTER=[
-  {subj:'국어',teacher:'김동완T',class_name:'문법 전범위',time:'금 오전 10–1',lv:{'예비고1':'●','고1':'●','고2':'○'}},
-  {subj:'수학',teacher:'정아린T',class_name:'공통수학2 개념완성',time:'월수 12–2',lv:{'예비고1':'●'}},
-  {subj:'수학',teacher:'정아린T',class_name:'대수 문제풀이',time:'월수 2–4',lv:{'예비고1':'★','고1':'●','고2':'○'}},
-  {subj:'수학',teacher:'정아린T',class_name:'확률과통계 개념 + 문제풀이',time:'화목 1–4',lv:{'예비고1':'★','고1':'●','고2':'●'}},
-  {subj:'영어',teacher:'권세은T',class_name:'고1·2를 위한 실전 모의고사',time:'금 2–5',lv:{'예비고1':'●','고1':'●','고2':'○'}},
-  {subj:'사회',teacher:'이승민T',class_name:'통합사회 1+2 10주 완성',time:'일 오전 10–1',lv:{'예비고1':'●','고2':'●'},link:'https://blog.naver.com/yourmate_gimpo/224457255490'},
-  {subj:'과학',teacher:'주윤겸T',class_name:'통합과학 1+2 9주 완성',time:'목 6:30–9:30',desc:'1/14 휴강',lv:{'예비고1':'●','고2':'○'},link:'https://blog.naver.com/yourmate_gimpo/224452723821'},
-];
-WINTER.forEach(w=>Object.keys(w.lv).forEach(g=>{(SCHEDULE[g]=SCHEDULE[g]||[]).push({...w,winter:true,lvs:[[g,w.lv[g]]]});}));
+/* 시간표(반·요일·시간·수업 소개)는 이 파일에 적지 않는다.
+   「메이트 강의목록」 구글 시트에서 자동으로 읽어 옴 — 시트만 고치면 됨 */
