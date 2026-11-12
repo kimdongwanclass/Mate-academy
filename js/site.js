@@ -41,7 +41,8 @@ document.getElementById('t-filter-bar').addEventListener('click',e=>{
 const CLASS_API='https://script.google.com/macros/s/AKfycbyJaGLC1QJplM-Ij3PmnwtXrygEDW8kVNqvuJp6MOQdpUNGszal6AbzbzFYKm3_sb1E/exec?site=home';
 const CLASS_CACHE='mate_classes_home';
 const GRADE_BASE=['예비고1','고1','고2'];          /* 수업이 없어도 늘 보이는 학년 버튼 */
-const GRADE_ORDER=['예비고1','고1','고2','고3','N수'];
+const GRADE_ORDER=['예비고1','고1','고2','고3','N수','방학특강'];
+const VAC_KEY='방학특강';   /* 구분이 겨울·여름인 반은 학년과 상관없이 이 버튼 하나로 모음 (시트 수정 불필요) */
 const GRADE_LABEL={'예비고1':'예비고1·중3'};
 const KIND_ORDER={'정규':0,'겨울':1,'여름':2};
 const SEASON={'겨울':{cls:'s-winter',badge:'<span class="sc-badge sc-winter">❄ 겨울방학 특강</span>'},
@@ -80,7 +81,7 @@ function buildSchedule(data){
   const ko=k=>KIND_ORDER[k]==null?9:KIND_ORDER[k],so=s=>{const i=SUBJ_ORDER.indexOf(s);return i<0?99:i;};
   list.sort((a,b)=>ko(a.kind)-ko(b.kind)||so(a.subj)-so(b.subj));
   const out={};
-  list.forEach(it=>it.grades.forEach(g=>(out[g]=out[g]||[]).push(it)));
+  list.forEach(it=>{if(SEASON[it.kind])(out[VAC_KEY]=out[VAC_KEY]||[]).push(it);else it.grades.forEach(g=>(out[g]=out[g]||[]).push(it));});
   SCHEDULE=out;
 }
 function gradeKeys(){
@@ -135,7 +136,7 @@ function renderSchedule(){
   const base=curGrade==='전체'?allItems():(SCHEDULE[curGrade]||[]);
   const items=base.filter(it=>curSubj==='전체'||it.subj===curSubj);
   if(!items.length){grid.innerHTML=`<div class="sched-empty" style="grid-column:1/-1">${base.length?'해당 조건의 수업이 없습니다.':'현재 안내 중인 수업이 없습니다. 학원으로 문의해 주세요.'}</div>`;return;}
-  grid.innerHTML=items.map(it=>cardHtml(it,{teacher:true,gradeChip:curGrade==='전체'})).join('');
+  grid.innerHTML=items.map(it=>cardHtml(it,{teacher:true,gradeChip:(curGrade==='전체'||curGrade===VAC_KEY)&&it.gradeText&&it.gradeText!=='기타'})).join('');
 }
 function applyClasses(data){buildSchedule(data);schedState='ok';setUpdated(data.updated);renderSchedule();}
 function loadSchedule(){
