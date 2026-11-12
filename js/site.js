@@ -110,12 +110,14 @@ function badgeOf(it){
   if(['개강예정','개강대기','미정'].includes(it.status))return '<span class="sc-badge sc-new">개강 예정</span>';
   return '';
 }
+/* 개강·종강 칸: '기간' 머리말 없이 표시. 날짜 하나만 있으면 뒤에 '개강'을 붙인다 */
+function periodText(p){p=String(p).trim();if(/개강|종강|~|∼|-\s*\d.*\d/.test(p)&&!/^\d{4}-\d{1,2}-\d{1,2}$/.test(p))return p;return p+' 개강';}
 /* 반 카드 한 장 — 시간표·강사 상세 공용 */
 function cardHtml(it,o){
   const c=SC_S[it.subj]||{bg:'#f5f5f5',text:'#444',border:'#bbb'},se=SEASON[it.kind];
   const gt=o.gradeChip?`<span class="d-sg">${esc(it.gradeText)}</span>`:'';
   const teacher=o.teacher&&it.teacher?`<div class="sc-teacher">${esc(it.teacher)}</div>`:'';
-  const extra=(it.period?`<div class="sc-meta"><b>기간</b> ${esc(it.period)}</div>`:'')+(it.recommend?`<div class="sc-meta"><b>추천</b> ${esc(it.recommend)}</div>`:'');
+  const extra=(it.period?`<div class="sc-meta">${esc(periodText(it.period))}</div>`:'')+(it.recommend?`<div class="sc-meta"><b>추천</b> ${esc(it.recommend)}</div>`:'');
   return `<div class="s-card${se?' '+se.cls:''}" style="border-left-color:${c.border};${it.status==='마감'?'opacity:.5':''}"><div class="sc-subj" style="color:${c.text}">${esc(it.subj)}${gt}${se?se.badge:''}${badgeOf(it)}</div><div class="sc-class">${esc(it.class_name)}</div>${teacher}${it.time?`<span class="sc-time">${esc(it.time)}</span>`:''}${it.desc?`<div class="sc-desc">${esc(it.desc)}</div>`:''}${extra}</div>`;
 }
 function renderSchedule(){
@@ -190,8 +192,8 @@ window.addEventListener('scroll',()=>{
   const y=window.scrollY;
   hd.classList.toggle('scrolled',y>10);
   document.getElementById('stb').classList.toggle('on',y>400);
-  if(y>120){const dn=y>py;tb.style.cssText=dn?'transform:translateY(-100%);transition:transform .3s':'transform:none;transition:transform .3s';hd.style.top=dn?'0':'40px';}
-  else{tb.style.cssText='';hd.style.top='40px';}
+  /* 맨 위 바(지점 버튼)는 제자리에 두고, 메뉴 바만 따라 내려오며 화면 맨 위에 딱 붙는다 */
+  hd.style.top=Math.max(0,tb.offsetHeight-y)+'px';
   let cur='';sections.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<200)cur=id;});
   mbItems.forEach(item=>item.classList.toggle('active',item.getAttribute('href')==='#'+cur));
   py=y;
