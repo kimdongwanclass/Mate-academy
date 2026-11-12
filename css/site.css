@@ -127,7 +127,7 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
 /* 히어로 로고 꾸밈 (2026-11-13) — "함께 뛰는 메이트": 앞으로 달려 나가는 두 사람 뒤로 속도선 */
 .hero-logo-col{min-height:420px}
 .hero-logo-metal{position:relative;width:70%;max-width:360px;z-index:1}
-.hero-logo-metal img{width:100%;display:block;position:relative;z-index:2;animation:logo-run .8s cubic-bezier(.2,.7,.2,1) both}
+.hero-logo-metal img{width:100%;display:block;position:relative;z-index:2;animation:sweep-in 1s .45s ease-out both}
 .hero-logo-metal::before{content:'';position:absolute;z-index:1;pointer-events:none;
   right:91%;top:34%;width:72%;height:58%;
   background-image:
@@ -140,10 +140,16 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
   background-repeat:no-repeat;
   background-size:70% 10px,44% 6px,92% 10px,58% 7px,76% 9px,40% 5px;
   background-position:100% 4%,100% 22%,100% 40%,100% 58%,100% 76%,100% 94%;
-  transform:skewX(-21deg);transform-origin:right center;animation:speed-in .9s .15s cubic-bezier(.2,.7,.2,1) both}
-@keyframes logo-run{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:none}}
-@keyframes speed-in{from{opacity:0;clip-path:inset(0 0 0 100%)}to{opacity:1;clip-path:inset(0 0 0 0)}}
-@media(prefers-reduced-motion:reduce){.hero-logo-metal img,.hero-logo-metal::before{animation:none}}
+  transform:skewX(-21deg);transform-origin:right center;animation:sweep-in .8s .1s ease-out both}
+/* 왼쪽 → 오른쪽으로 부드럽게 드러나며 페이드인: 속도선이 먼저, 이어서 로고 */
+.hero-logo-metal img,.hero-logo-metal::before{
+  -webkit-mask-image:linear-gradient(90deg,#000 40%,transparent 60%);mask-image:linear-gradient(90deg,#000 40%,transparent 60%);
+  -webkit-mask-size:250% 100%;mask-size:250% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:0 0;mask-position:0 0}
+@keyframes sweep-in{
+  from{opacity:0;-webkit-mask-position:100% 0;mask-position:100% 0}
+  to{opacity:1;-webkit-mask-position:0 0;mask-position:0 0}}
+@media(prefers-reduced-motion:reduce){.hero-logo-metal img,.hero-logo-metal::before{animation:none;-webkit-mask-image:none;mask-image:none}}
 
 /* ══ SECTION BASE ══ */
 .sec{padding:84px 0}

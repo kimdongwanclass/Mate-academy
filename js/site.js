@@ -1,6 +1,6 @@
 /* 메이트 학원 지점 페이지 공통 기능 (목동·김포 공용) */
 const SUBJ_ORDER=['국어','수학','영어','사회','과학'];
-{const base=TEACHERS.map((t,k)=>{const si=SUBJ_ORDER.indexOf(t.subjects[0]);return {t,k:T_FIRST.includes(t.name)?T_FIRST.indexOf(t.name):100+(si<0?99:si)*100+k};});
+{const base=TEACHERS.filter(t=>!t.hidden).map((t,k)=>{const si=SUBJ_ORDER.indexOf(t.subjects[0]);return {t,k:T_FIRST.includes(t.name)?T_FIRST.indexOf(t.name):100+(si<0?99:si)*100+k};});
  base.sort((a,b)=>a.k-b.k);TEACHERS.splice(0,TEACHERS.length,...base.map(x=>x.t));}
 /* 여러 과목 강사는 과목 색을 섞어 보여 줌 */
 function gradOf(cols,deg){if(cols.length===1)return cols[0];const n=cols.length;return 'linear-gradient('+(deg||135)+'deg,'+cols.map((c,i)=>c+' '+(i/n*100).toFixed(2)+'% '+((i+1)/n*100).toFixed(2)+'%').join(',')+')';}
@@ -75,9 +75,17 @@ function toItem(c){
     time:timeText(c.days,c.time),desc:c.intro||'',recommend:c.recommend||'',period:c.period||'',
     status:c.status||'',kind:c.kind||'정규',gradeText:c.grade||'',grades:grades.length?grades:['기타']};
 }
+/* 방학특강 공개 기간 (원장님 결정 2026-11-13): 겨울 = 11월 15일 ~ 2월 말, 여름 = 7월 1일 ~ 8월 31일.
+   기간 밖에는 시트에 있어도 홈페이지에 안 보임. 기간 안이라도 시트 상태가 '종강'이면 숨김. 날짜는 한국 시간 기준 */
+const SEASON_OPEN={'겨울':md=>md>=1115||md<=229,'여름':md=>md>=701&&md<=831};
+function seasonOpen(kind,now){
+  const f=SEASON_OPEN[kind];if(!f)return true;
+  const k=new Date((now||Date.now())+9*3600e3);   /* UTC → 한국 시간 */
+  return f((k.getUTCMonth()+1)*100+k.getUTCDate());
+}
 function buildSchedule(data){
   const list=(data&&Array.isArray(data.classes)?data.classes:[])
-    .filter(c=>c&&c.branch===BRANCH&&c.status!=='종강').map(toItem);
+    .filter(c=>c&&c.branch===BRANCH&&c.status!=='종강').map(toItem).filter(it=>seasonOpen(it.kind));
   const ko=k=>KIND_ORDER[k]==null?9:KIND_ORDER[k],so=s=>{const i=SUBJ_ORDER.indexOf(s);return i<0?99:i;};
   list.sort((a,b)=>ko(a.kind)-ko(b.kind)||so(a.subj)-so(b.subj));
   const out={};

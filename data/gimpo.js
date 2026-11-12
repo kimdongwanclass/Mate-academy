@@ -41,7 +41,7 @@ const TEACHERS=[
    career:['메이트학원 영어과 전임강사','과외어플 전국 상위 0.2%','목동초등학교 · 목동중학교 · 진명여고 졸업'],
    subjects_teach:['수능 영어','내신 영어'],target:'고1·2·3 / N수',
    videos:[{title:'2027학년도 9월 평가원 모의고사 해설강의(주요문항)',id:'ee_qijo6E3M'},{title:'수능 영어 어법 총정리',id:'OxbckhhrfeA'}],blogLinks:[{title:'권세은T 강사 소개',url:'https://blog.naver.com/yourmate_gimpo/224333383667'},{title:'권세은T 수능 영어 커리큘럼',url:'https://blog.naver.com/yourmate_gimpo/224359529122'},{title:'김포고1 영어 수업 방식',url:'https://blog.naver.com/yourmate_gimpo/224344054577'},{title:'[후기] 영어 권세은T 수강후기',url:'https://blog.naver.com/edumate_mokdong/224264042226'}]},
-  {name:'정다혜',filters:['영어'],role:null,subjects:['영어'],
+  {name:'정다혜',hidden:true,/* 2026-11-13 원장님 요청으로 잠시 숨김 — 지우면 다시 보임 */filters:['영어'],role:null,subjects:['영어'],
    msg:'영어를 마스터하는 가장 빠르고 정확한 방법',tags:[],
    career:['메이트학원 영어과 강사'],
    subjects_teach:['수능 영어','내신 영어','클리닉'],target:'고1·2·3',blogLinks:[]},
