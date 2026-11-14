@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>메이트랩 | 메이트학원</title>
+<link rel="icon" href="img/favicon/matelab-32.png" sizes="32x32" type="image/png"/>
+<link rel="icon" href="img/favicon/matelab.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="img/favicon/matelab-180.png"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="메이트학원"/>
+<meta property="og:url" content="https://mate4u.netlify.app/matelab"/>
+<meta property="og:title" content="메이트랩 | 메이트학원"/>
+<meta property="og:description" content="메이트국어연구소·메이트영어연구소 자체 교재와 메이트랩 학습 웹"/>
+<meta property="og:image" content="https://mate4u.netlify.app/img/og-main.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="description" content="메이트학원 메이트랩 — 국어·영어 자체 교재와 어휘 학습·시험 웹"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#15191D;--ink2:#1F252B;--ink3:#2B333B;
+  --tl:#2E93A6;--tl-dk:#1F7F92;--tl-lt:#E6F3F5;
+  --ko:#8A6A00;--ko-bg:#FDF6E3;--ko-ln:#EAD9A6;
+  --en:#7A3B55;--en-bg:#FBEFF3;--en-ln:#EBCBD7;
+  --or:#E8601A;--wh:#FFF;
+  --t1:#111;--t2:#444;--t3:#666;--t4:#BBB;
+  --bg:#F6F6F6;--ln:#E4E4E4;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:'Noto Sans KR',sans-serif;color:var(--t1);background:var(--wh);overflow-x:hidden;-webkit-font-smoothing:antialiased;word-break:keep-all}
+a{text-decoration:none;color:inherit}img{max-width:100%;display:block}
+.wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 36px}
+.mk{fill:currentColor}
+
+/* ══ TOPBAR (목동·김포·올케어와 동일) ══ */
+#topbar{background:#000;position:relative;z-index:950}
+.tb-in{display:flex;align-items:center;justify-content:space-between;height:40px}
+.tb-branches{display:flex;height:100%}
+.tb-b{display:flex;align-items:center;gap:7px;padding:0 14px;font-size:12.5px;font-weight:700;color:rgba(255,255,255,.82);border-right:1px solid rgba(255,255,255,.14);letter-spacing:.02em;transition:color .2s,background .2s}
+a.tb-b:hover{color:#fff;background:rgba(255,255,255,.08)}
+.tb-b.on{color:#fff;background:var(--or)}
+.tb-home{font-size:12px;color:rgba(255,255,255,.65)}
+.pip{width:5px;height:5px;border-radius:50%;background:var(--or);flex-shrink:0}.pip.dim{background:rgba(255,255,255,.55)}
+.tb-b.on .pip{background:#fff}
+.tb-r{font-size:12px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:12px}
+.tb-r a{color:rgba(255,255,255,.7);transition:color .2s}.tb-r a:hover{color:#fff}
+
+/* ══ HEADER ══ */
+#hd{position:sticky;top:0;z-index:900;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--ln)}
+.hd-in{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.hd-logo{display:flex;align-items:center;gap:10px;color:var(--tl)}
+.hd-logo .mk{width:36px;height:32px}
+.hd-logo-t{font-size:19px;font-weight:900;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.hd-logo-t span{color:var(--tl)}
+.hd-logo-s{font-size:11px;font-weight:600;color:var(--t3);margin-top:3px}
+.hd-nav{display:flex}
+.hd-nav a{display:flex;align-items:center;height:64px;padding:0 14px;font-size:13.5px;font-weight:600;color:var(--t2);border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.hd-nav a:hover{color:var(--t1);border-bottom-color:var(--tl)}
+.btn-cta{background:var(--ink);color:#fff;font-size:13px;font-weight:800;padding:10px 16px;border-radius:4px;white-space:nowrap;transition:background .2s,transform .15s}
+.btn-cta:hover{background:var(--tl-dk);transform:translateY(-1px)}
+
+/* ══ HERO ══ */
+#hero{background:var(--ink);color:#fff;padding:84px 0 92px;overflow:hidden;position:relative}
+#hero::after{content:'';position:absolute;right:-120px;top:-80px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(46,147,166,.28),rgba(46,147,166,0) 70%);pointer-events:none}
+.hero-in{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;position:relative;z-index:1}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--tl);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';width:20px;height:1.5px;background:var(--tl);display:block}
+.hero-pill{display:inline-block;padding:6px 14px;border:1.5px solid rgba(255,255,255,.3);border-radius:99px;font-size:12.5px;font-weight:700;color:rgba(255,255,255,.85);margin-bottom:18px}
+.hero-h1{font-size:clamp(32px,4.6vw,54px);font-weight:900;line-height:1.22;letter-spacing:-.04em;margin-bottom:16px}
+.hero-h1 em{font-style:normal;color:var(--tl)}
+.hero-sub{font-size:16px;color:rgba(255,255,255,.72);line-height:1.85;margin-bottom:30px}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+.hb{display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 20px;border-radius:4px;font-size:14px;font-weight:800;transition:transform .15s,background .2s}
+.hb:hover{transform:translateY(-2px)}
+.hb.ko{background:#F2C230;color:#3A2C00}.hb.en{background:#E7A3BC;color:#4A1B2E}.hb.web{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+.hb.web:hover{border-color:#fff}
+.fan{position:relative;height:360px}
+.hero-in>div:first-child{position:relative;z-index:2}
+.fan img{position:absolute;bottom:0;left:50%;width:min(30%,150px);border-radius:4px;box-shadow:0 18px 40px rgba(0,0,0,.45);transform-origin:50% 120%;opacity:0;transition:transform .9s cubic-bezier(.2,.7,.2,1),opacity .6s}
+.fan.in img{opacity:1}
+.fan.in img:nth-child(1){transform:translateX(-50%) rotate(-22deg) translateX(-96%)}
+.fan.in img:nth-child(2){transform:translateX(-50%) rotate(-11deg) translateX(-48%)}
+.fan.in img:nth-child(3){transform:translateX(-50%) rotate(0deg) translateY(-14px)}
+.fan.in img:nth-child(4){transform:translateX(-50%) rotate(11deg) translateX(48%)}
+.fan.in img:nth-child(5){transform:translateX(-50%) rotate(22deg) translateX(96%)}
+.fan img{transform:translateX(-50%) translateY(30px)}
+
+/* ══ COMMON SECTION ══ */
+.sec{padding:84px 0}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--tl-dk);display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.sec-label::before{content:'';display:block;width:18px;height:1.5px;background:currentColor}
+.sec-h2{font-size:clamp(26px,3.5vw,40px);font-weight:900;line-height:1.25;letter-spacing:-.03em;margin-bottom:12px}
+.sec-h2 em{font-style:normal}
+.sec-desc{font-size:15px;color:var(--t3);line-height:1.9;max-width:680px}
+.sec-head{margin-bottom:40px}
+section[id]{scroll-margin-top:70px}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}.reveal.in{opacity:1;transform:none}
+
+/* 세 갈래 소개 */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tc{display:flex;flex-direction:column;border:1.5px solid var(--ln);border-radius:8px;padding:28px 26px 24px;background:#fff;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden}
+.tc::before{content:'';position:absolute;left:0;right:0;top:0;height:4px;background:var(--c)}
+.tc:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.08);border-color:var(--c)}
+.tc-n{font-size:12px;font-weight:900;color:var(--c);letter-spacing:.08em;margin-bottom:10px}
+.tc-t{font-size:21px;font-weight:900;letter-spacing:-.03em;margin-bottom:4px}
+.tc-lab{font-size:12.5px;font-weight:700;color:var(--t3);margin-bottom:14px}
+.tc-p{font-size:14px;color:var(--t2);line-height:1.75;flex:1}
+.tc-tags{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 18px}
+.tc-tags span{font-size:12px;font-weight:700;color:var(--c);background:var(--cb);padding:4px 9px;border-radius:4px}
+.tc-go{font-size:13.5px;font-weight:800;color:var(--c)}
+.note{margin-top:20px;display:flex;gap:12px;align-items:flex-start;background:var(--bg);border-radius:8px;padding:16px 18px;font-size:14px;color:var(--t2);line-height:1.75}
+.note b{flex-shrink:0;font-size:12px;font-weight:900;color:#fff;background:var(--ink);border-radius:4px;padding:3px 8px;margin-top:2px}
+
+/* 교재 섹션 */
+#ko{background:var(--ko-bg)}#en{background:var(--en-bg)}
+#ko .sec-label{color:var(--ko)}#en .sec-label{color:var(--en)}
+#ko .sec-h2 em{color:var(--ko)}#en .sec-h2 em{color:var(--en)}
+.grp-t{display:flex;align-items:baseline;gap:12px;font-size:19px;font-weight:900;letter-spacing:-.02em;margin:44px 0 14px;padding-bottom:10px;border-bottom:2px solid var(--c)}
+.grp-t:first-of-type{margin-top:0}
+.grp-t small{font-size:13px;font-weight:600;color:var(--t3);letter-spacing:0}
+#ko{--c:var(--ko);--cl:var(--ko-ln)}#en{--c:var(--en);--cl:var(--en-ln)}
+.sr{display:grid;grid-template-columns:300px 1fr;gap:32px;background:#fff;border:1px solid var(--cl);border-radius:8px;padding:26px 28px;margin-bottom:14px}
+.sr-area{display:inline-block;font-size:12px;font-weight:800;color:#fff;background:var(--c);border-radius:4px;padding:3px 9px;margin-bottom:10px}
+.sr-name{font-size:21px;font-weight:900;letter-spacing:-.03em;margin-bottom:4px}
+.sr-line{font-size:14px;font-weight:700;color:var(--c);margin-bottom:12px}
+.sr-desc{font-size:14px;color:var(--t2);line-height:1.8}
+.sr-cnt{display:inline-block;margin-top:12px;font-size:12px;font-weight:700;color:var(--t3);border:1px solid var(--ln);border-radius:99px;padding:3px 10px}
+.sr-books{display:flex;gap:18px;overflow-x:auto;padding:4px 2px 12px;scrollbar-width:thin;align-items:flex-start}
+.bk{flex:0 0 132px}
+.bk img{width:132px;height:auto;border-radius:3px;box-shadow:0 8px 18px rgba(0,0,0,.16);transition:transform .2s}
+.bk:hover img{transform:translateY(-4px)}
+.bk figcaption{margin-top:10px}
+.bk b{display:block;font-size:13px;font-weight:800;line-height:1.35}
+.bk span{display:block;font-size:12px;color:var(--t3);margin-top:3px;line-height:1.4}
+
+/* 학습 웹 */
+#web{background:var(--ink);color:#fff}
+#web .sec-label{color:var(--tl)}
+#web .sec-h2 em{color:var(--tl)}
+#web .sec-desc{color:rgba(255,255,255,.65)}
+.web-in{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:start}
+.feat{display:grid;gap:12px}
+.ft-card{background:var(--ink2);border:1px solid var(--ink3);border-radius:8px;padding:20px 22px}
+.ft-card h3{font-size:17px;font-weight:900;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.ft-card h3 i{font-style:normal;font-size:11px;font-weight:900;color:var(--ink);background:var(--tl);border-radius:4px;padding:3px 7px;letter-spacing:.04em}
+.ft-card ul{list-style:none}
+.ft-card li{font-size:14px;color:rgba(255,255,255,.75);line-height:1.75;padding-left:14px;position:relative}
+.ft-card li::before{content:'';position:absolute;left:0;top:.75em;width:5px;height:5px;border-radius:50%;background:var(--tl)}
+.books-in{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.bi{border-radius:6px;padding:12px 14px;background:rgba(255,255,255,.04);border:1px solid var(--ink3)}
+.bi b{display:block;font-size:12px;font-weight:900;margin-bottom:6px}
+.bi.ko b{color:#F2C230}.bi.en b{color:#E7A3BC}
+.bi span{display:block;font-size:13px;color:rgba(255,255,255,.78);line-height:1.6}
+.bi small{color:rgba(255,255,255,.45);font-size:11.5px}
+/* 화면 미리보기 */
+.phone{background:#F6F7F8;color:#15191D;border-radius:22px;padding:14px;box-shadow:0 30px 60px rgba(0,0,0,.45);max-width:340px;margin:0 auto;border:6px solid #2B333B}
+.ph-bar{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:800;padding:2px 4px 12px}
+.ph-bar span:last-child{color:#616C76;font-weight:600}
+.ph-card{background:#fff;border:1px solid #DEE1E5;border-radius:14px;padding:26px 18px;text-align:center}
+.ph-day{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:#BC3F6B;border-radius:99px;padding:3px 10px;margin-bottom:14px}
+.ph-word{font-size:30px;font-weight:900;letter-spacing:-.01em;margin-bottom:8px}
+.ph-mean{font-size:14px;color:#616C76;background:#F1F2F4;border-radius:8px;padding:9px;margin-top:6px}
+.ph-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.ph-btns span{font-size:12.5px;font-weight:800;border-radius:8px;padding:10px;text-align:center}
+.ph-btns .k{background:#EAF4EF;color:#2E7D5B}.ph-btns .m{background:#FBEDE9;color:#C04A2B}
+.ph-tabs{display:flex;gap:6px;margin-bottom:10px}
+.ph-tabs span{flex:1;font-size:12px;font-weight:800;text-align:center;padding:8px;border-radius:8px;background:#fff;border:1px solid #DEE1E5;color:#616C76}
+.ph-tabs span.on{background:#15191D;color:#fff;border-color:#15191D}
+.ph-cap{text-align:center;font-size:12px;color:rgba(255,255,255,.5);margin-top:14px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:40px;counter-reset:s}
+.steps li{list-style:none;background:var(--ink2);border:1px solid var(--ink3);border-radius:8px;padding:18px 20px;counter-increment:s}
+.steps li::before{content:counter(s);display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--tl);color:var(--ink);font-size:13px;font-weight:900;margin-bottom:10px}
+.steps b{display:block;font-size:15.5px;font-weight:900;margin-bottom:4px}
+.steps span{font-size:13.5px;color:rgba(255,255,255,.68);line-height:1.65}
+.go-web{margin-top:28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:var(--tl);color:var(--ink);border-radius:10px;padding:24px 28px}
+.go-web p{font-size:15px;font-weight:700;line-height:1.6}
+.go-web p small{display:block;font-size:13px;font-weight:600;opacity:.75}
+.go-btn{display:inline-flex;align-items:center;gap:8px;height:52px;padding:0 26px;border-radius:6px;background:var(--ink);color:#fff;font-size:15px;font-weight:900;white-space:nowrap;transition:transform .15s}
+.go-btn:hover{transform:translateY(-2px)}
+
+/* ══ FOOTER ══ */
+#ft{background:#0D0D0D;padding:24px 0}
+.ft-in{display:flex;flex-direction:column;gap:12px}
+.ft-top-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.06)}
+.ft-logo{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);font-size:14px;font-weight:900;letter-spacing:-.01em}
+.ft-logo .mk{width:24px;height:22px;color:var(--tl)}
+.ft-biz{font-size:11px;color:rgba(255,255,255,.4);line-height:1.9}
+.ft-copy{font-size:10px;color:rgba(255,255,255,.25)}
+.fam-dd{position:relative}
+.fam-dd summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:168px;padding:7px 12px;border:1px solid rgba(255,255,255,.22);border-radius:4px;font-size:12px;font-weight:600;color:rgba(255,255,255,.75);transition:border-color .2s,color .2s;user-select:none}
+.fam-dd summary::-webkit-details-marker{display:none}
+.fam-dd summary:hover,.fam-dd[open] summary{color:#fff;border-color:rgba(255,255,255,.5)}
+.fam-dd .car{font-size:9px;transition:transform .2s;opacity:.7}
+.fam-dd[open] .car{transform:rotate(180deg)}
+.fam-menu{position:absolute;left:0;right:0;bottom:calc(100% + 6px);background:#1E1E1E;border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:5px;box-shadow:0 10px 30px rgba(0,0,0,.4);z-index:20}
+.fam-menu a{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:4px;font-size:12.5px;font-weight:600;color:rgba(255,255,255,.78)}
+.fam-menu a:hover{background:rgba(255,255,255,.07);color:#fff}
+.fam-menu a.act{color:var(--or)}
+.fam-menu a .ext{font-size:10px;opacity:.55}
+
+@media(max-width:1024px){
+  .hd-nav{display:none}
+  .hero-in,.web-in{grid-template-columns:1fr}
+  .fan{height:300px;max-width:560px;width:100%;margin:0 auto}
+  .sr{grid-template-columns:1fr;gap:18px}
+}
+@media(max-width:768px){
+  .wrap{padding:0 18px}
+  .sec{padding:60px 0}
+  #hero{padding:52px 0 56px}
+  .tb-r{display:none}
+  .hd-logo-s{display:none}
+  .three{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .sr{padding:20px 18px}
+  .sr-books{margin:0 -18px;padding:4px 18px 12px;gap:14px}
+  .bk{flex:0 0 112px}.bk img{width:112px}
+}
+@media(max-width:560px){
+  .tb-branches{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;max-width:100%}
+  .tb-branches::-webkit-scrollbar{display:none}
+  #topbar .tb-b{flex-shrink:0;padding:0 8px;font-size:11.5px;gap:0}
+  #topbar .tb-b .pip,#topbar .tb-b span[style*="opacity"]{display:none}
+  .hero-btns{flex-direction:column}.hb{justify-content:center}
+  .fan{height:230px}
+  .tc{padding:22px 20px 20px}
+  .books-in{grid-template-columns:1fr}
+  .go-web{padding:20px}.go-btn{width:100%;justify-content:center}
+  .btn-cta{padding:9px 12px;font-size:12.5px}
+  .fan{height:200px}
+  .sec-head{margin-bottom:28px}
+  .sr{padding:18px 16px;margin-bottom:10px}.sr-cnt{display:none}.sr-name{font-size:19px}.sr-desc{font-size:13.5px;line-height:1.7}
+  .sr-books{margin:0 -16px;padding:4px 16px 8px;gap:12px}.bk{flex:0 0 98px}.bk img{width:98px}.bk b{font-size:12.5px}.bk span{font-size:11.5px}
+  .grp-t{margin-top:32px}
+  .steps{gap:8px;margin-top:28px}
+  .steps li{display:grid;grid-template-columns:26px 1fr;column-gap:12px;padding:14px 16px}
+  .steps li::before{grid-row:1/3;margin:0}
+  .steps b{font-size:15px;margin:0}
+  .phone{max-width:300px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div id="topbar"><div class="wrap"><div class="tb-in">
+  <div class="tb-branches">
+    <a href="index.html" class="tb-b tb-home"><span style="font-size:8px">←</span> 메인</a>
+    <a href="mokdong.html" class="tb-b"><span class="pip dim"></span> 목동관</a>
+    <a href="gimpo.html" class="tb-b"><span class="pip dim"></span> 김포관</a>
+    <div class="tb-b on"><span class="pip"></span> 메이트랩</div>
+    <a href="allcare.html" class="tb-b"><span class="pip dim"></span> 올케어</a>
+    <a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener" class="tb-b"><span class="pip dim"></span> 온메이트 <span style="font-size:9px;opacity:.6">↗</span></a>
+  </div>
+  <div class="tb-r"><span>학습 웹</span><a href="https://mate-lab.netlify.app/" target="_blank" rel="noopener">바로 가기 ↗</a></div>
+</div></div></div>
+
+<!-- HEADER -->
+<header id="hd"><div class="wrap"><div class="hd-in">
+  <a href="#hero" class="hd-logo" aria-label="메이트랩 맨 위로"><svg class="mk" viewBox="0 0 2000 1765" aria-hidden="true"><circle cx="845" cy="187" r="187"/><circle cx="1458" cy="187" r="187"/><path d="M506 498H1120L989 820H801L466 1125H678L425 1765H0Z"/><path d="M1120 498H2000L1870 820H1415L1039 1765H613L989 820Z"/><path d="M1542 940L1870 1765H1445L1329 1465Z"/></svg>
+    <div><div class="hd-logo-t">MATE <span>LAB</span></div><div class="hd-logo-s">메이트학원 · 메이트국어연구소 · 메이트영어연구소</div></div>
+  </a>
+  <nav class="hd-nav"><a href="#about">메이트랩</a><a href="#ko">국어 교재</a><a href="#en">영어 교재</a><a href="#web">학습 웹</a></nav>
+  <a href="#web" class="btn-cta">학습 웹 안내</a>
+</div></div></header>
+
+<!-- HERO -->
+<section id="hero"><div class="wrap"><div class="hero-in">
+  <div>
+    <div class="hero-eyebrow">MATE LAB</div>
+    <div class="hero-pill">메이트국어연구소 · 메이트영어연구소</div>
+    <h1 class="hero-h1">수업을 위해 직접 만든<br/><em>메이트의 교재와 학습 웹</em></h1>
+    <p class="hero-sub">메이트랩은 메이트학원의 학습 자료를 만드는 곳입니다.<br/>기출 분석으로 만든 국어·영어 자체 교재와, 어휘를 매일 점검하는 학습 웹을 소개합니다.</p>
+    <div class="hero-btns">
+      <a href="#ko" class="hb ko">국어 자체 교재</a>
+      <a href="#en" class="hb en">영어 자체 교재</a>
+      <a href="#web" class="hb web">메이트랩 학습 웹</a>
+    </div>
+  </div>
+  <div class="fan" id="fan" aria-hidden="true">
+    <img src="img/matelab/kr-grammar-theory.webp" alt=""/>
+    <img src="img/matelab/kr-reading-1.webp" alt=""/>
+    <img src="img/matelab/kr-lit-1.webp" alt=""/>
+    <img src="img/matelab/en-micro-1.webp" alt=""/>
+    <img src="img/matelab/en-voca-basic.webp" alt=""/>
+  </div>
+</div></div></section>
+
+<!-- ABOUT: 세 갈래 -->
+<section id="about" class="sec"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-label">What We Make</div>
+    <h2 class="sec-h2">메이트랩이 만드는 것</h2>
+    <p class="sec-desc">국어·영어 자체 교재와 학습 웹, 세 가지로 수업과 복습을 돕습니다.</p>
+  </div>
+  <div class="three">
+    <a href="#ko" class="tc reveal" style="--c:var(--ko);--cb:var(--ko-bg)">
+      <div class="tc-n">01</div><div class="tc-t">국어 자체 교재</div><div class="tc-lab">메이트국어연구소 · 19권</div>
+      <p class="tc-p">문법·독서·문학의 뼈대를 세우는 메인 교재와, 매일 다지는 독서·문학·어휘 강화 교재입니다.</p>
+      <div class="tc-tags"><span>문법</span><span>독서</span><span>문학</span><span>어휘</span></div>
+      <span class="tc-go">국어 교재 보기 →</span>
+    </a>
+    <a href="#en" class="tc reveal" style="--c:var(--en);--cb:var(--en-bg);transition-delay:.07s">
+      <div class="tc-n">02</div><div class="tc-t">영어 자체 교재</div><div class="tc-lab">메이트영어연구소 · 12권</div>
+      <p class="tc-p">단어부터 어법, 문장 구문, 글 전체의 독해, 유형별 접근까지 단계별로 이어지는 교재입니다.</p>
+      <div class="tc-tags"><span>어휘</span><span>어법</span><span>구문</span><span>독해</span><span>유형</span></div>
+      <span class="tc-go">영어 교재 보기 →</span>
+    </a>
+    <a href="#web" class="tc reveal" style="--c:var(--tl-dk);--cb:var(--tl-lt);transition-delay:.14s">
+      <div class="tc-n">03</div><div class="tc-t">메이트랩 학습 웹</div><div class="tc-lab">국어·영어 어휘 학습 · 시험</div>
+      <p class="tc-p">휴대폰으로 어휘를 외우고, 직접 시험을 본 뒤 결과를 담당 선생님께 보내 확인받는 학습 사이트입니다.</p>
+      <div class="tc-tags"><span>카드 학습</span><span>시험보기</span><span>결과 카드</span></div>
+      <span class="tc-go">학습 웹 안내 보기 →</span>
+    </a>
+  </div>
+  <div class="note"><b>안내</b><span>자체 교재는 학년별로 정해진 교재가 아닙니다. 담당 선생님이 학생의 수준과 반 진도를 보고 필요한 교재를 골라 수업에 활용하며, 반에 따라 사용하지 않을 수도 있습니다.</span></div>
+</div></section>
+
+<!-- KO -->
+<section id="ko" class="sec"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-label">메이트국어연구소</div>
+    <h2 class="sec-h2">국어 <em>자체 교재</em></h2>
+    <p class="sec-desc">문법·독서·문학, 국어의 뼈대를 세우는 메인 교재와 작품·개념·어휘까지 빈틈없이 채우는 강화 교재입니다.</p>
+  </div>
+  <h3 class="grp-t">메인 교재 <small>문법 · 독서 · 문학</small></h3>
+  <article class="sr reveal"><div class="sr-info"><span class="sr-area">문법</span><h3 class="sr-name">우리말 문법</h3><p class="sr-line">중등 문법 정리부터 학교 문법 이론까지</p><p class="sr-desc">중학교 문법을 한 권으로 정리하는 기초편과, 고등 학교 문법 전 범위를 다루는 이론편으로 구성됩니다. 규칙을 외우는 대신 원리로 이해해 처음 보는 예문에도 적용할 수 있게 합니다.</p><span class="sr-cnt">2권</span></div><div class="sr-books"><figure class="bk"><img src="img/matelab/kr-grammar-basic.webp" alt="우리말 문법 기초 표지" loading="lazy" width="240" height="340"/><figcaption><b>우리말 문법 기초</b><span>중등 문법 총정리</span></figcaption></figure><figure class="bk"><img src="img/matelab/kr-grammar-theory.webp" alt="우리말 문법 이론 표지" loading="lazy" width="240" height="340"/><figcaption><b>우리말 문법 이론</b><span>학교 문법에 대한 모든 것</span></figcaption></figure></div></article><article class="sr reveal"><div class="sr-info"><span class="sr-area">독서</span><h3 class="sr-name">비문학 독해 원리 ①~③</h3><p class="sr-line">기출로 시작 → 대비 → 완성하는 수능 독서</p><p class="sr-desc">기출 지문으로 글의 구조를 잡는 순서와 선지 판단의 근거를 훈련합니다. ①에서 독해 원리를 처음 세우고, ②에서 실전 대비로 넓히고, ③에서 최신 기출로 완성합니다.</p><span class="sr-cnt">3권</span></div><div class="sr-books"><figure class="bk"><img src="img/matelab/kr-reading-1.webp" alt="비문학 독해 원리 ① 표지" loading="lazy" width="240" height="340"/><figcaption><b>비문학 독해 원리 ①</b><span>기출로 시작하는 수능 독서</span></figcaption></figure><figure class="bk"><img src="img/matelab/kr-reading-2.webp" alt="비문학 독해 원리 ② 표지" loading="lazy" width="240" height="340"/><figcaption><b>비문학 독해 원리 ②</b><span>기출로 대비하는 수능 독서</span></figcaption></figure><figure class="bk"><img src="img/matelab/kr-reading-3.webp" alt="비문학 독해 원리 ③ 표지" loading="lazy" width="240" height="340"/><figcaption><b>비문학 독해 원리 ③</b><span>최신 기출로 완성하는 수능 독서</span></figcaption></figure></div></article><article class="sr reveal"><div class="sr-info"><span class="sr-area">문학</span><h3 class="sr-name">문학 감상 원리 ①~③</h3><p class="sr-line">기출로 시작 → 대비 → 완성하는 수능 문학</p><p class="sr-desc">갈래별 감상 원리와 반복 출제되는 개념어를 기출 작품에 적용합니다. 작품을 외우는 것이 아니라, 처음 보는 작품도 근거를 갖고 읽을 수 있게 단계별로 훈련합니다.</p><span class="sr-cnt">3권</span></div><div class="sr-books"><figure class="bk"><img src="img/matelab/kr-lit-1.webp" alt="문학 감상 원리 ① 표지" loading="lazy" width="240" height="340"/><figcaption><b>문학 감상 원리 ①</b><span>기출로 시작하는 수능 문학</span></figcaption></figure><figure class="bk"><img src="img/matelab/kr-lit-2.webp" alt="문학 감상 원리 ② 표지" loading="lazy" width="240" height="340"/><figcaption><b>문학 감상 원리 ②</b><span>기출로 대비하는 수능 문학</span></figcaption></figure><figure class="bk"><img src="img/matelab/kr-lit-3.webp" alt="문학 감상 원리 ③ 표지" loading="lazy" width="240" height="340"/><figcaption><b>문학 감상 원리 ③</b><span>최신 기출로 완성하는 수능 문학</span></figcaption></figure></div></article>
+  <h3 class="grp-t">강화 교재 <small>독서 강화 · 문학 강화 · 어휘</small></h3>
+  <article class="sr reveal"><div class="sr-info"><span class="sr-area">독서 강화</span><h3 class="sr-name">비문학 독해 연습 ①~⑦</h3><p class="sr-line">매일 다지는 독해력</p><p class="sr-desc">독서 강화 세션 교재로, 독해 원리를 매일 실제 지문에 적용하는 연습서입니다. 꾸준한 독해량으로 읽는 속도와 정확도를 함께 끌어올립니다.</p><span class="sr-cnt">7권</span></div><div class="sr-books"><figure class="bk"><img src="img/matelab/kr-practice-1.webp" alt="비문학 독해 연습 ① 표지" loading="lazy" width="240" height="340"/><figcaption><b>비문학 독해 연습 ①</b><span>독서 강화 세션</span></figcaption></figure><figure class="bk"><img src="img/matelab/kr-practice-2.webp" alt="비문학 독해 연습 ② 표지" loading="lazy" width="240" height="340"/><figcaption><b>비문학 독해 연습 ②</b><span>독서 강화 세션</span></figcaption></figure><figure class="bk"><img src="img/matelab/kr-practice-3.webp" alt="비문학 독해 연습 ③ 표지" loading="lazy" width="240" height="340"/><figcaption><b>비문학 독해 연습 ③</b><span>독서 강화 세션</span></figcaption></figure><figure class="bk"><img src="img/matelab/kr-practice-4.webp" alt="비문학 독해 연습 ④ 표지" loading="lazy" width="240" height="340"/><figcaption><b>비문학 독해 연습 ④</b><span>독서 강화 세션</span></figcaption></figure><figure class="bk"><img src="img/matelab/kr-practice-5.webp" alt="비문학 독해 연습 ⑤ 표지" loading="lazy" width="240" height="340"/><figcaption><b>비문학 독해 연습 ⑤</b><span>독서 강화 세션</span></figcaption></figure><figure class="bk"><img src="img/matelab/kr-practice-6.webp" alt="비문학 독해 연습 ⑥ 표지" loading="lazy" width="240" height="340"/><figcaption><b>비문학 독해 연습 ⑥</b><span>독서 강화 세션</span></figcaption></figure><figure class="bk"><img src="img/matelab/kr-practice-7.webp" alt="비문학 독해 연습 ⑦ 표지" loading="lazy" width="240" height="340"/><figcaption><b>비문학 독해 연습 ⑦</b><span>독서 강화 세션</span></figcaption></figure></div></article><article class="sr reveal"><div class="sr-info"><span class="sr-area">문학 강화</span><h3 class="sr-name">문학 개념 · 고전시가</h3><p class="sr-line">개념과 필수 작품까지 빈틈없이</p><p class="sr-desc">내신과 수능에 필요한 문학 기초 개념을 다지는 교재와, 꼭 나오는 고전시가 작품을 정리하는 교재입니다.</p><span class="sr-cnt">2권</span></div><div class="sr-books"><figure class="bk"><img src="img/matelab/kr-lit-concept-0301.webp" alt="문학 개념 0301 표지" loading="lazy" width="240" height="340"/><figcaption><b>문학 개념 0301</b><span>내신과 수능을 위한 문학 기초 다지기</span></figcaption></figure><figure class="bk"><img src="img/matelab/kr-gojeonsiga.webp" alt="고전시가 필수 작품 표지" loading="lazy" width="240" height="340"/><figcaption><b>고전시가 필수 작품</b><span>꼭 나오는 고전시가 작품 정복</span></figcaption></figure></div></article><article class="sr reveal"><div class="sr-info"><span class="sr-area">어휘</span><h3 class="sr-name">고전 어휘 · 필수 어휘</h3><p class="sr-line">고전 어휘와 국어 필수 어휘</p><p class="sr-desc">4주 동안 630개 고전 어휘를 익히는 교재와, 내신과 수능에 필요한 국어 어휘 교재입니다. 매주 누적 테스트와 메이트랩 학습 웹으로 외운 어휘를 점검합니다.</p><span class="sr-cnt">2권</span></div><div class="sr-books"><figure class="bk"><img src="img/matelab/kr-gojeon-vocab-0630.webp" alt="고전 어휘 0630 표지" loading="lazy" width="240" height="340"/><figcaption><b>고전 어휘 0630</b><span>4주 완성 630개 어휘</span></figcaption></figure><figure class="bk"><img src="img/matelab/kr-vocab-1114.webp" alt="필수 어휘 1114 표지" loading="lazy" width="240" height="340"/><figcaption><b>필수 어휘 1114</b><span>내신과 수능을 위한 국어 어휘</span></figcaption></figure></div></article>
+</div></section>
+
+<!-- EN -->
+<section id="en" class="sec"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-label">메이트영어연구소</div>
+    <h2 class="sec-h2">영어 <em>자체 교재</em></h2>
+    <p class="sec-desc">단어부터 어법, 문장에서 글의 구조까지 — 단계별로 읽는 영어를 만드는 교재입니다.</p>
+  </div>
+  <h3 class="grp-t">어휘 · 어법 · 구문 · 독해 · 유형 <small>MATE Vocabulary · Grammar · Micro · Macro</small></h3>
+  <article class="sr reveal"><div class="sr-info"><span class="sr-area">어휘</span><h3 class="sr-name">MATE Vocabulary</h3><p class="sr-line">입문 → 기본 → 완성, 수준에 맞춰 고르는 어휘</p><p class="sr-desc">수능 영어 어휘를 세 단계로 나눈 교재입니다. 학생 수준에 맞는 단계로 시작하고, 매주 영단어 테스트와 메이트랩 학습 웹으로 외운 단어를 점검합니다.</p><span class="sr-cnt">3권</span></div><div class="sr-books"><figure class="bk"><img src="img/matelab/en-voca-intro.webp" alt="MATE Vocabulary 입문 표지" loading="lazy" width="240" height="336"/><figcaption><b>MATE Vocabulary 입문</b><span>수능 영어 입문 어휘</span></figcaption></figure><figure class="bk"><img src="img/matelab/en-voca-basic.webp" alt="MATE Vocabulary 기본 표지" loading="lazy" width="240" height="336"/><figcaption><b>MATE Vocabulary 기본</b><span>수능 영어 기본 어휘</span></figcaption></figure><figure class="bk"><img src="img/matelab/en-voca-adv.webp" alt="MATE Vocabulary 완성 표지" loading="lazy" width="240" height="336"/><figcaption><b>MATE Vocabulary 완성</b><span>수능 영어 완성 어휘</span></figcaption></figure></div></article><article class="sr reveal"><div class="sr-info"><span class="sr-area">어법</span><h3 class="sr-name">MATE Grammar</h3><p class="sr-line">내신 전 범위와 수능 핵심</p><p class="sr-desc">for All은 내신에 필요한 어법을 전 범위로 정리하고, for One은 수능에 나오는 어법 핵심만 모았습니다. 내신 기간과 수능 대비 기간에 맞춰 골라 씁니다.</p><span class="sr-cnt">2권</span></div><div class="sr-books"><figure class="bk"><img src="img/matelab/en-grammar-all.webp" alt="MATE Grammar for All 표지" loading="lazy" width="240" height="336"/><figcaption><b>MATE Grammar for All</b><span>내신을 위한 어법 전범위</span></figcaption></figure><figure class="bk"><img src="img/matelab/en-grammar-one.webp" alt="MATE Grammar for One 표지" loading="lazy" width="240" height="336"/><figcaption><b>MATE Grammar for One</b><span>수능을 위한 어법 핵심</span></figcaption></figure></div></article><article class="sr reveal"><div class="sr-info"><span class="sr-area">구문</span><h3 class="sr-name">MATE Micro ①~③</h3><p class="sr-line">문장을 정확히 읽는 구문</p><p class="sr-desc">문장의 뼈대(주어·동사·목적어·보어)를 먼저 잡고, 길어지는 문장도 구조로 정확하게 읽도록 훈련합니다. 문장 단위의 정확한 해석이 독해의 출발점입니다.</p><span class="sr-cnt">3권</span></div><div class="sr-books"><figure class="bk"><img src="img/matelab/en-micro-1.webp" alt="MATE Micro ① 표지" loading="lazy" width="240" height="336"/><figcaption><b>MATE Micro ①</b><span>문장을 정확히 읽는 구문</span></figcaption></figure><figure class="bk"><img src="img/matelab/en-micro-2.webp" alt="MATE Micro ② 표지" loading="lazy" width="240" height="336"/><figcaption><b>MATE Micro ②</b><span>문장을 정확히 읽는 구문</span></figcaption></figure><figure class="bk"><img src="img/matelab/en-micro-3.webp" alt="MATE Micro ③ 표지" loading="lazy" width="240" height="336"/><figcaption><b>MATE Micro ③</b><span>문장을 정확히 읽는 구문</span></figcaption></figure></div></article><article class="sr reveal"><div class="sr-info"><span class="sr-area">독해</span><h3 class="sr-name">MATE Macro ①~③</h3><p class="sr-line">글의 구조로 읽는 독해</p><p class="sr-desc">문단과 글 전체의 논리 흐름을 따라 읽으며 정답의 근거를 먼저 찾는 독해를 훈련합니다. Micro에서 익힌 문장 읽기를 글 전체로 넓힙니다.</p><span class="sr-cnt">3권</span></div><div class="sr-books"><figure class="bk"><img src="img/matelab/en-macro-1.webp" alt="MATE Macro ① 표지" loading="lazy" width="240" height="336"/><figcaption><b>MATE Macro ①</b><span>글의 구조로 읽는 독해</span></figcaption></figure><figure class="bk"><img src="img/matelab/en-macro-2.webp" alt="MATE Macro ② 표지" loading="lazy" width="240" height="336"/><figcaption><b>MATE Macro ②</b><span>글의 구조로 읽는 독해</span></figcaption></figure><figure class="bk"><img src="img/matelab/en-macro-3.webp" alt="MATE Macro ③ 표지" loading="lazy" width="240" height="336"/><figcaption><b>MATE Macro ③</b><span>글의 구조로 읽는 독해</span></figcaption></figure></div></article><article class="sr reveal"><div class="sr-info"><span class="sr-area">유형</span><h3 class="sr-name">유형별 접근 스킬</h3><p class="sr-line">감이 아니라 구조로 읽는 방법</p><p class="sr-desc">수능 유형마다 정답에 이르는 접근 순서를 공식처럼 정리했습니다. 문제를 보면 손이 먼저 움직이도록 유형별 풀이 행동을 반복해 익힙니다.</p><span class="sr-cnt">1권</span></div><div class="sr-books"><figure class="bk"><img src="img/matelab/en-type-skill.webp" alt="유형별 접근 스킬 표지" loading="lazy" width="240" height="336"/><figcaption><b>유형별 접근 스킬</b><span>감이 아니라 구조로 읽는 방법</span></figcaption></figure></div></article>
+</div></section>
+
+<!-- WEB -->
+<section id="web" class="sec"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-label">Mate Lab Web</div>
+    <h2 class="sec-h2">외우고, 시험 보고,<br/><em>선생님께 확인받는 학습 웹</em></h2>
+    <p class="sec-desc">메이트랩 학습 웹은 메이트학원 학생을 위한 어휘 학습 사이트입니다. 휴대폰이나 학원 노트북에서 바로 열 수 있습니다.</p>
+  </div>
+  <div class="web-in">
+    <div class="feat">
+      <div class="ft-card reveal"><h3><i>01</i>학습하기</h3><ul>
+        <li>카드로 한 장씩 보거나 DAY 목록으로 한눈에 보기</li>
+        <li>뜻 가리기·순서 섞기로 스스로 확인하며 외우기</li>
+        <li>아는 것·모르는 것을 표시하고, 모르는 것만 다시 보기</li></ul></div>
+      <div class="ft-card reveal"><h3><i>02</i>시험보기</h3><ul>
+        <li>담당 선생님을 고르고 범위·문항 수·유형을 정해 시험 시작</li>
+        <li>답을 고르면 바로 정답 확인, 마지막에 채점</li>
+        <li>결과 카드를 캡처해 담당 선생님께 보내고, 틀린 문제는 다시 보기</li></ul></div>
+      <div class="ft-card reveal"><h3><i>03</i>담긴 어휘 교재</h3>
+        <div class="books-in">
+          <div class="bi ko"><b>국어 어휘</b><span>너를 위한 고전어휘 603 <small>· 고전 시가·고전 소설 전 범위</small></span></div>
+          <div class="bi en"><b>영어 어휘</b><span>MATE VOCA 고등 2700 <small>· 90DAY</small></span><span>MATE VOCA 수능 4500 <small>· 90DAY</small></span><span>WordMaster 수능 2000 <small>· 50DAY</small></span></div>
+        </div></div>
+    </div>
+    <div>
+      <div class="phone" aria-hidden="true">
+        <div class="ph-bar"><span>메이트랩</span><span>영어 어휘 · 학습하기</span></div>
+        <div class="ph-tabs"><span class="on">카드로 보기</span><span>목록으로 보기</span></div>
+        <div class="ph-card"><span class="ph-day">MATE VOCA 수능 · DAY 54</span><div class="ph-word">mock</div><div class="ph-mean">조롱하다 / 가짜의</div>
+          <div class="ph-btns"><span class="k">아는 것</span><span class="m">모르는 것</span></div></div>
+      </div>
+      <p class="ph-cap">학습 화면 예시</p>
+    </div>
+  </div>
+  <ol class="steps">
+    <li><b>과목 고르기</b><span>처음 화면에서 국어 어휘 또는 영어 어휘를 누릅니다.</span></li>
+    <li><b>비밀번호 넣기</b><span>과목별 비밀번호는 담당 선생님께 물어보세요.</span></li>
+    <li><b>교재 고르고 시작</b><span>학습하기로 외우고, 시험보기로 확인합니다.</span></li>
+  </ol>
+  <div class="go-web">
+    <p>메이트랩 학습 웹으로 이동합니다<small>학원 노트북을 같이 쓸 때는 다 쓰고 왼쪽 위 로고를 눌러 처음 화면으로 돌아가 주세요.</small></p>
+    <a class="go-btn" href="https://mate-lab.netlify.app/" target="_blank" rel="noopener">학습 웹 열기 ↗</a>
+  </div>
+</div></section>
+
+<!-- FOOTER -->
+<footer id="ft"><div class="wrap"><div class="ft-in">
+  <div class="ft-top-row">
+    <a href="#hero" class="ft-logo"><svg class="mk" viewBox="0 0 2000 1765" aria-hidden="true"><circle cx="845" cy="187" r="187"/><circle cx="1458" cy="187" r="187"/><path d="M506 498H1120L989 820H801L466 1125H678L425 1765H0Z"/><path d="M1120 498H2000L1870 820H1415L1039 1765H613L989 820Z"/><path d="M1542 940L1870 1765H1445L1329 1465Z"/></svg>MATE LAB</a>
+    <details class="fam-dd"><summary>패밀리 사이트 <span class="car">▲</span></summary><div class="fam-menu"><a href="mokdong.html">목동관</a><a href="gimpo.html">김포관</a><a href="matelab.html" class="act" aria-current="page">메이트랩<span class="ext">현재</span></a><a href="allcare.html">메이트 올케어</a><a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener">온메이트 (YouTube)<span class="ext">↗</span></a></div></details>
+  </div>
+  <div class="ft-biz">메이트랩 | 메이트학원 목동관 · 김포관 | 메이트국어연구소 · 메이트영어연구소</div>
+  <div class="ft-copy">Since 2024 · © 메이트학원. All rights reserved.</div>
+</div></div></footer>
+
+<script>
+(function(){
+  var fan=document.getElementById('fan');requestAnimationFrame(function(){setTimeout(function(){fan.classList.add('in');},120);});
+  var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+  /* 패밀리 드롭다운: 바깥 클릭 시 닫기 */
+  document.addEventListener('click',function(e){document.querySelectorAll('details.fam-dd[open]').forEach(function(d){if(!d.contains(e.target))d.removeAttribute('open');});});
+})();
+</script>
+</body>
+</html>

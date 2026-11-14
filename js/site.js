@@ -195,7 +195,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&dp.classList.contai
 /* Header & scroll */
 const hd=document.getElementById('hd');const tb=document.getElementById('topbar');
 const mbItems=document.querySelectorAll('.mb-item');
-const sections=['teachers','about','schedule','reviews','consult'];
+const sections=['teachers','curriculum','schedule','reviews','consult'];
 let py=0;
 window.addEventListener('scroll',()=>{
   const y=window.scrollY;
@@ -224,4 +224,47 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
   document.getElementById('pp-today').addEventListener('click',()=>{try{localStorage.setItem(KEY,today);}catch(e){}close();});
   pp.addEventListener('click',e=>{if(e.target===pp)close();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+})();
+
+/* ══ 커리큘럼 (data/curriculum.js) ══ */
+(function(){
+ const root=document.getElementById('cu-root');if(!root||typeof CURRICULUM==='undefined')return;
+ const SUBJ_COLOR={국어:['#FEF9C3','#854D0E','#EAB308'],수학:['#DCFCE7','#166534','#22C55E'],영어:['#FCE7F3','#9D174D','#EC4899'],사회:['#EDE9FE','#5B21B6','#7C3AED'],과학:['#E0F2FE','#075985','#0EA5E9'],논술:['#E4ECF7','#2F558C','#7C9FD0']};
+ const ORDER=['국어','수학','영어','사회','과학','논술'],GORDER=['고1','고2','고3 (수능+내신)','고3·N수 (수능)'];
+ const LINK=typeof CURRICULUM_BOOK_LINK!=='undefined'?CURRICULUM_BOOK_LINK:{};
+ const list=CURRICULUM.slice().sort((a,b)=>ORDER.indexOf(a.subj)-ORDER.indexOf(b.subj));
+ let si=0,gk='고1';
+ const bk=t=>t.replace(/「[^」]+」/g,m=>`<b class="cu-bk">${m}</b>`);
+ const ul=a=>`<ul>${a.map(t=>`<li>${bk(t)}</li>`).join('')}</ul>`;
+ const dots=n=>`<div class="cu-dots">${Array.from({length:n},(_,j)=>`<i class="${j?'':'on'}"></i>`).join('')}</div>`;
+ function row(r){
+  const body=r.g?r.g.map(x=>`<h5>${x[0]}</h5>${ul(x[1])}`).join(''):(r.t?`<h5>${r.t}</h5>`:'')+ul(r.items);
+  const side=r.aim?`<em>수업 중심 목표</em>${r.aim}`:`<em>클리닉</em>${r.clinic}`;
+  return `<div class="cu-row ${r.k}"><div><div class="cu-when">${r.w}</div><span class="cu-tag">${r.tag}</span></div><div>${body}</div><div class="cu-aim">${side}</div></div>`;
+ }
+ function render(){
+  const c=list[si],[bg,fg,ln]=SUBJ_COLOR[c.subj],gs=Object.keys(c.grades).sort((a,b)=>GORDER.indexOf(a)-GORDER.indexOf(b));
+  if(!gs.includes(gk))gk=gs[0];const g=c.grades[gk];
+  root.style.cssText=`--sb:${bg};--sc:${fg};--sl:${ln}`;
+  const main=g.tbd?`<div class="cu-tbd"><b>${c.subj} ${gk} 커리큘럼을 준비하고 있습니다</b>자세한 내용은 상담에서 안내해 드립니다.</div>`:`
+   <div class="cu-head"><small>${c.subj} · ${gk}</small><div class="cu-slogan">${g.slogan}</div>${g.sub?`<div class="cu-course">${g.sub}</div>`:''}</div>
+   <div class="cu-body">
+    <div class="cu-sub">학습 단계</div>
+    <div class="cu-steps">${g.steps.map(s=>`<div><b>${s[0]}</b><strong>${s[1]}</strong><span>${s[2]}</span></div>`).join('')}</div>
+    <div class="cu-sub">수업 목표</div>
+    <div class="cu-goals">${g.goals.map(x=>`<div class="cu-goal"><h4>${x[0]}</h4><p>${x[1].join(' ')}</p></div>`).join('')}</div>${dots(g.goals.length)}
+    <div class="cu-sub">연간 로드맵</div>
+    <div class="cu-tl">${g.rows.map(row).join('')}</div>${dots(g.rows.length)}
+    <div class="cu-sub">관리 시스템</div>
+    <div class="cu-care">${g.care.map(x=>`<span>${x}</span>`).join('')}</div>
+   </div>`;
+  root.innerHTML=`<div class="cu-tabs">${list.map((x,i)=>{const s=SUBJ_COLOR[x.subj];return `<button type="button" class="cu-tab${i===si?' on':''}" style="--sb:${s[0]};--sc:${s[1]};--sl:${s[2]}" data-s="${i}">${x.subj}</button>`}).join('')}</div>
+  <div class="cu-box"><div class="cu-grades">${gs.map(k=>`<button type="button" class="cu-gbtn${k===gk?' on':''}" data-g="${k}">${k}</button>`).join('')}</div>
+  ${main}
+  <div class="cu-foot"><span>내신 대비 기간은 학교별 학사일정에 따라 조정됩니다. 반 편성은 레벨테스트 후 배정합니다.</span><div class="cu-foot-btns">${LINK[c.subj]?`<a class="lab" href="${LINK[c.subj]}">${c.subj} 자체 교재 보기 →</a>`:''}<a href="#schedule">${c.subj} 시간표 보기 →</a></div></div></div>`;
+  root.querySelectorAll('.cu-goals,.cu-tl').forEach(f=>f.addEventListener('scroll',()=>{const st=f.children,w=st[0].offsetWidth+10,n=Math.min(Math.round(f.scrollLeft/w),st.length-1);f.nextElementSibling.querySelectorAll('i').forEach((d,i)=>d.classList.toggle('on',i===n))}));
+ }
+ root.addEventListener('click',e=>{const t=e.target.closest('.cu-tab');if(t){si=+t.dataset.s;render();return}
+  const g=e.target.closest('.cu-gbtn');if(g){gk=g.dataset.g;render()}});
+ render();
 })();
