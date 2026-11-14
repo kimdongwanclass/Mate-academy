@@ -210,7 +210,7 @@ window.addEventListener('scroll',()=>{
   document.getElementById('stb').classList.toggle('on',y>400);
   /* 맨 위 바(지점 버튼)는 제자리에 두고, 메뉴 바만 따라 내려오며 화면 맨 위에 딱 붙는다 */
   hd.style.top=Math.max(0,tb.offsetHeight-y)+'px';
-  let cur='';sections.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<200)cur=id;});
+  let cur='';sections.forEach(id=>{const el=document.getElementById(id);if(el&&el.offsetParent!==null&&el.getBoundingClientRect().top<200)cur=id;});
   mbItems.forEach(item=>item.classList.toggle('active',item.getAttribute('href')==='#'+cur));
   py=y;
 },{passive:true});

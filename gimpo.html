@@ -63,6 +63,7 @@
   <a href="#teachers" class="mb-item ml2"><span class="mb-icon">👩‍🏫</span>강사진</a>
   <a href="#curriculum" class="mb-item ml2"><span class="mb-icon">📘</span>커리큘럼</a>
   <a href="#schedule" class="mb-item ml2"><span class="mb-icon">📅</span>시간표</a>
+  <a href="#reviews" class="mb-item ml2"><span class="mb-icon">⭐</span>수강후기</a>
   <a href="#consult" class="mb-item ml2"><span class="mb-icon">💬</span>상담안내</a>
 </nav>
 
@@ -73,7 +74,7 @@
     <div class="tb-b on"><span class="pip"></span> 김포관</div>
     <a href="matelab.html" class="tb-b" style="text-decoration:none"><span class="pip dim"></span> 메이트랩</a>
     <a href="allcare.html" class="tb-b" style="text-decoration:none"><span class="pip dim"></span> 올케어</a>
-    <a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener" class="tb-b" style="text-decoration:none"><span class="pip dim"></span> 온메이트 <span style="font-size:9px;opacity:.6">↗</span></a>
+    <a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener" class="tb-b" style="text-decoration:none"><span class="pip dim"></span> YouTube <span style="font-size:9px;opacity:.6">↗</span></a>
   </div>
   <div class="tb-r"><span>평일 운영 중</span><div class="tb-div"></div><a href="tel:03180490716">031-8049-0716</a></div>
 </div></div></div>
@@ -129,7 +130,7 @@
 </section>
 
 <!-- TEACHERS -->
-<section id="teachers" class="sec"><div class="wrap">
+<section id="teachers" class="sec" data-tab><div class="wrap">
   <div class="sec-label">강사진</div>
   <h2 class="sec-h2" style="margin-bottom:5px">함께 달리는 메이트</h2>
   <p class="sec-desc" style="margin-bottom:18px">카드를 클릭하면 강사 상세 정보를 확인할 수 있습니다.</p>
@@ -147,15 +148,16 @@
 </div></section>
 
 <!-- CURRICULUM (내용: data/curriculum.js) -->
-<section id="curriculum" class="sec"><div class="wrap">
+<section id="curriculum" class="sec" data-tab><div class="wrap">
   <div class="sec-label">Curriculum</div>
-  <h2 class="sec-h2">2027학년도<br/><em>연간 커리큘럼</em></h2>
+  <h2 class="sec-h2"><em>연간 커리큘럼</em></h2>
   <p class="sec-desc" style="max-width:640px">내신과 수능을 차근차근 연결하며 같이 성장시킵니다.</p>
   <div id="cu-root"></div>
+  <div class="sched-tip cu-note">위 커리큘럼은 과목별 기본 틀입니다. 담당 선생님에 따라 교재·진도·수업 구성에 세부적인 차이가 있을 수 있으니, 자세한 내용은 상담을 통해 확인해 주세요.</div>
 </div></section>
 
 <!-- SCHEDULE -->
-<section id="schedule" class="sec"><div class="wrap">
+<section id="schedule" class="sec" data-tab><div class="wrap">
   <div class="sched-top">
     <div>
       <div class="sec-label">Schedule</div>
@@ -172,7 +174,7 @@
 
 
 <!-- REVIEWS -->
-<section id="reviews" class="sec"><div class="wrap">
+<section id="reviews" class="sec" data-tab><div class="wrap">
   <div class="sec-label">수강 후기</div>
   <h2 class="sec-h2">실제 수강생 · 학부모 이야기</h2>
   <div class="rv-grid">
@@ -231,7 +233,7 @@
   <div class="ft-top-row">
     <a href="#hero" class="ft-logo"><img src="img/logo/gimpo.png" alt="너를위한 메이트학원"/></a>
     <div class="ft-links">
-      <details class="fam-dd"><summary>패밀리 사이트 <span class="car">▲</span></summary><div class="fam-menu"><a href="mokdong.html">목동관</a><a href="gimpo.html" class="act" aria-current="page">김포관<span class="ext">현재</span></a><a href="matelab.html">메이트랩</a><a href="allcare.html">메이트 올케어</a><a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener">온메이트 (YouTube)<span class="ext">↗</span></a></div></details>
+      <details class="fam-dd"><summary>패밀리 사이트 <span class="car">▲</span></summary><div class="fam-menu"><a href="mokdong.html">목동관</a><a href="gimpo.html" class="act" aria-current="page">김포관<span class="ext">현재</span></a><a href="matelab.html">메이트랩</a><a href="allcare.html">메이트 올케어</a><a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener">메이트학원 YouTube 채널<span class="ext">↗</span></a></div></details>
       <div class="ft-divr"></div>
       <a href="https://blog.naver.com/yourmate_gimpo" target="_blank" rel="noopener">블로그 ↗</a>
     </div>
@@ -249,6 +251,7 @@
 <script src="data/gimpo.js"></script>
 <script src="data/curriculum.js"></script>
 <script src="js/site.js"></script>
+<script src="js/tabs.js"></script>
 <script>
 (function(){
 })();

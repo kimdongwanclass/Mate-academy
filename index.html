@@ -11,12 +11,12 @@
 <meta property="og:site_name" content="메이트학원"/>
 <meta property="og:url" content="https://mate4u.netlify.app/"/>
 <meta property="og:title" content="메이트학원 | 고등 내신·수능 단과 학원"/>
-<meta property="og:description" content="너와 함께, 정상으로! 목동관 · 김포관 · 메이트랩 · 메이트 올케어 · 온메이트"/>
+<meta property="og:description" content="너와 함께, 정상으로! 목동관 · 김포관 · 메이트랩 · 메이트 올케어 · YouTube 채널"/>
 <meta property="og:image" content="https://mate4u.netlify.app/img/og-main.jpg"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="description" content="메이트학원 — 목동 메이트 · 김포 메이트 · 메이트랩 · 메이트 올케어 · 온메이트"/>
+<meta name="description" content="메이트학원 — 목동 메이트 · 김포 메이트 · 메이트랩 · 메이트 올케어 · YouTube 채널"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet"/>
@@ -51,20 +51,22 @@ h1 span{color:var(--or)}
 /* 2단계: 부가 서비스 — 작게 */
 .more-lbl{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;color:var(--t3);letter-spacing:.06em;margin:34px 0 12px}
 .more-lbl::after{content:'';flex:1;height:1px;background:var(--ln)}
-.extras{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.ex{display:grid;grid-template-columns:34px 1fr auto;column-gap:14px;align-items:center;padding:14px 18px;border:1px solid var(--ln);border-radius:10px;transition:border-color .2s,background .2s}
-.ex:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.03)}
-.ex-mark{grid-row:1/3;width:34px;height:34px;display:flex;align-items:center;justify-content:center}
-.ex-mark img{width:100%;height:auto}
-.ex-mark svg{width:32px;height:32px}
-.ex-name{font-size:15px;font-weight:800;color:var(--t2);align-self:end}
-.ex-sub{font-size:12px;color:var(--t3);align-self:start}
-.ex-go{grid-column:3;grid-row:1/3;font-size:15px;color:var(--t3);transition:color .2s}
-.ex:hover .ex-name,.ex:hover .ex-go{color:var(--wh)}
+.extras{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ex{position:relative;display:flex;flex-direction:column;align-items:flex-start;padding:26px 26px 22px;background:#161616;border:1.5px solid var(--ln);border-radius:14px;overflow:hidden;transition:border-color .2s,background .2s,transform .2s}
+.ex::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--acc)}
+.ex:hover{border-color:rgba(255,255,255,.3);background:#1C1C1C;transform:translateY(-3px)}
+.ex.lab{--acc:#2E93A6}.ex.care{--acc:#E2A03F}.ex.yt{--acc:#E8601A}
+.ex-mark{width:52px;height:52px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.ex-mark svg{width:50px;height:50px}
+.ex-name{font-size:21px;font-weight:900;letter-spacing:-.03em;line-height:1.3;color:var(--wh)}
+.ex-sub{font-size:13px;font-weight:700;color:var(--acc);margin-top:4px}
+.ex-desc{font-size:13px;color:var(--t3);line-height:1.7;margin-top:12px;flex:1}
+.ex-go{margin-top:18px;font-size:13px;font-weight:800;color:var(--wh);background:rgba(255,255,255,.08);padding:8px 14px;border-radius:8px;transition:background .2s}
+.ex:hover .ex-go{background:var(--acc)}
 footer{border-top:1px solid var(--ln);padding:20px 0 24px;font-size:12px;color:var(--t3)}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 footer a{color:var(--t2);font-weight:700}
-@media(max-width:900px){.br{grid-template-columns:auto 1fr;padding:26px 24px 22px;column-gap:18px}.br-mark{width:72px}.br-name{font-size:28px}.extras{grid-template-columns:1fr}}
+@media(max-width:900px){.br{grid-template-columns:auto 1fr;padding:26px 24px 22px;column-gap:18px}.br-mark{width:72px}.br-name{font-size:28px}.extras{grid-template-columns:1fr}.ex{display:grid;grid-template-columns:auto 1fr auto;column-gap:16px;align-items:center;padding:20px 20px 18px}.ex-mark{grid-row:1/4;margin:0;width:44px;height:44px}.ex-mark svg{width:42px;height:42px}.ex-desc{grid-column:2;margin-top:6px}.ex-go{grid-column:3;grid-row:1/4;margin:0}}
 @media(max-width:720px){.branches{grid-template-columns:1fr}}
 @media(max-width:560px){
   main{padding:36px 0 24px}
@@ -78,7 +80,7 @@ footer a{color:var(--t2);font-weight:700}
   .br-addr{font-size:12px;line-height:1.6}
   .br-go{font-size:13px;padding:8px 12px}
   .more-lbl{margin:24px 0 10px}
-  .ex{padding:12px 14px}
+  .ex{padding:16px 16px 14px;column-gap:14px}.ex:hover{transform:none}.ex-name{font-size:18px}.ex-desc{font-size:12px}.ex-go{padding:7px 10px;font-size:12px}
 }
 @media(max-width:820px){main{padding:48px 0 32px}.lead{margin-bottom:28px}}
 
@@ -108,23 +110,26 @@ html{overflow-x:clip}
   </div>
   <div class="more-lbl">당신을 위한 메이트교육</div>
   <div class="extras">
-    <a class="ex" href="matelab.html">
+    <a class="ex lab" href="matelab.html">
       <div class="ex-mark"><svg viewBox="0 0 2000 1765" aria-hidden="true" fill="#2E93A6"><circle cx="845" cy="187" r="187"/><circle cx="1458" cy="187" r="187"/><path d="M506 498H1120L989 820H801L466 1125H678L425 1765H0Z"/><path d="M1120 498H2000L1870 820H1415L1039 1765H613L989 820Z"/><path d="M1542 940L1870 1765H1445L1329 1465Z"/></svg></div>
       <div class="ex-name">메이트랩</div>
       <div class="ex-sub">자체 교재 · 학습 웹</div>
-      <span class="ex-go">→</span>
+      <div class="ex-desc">국어·영어·인문논술 자체 교재와 어휘 학습 웹</div>
+      <span class="ex-go">보러 가기 →</span>
     </a>
-    <a class="ex" href="allcare.html">
+    <a class="ex care" href="allcare.html">
       <div class="ex-mark"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M24 92 V24 L60 60 L96 24 V92" fill="none" stroke="#F3F1EB" stroke-width="20" stroke-linejoin="round"/><path d="M60 60 V92" fill="none" stroke="#F3F1EB" stroke-width="20"/><rect x="14" y="100" width="92" height="10" rx="3" fill="#E2A03F"/></svg></div>
       <div class="ex-name">메이트 올케어</div>
       <div class="ex-sub">국·수·영 수강생 학습 관리</div>
-      <span class="ex-go">→</span>
+      <div class="ex-desc">담임 컨설턴트의 주간 학습 관리와 입시 컨설팅</div>
+      <span class="ex-go">보러 가기 →</span>
     </a>
-    <a class="ex" href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener">
+    <a class="ex yt" href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener">
       <div class="ex-mark"><svg viewBox="0 0 52 52" aria-hidden="true"><rect x="2" y="8" width="48" height="36" rx="10" fill="none" stroke="#E8601A" stroke-width="4"/><path d="M22 18 L35 26 L22 34 Z" fill="#E8601A"/></svg></div>
-      <div class="ex-name">온메이트</div>
-      <div class="ex-sub">유튜브 해설강의 채널</div>
-      <span class="ex-go">↗</span>
+      <div class="ex-name">메이트학원 YouTube 채널</div>
+      <div class="ex-sub">해설강의 영상</div>
+      <div class="ex-desc">메이트 선생님들의 해설강의를 영상으로</div>
+      <span class="ex-go">채널 열기 ↗</span>
     </a>
   </div>
 </div></main>

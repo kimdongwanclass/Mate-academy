@@ -97,7 +97,7 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
 .mob-btn-out{border:1.5px solid var(--ln);color:var(--t2);font-size:13px;font-weight:700;padding:12px;border-radius:4px;text-align:center;display:block}
 
 /* ══ MOBILE BOTTOM NAV ══ */
-#mob-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:700;background:var(--wh);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -4px 20px rgba(0,0,0,.08);grid-template-columns:repeat(4,1fr)}
+#mob-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:700;background:var(--wh);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -4px 20px rgba(0,0,0,.08);grid-template-columns:repeat(5,1fr)}
 .mb-item{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 2px 10px;gap:3px;font-size:10px;font-weight:700;color:var(--t3);transition:color .2s;text-decoration:none}
 .mb-item.active,.mb-item:hover{color:var(--or)}.mb-icon{font-size:19px;line-height:1}
 
@@ -635,3 +635,12 @@ section[id]{scroll-margin-top:50px}
 .cu-foot-btns{display:flex;gap:8px;flex-wrap:wrap}
 .cu-foot a.lab{background:var(--wh);color:var(--t1);border:1.5px solid var(--ln)}
 @media(max-width:560px){.cu-foot-btns{width:100%;flex-direction:column}}
+
+/* ══ 메뉴를 눌러야 보이는 칸 (js/tabs.js) ══ */
+section[data-tab]:not(.tab-on){display:none}
+section[data-tab].tab-on{animation:tabIn .35s ease both}
+@keyframes tabIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hd-nav a.on{color:var(--t1);font-weight:800;border-bottom-color:var(--nav-hover)}
+.mb-item.on{color:var(--or)}
+.hero-nav-row .hn-btn.on{background:var(--wh);color:var(--bk);border-color:var(--wh)}
+.cu-note{margin-top:14px}

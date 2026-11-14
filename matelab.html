@@ -33,7 +33,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:clip}
-body{font-family:'Noto Sans KR',sans-serif;color:var(--t1);background:var(--wh);overflow-x:hidden;-webkit-font-smoothing:antialiased;word-break:keep-all}
+body{font-family:'Noto Sans KR',sans-serif;color:var(--t1);background:var(--wh);overflow-x:clip;-webkit-font-smoothing:antialiased;word-break:keep-all}
 a{text-decoration:none;color:inherit}img{max-width:100%;display:block}
 .wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 36px}
 .mk{fill:currentColor}
@@ -221,9 +221,18 @@ section[id]{scroll-margin-top:70px}
 .fam-menu a.act{color:var(--or)}
 .fam-menu a .ext{font-size:10px;opacity:.55}
 
+
+/* ══ 메뉴를 눌러야 보이는 칸 (js/tabs.js) ══ */
+section[data-tab]:not(.tab-on){display:none}
+section[data-tab].tab-on{animation:tabIn .35s ease both}
+@keyframes tabIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hd-nav a.on{color:var(--t1);font-weight:800;border-bottom-color:var(--tl)}
+.hb.on{outline:2px solid #fff;outline-offset:3px}
 @media(max-width:1024px){
   .three{grid-template-columns:1fr 1fr}
-  .hd-nav{display:none}
+  .hd-in{flex-wrap:wrap;height:auto;padding-top:10px;row-gap:0}
+  .hd-nav{order:3;width:100%;justify-content:space-between;border-top:1px solid var(--ln);margin-top:10px}
+  .hd-nav a{flex:1;justify-content:center;height:44px;padding:0 6px;font-size:14px}
   .hero-in,.web-in{grid-template-columns:1fr}
   .fan{height:300px;max-width:560px;width:100%;margin:0 auto}
   .sr{grid-template-columns:1fr;gap:18px}
@@ -275,7 +284,7 @@ section[id]{scroll-margin-top:70px}
     <a href="gimpo.html" class="tb-b"><span class="pip dim"></span> 김포관</a>
     <div class="tb-b on"><span class="pip"></span> 메이트랩</div>
     <a href="allcare.html" class="tb-b"><span class="pip dim"></span> 올케어</a>
-    <a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener" class="tb-b"><span class="pip dim"></span> 온메이트 <span style="font-size:9px;opacity:.6">↗</span></a>
+    <a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener" class="tb-b"><span class="pip dim"></span> YouTube <span style="font-size:9px;opacity:.6">↗</span></a>
   </div>
   <div class="tb-r"><span>학습 웹</span><a href="https://mate-lab.netlify.app/" target="_blank" rel="noopener">바로 가기 ↗</a></div>
 </div></div></div>
@@ -285,7 +294,7 @@ section[id]{scroll-margin-top:70px}
   <a href="#hero" class="hd-logo" aria-label="메이트랩 맨 위로"><svg class="mk" viewBox="0 0 2000 1765" aria-hidden="true"><circle cx="845" cy="187" r="187"/><circle cx="1458" cy="187" r="187"/><path d="M506 498H1120L989 820H801L466 1125H678L425 1765H0Z"/><path d="M1120 498H2000L1870 820H1415L1039 1765H613L989 820Z"/><path d="M1542 940L1870 1765H1445L1329 1465Z"/></svg>
     <div><div class="hd-logo-t">MATE <span>LAB</span></div><div class="hd-logo-s">메이트학원 학습콘텐츠연구소</div></div>
   </a>
-  <nav class="hd-nav"><a href="#about">메이트랩</a><a href="#ko">국어 교재</a><a href="#en">영어 교재</a><a href="#ns">논술 교재</a><a href="#web">학습 웹</a></nav>
+  <nav class="hd-nav"><a href="#ko">국어</a><a href="#en">영어</a><a href="#ns">인문논술</a><a href="#web">학습 웹</a></nav>
   <a href="#web" class="btn-cta">학습 웹 안내</a>
 </div></div></header>
 
@@ -349,7 +358,7 @@ section[id]{scroll-margin-top:70px}
 </div></section>
 
 <!-- KO -->
-<section id="ko" class="sec"><div class="wrap">
+<section id="ko" class="sec" data-tab><div class="wrap">
   <div class="sec-head">
     <div class="sec-label">메이트국어연구소</div>
     <h2 class="sec-h2">국어 <em>자체 교재</em></h2>
@@ -363,7 +372,7 @@ section[id]{scroll-margin-top:70px}
 </div></section>
 
 <!-- EN -->
-<section id="en" class="sec"><div class="wrap">
+<section id="en" class="sec" data-tab><div class="wrap">
   <div class="sec-head">
     <div class="sec-label">메이트영어연구소</div>
     <h2 class="sec-h2">영어 <em>자체 교재</em></h2>
@@ -375,7 +384,7 @@ section[id]{scroll-margin-top:70px}
 </div></section>
 
 <!-- NS -->
-<section id="ns" class="sec"><div class="wrap">
+<section id="ns" class="sec" data-tab><div class="wrap">
   <div class="sec-head">
     <div class="sec-label">메이트논술연구소</div>
     <h2 class="sec-h2">논술 <em>자체 교재</em></h2>
@@ -387,7 +396,7 @@ section[id]{scroll-margin-top:70px}
 </div></section>
 
 <!-- WEB -->
-<section id="web" class="sec"><div class="wrap">
+<section id="web" class="sec" data-tab><div class="wrap">
   <div class="sec-head">
     <div class="sec-label">Mate Lab Web</div>
     <h2 class="sec-h2">외우고, 시험 보고,<br/><em>선생님께 확인받는 학습 웹</em></h2>
@@ -435,7 +444,7 @@ section[id]{scroll-margin-top:70px}
 <footer id="ft"><div class="wrap"><div class="ft-in">
   <div class="ft-top-row">
     <a href="#hero" class="ft-logo"><svg class="mk" viewBox="0 0 2000 1765" aria-hidden="true"><circle cx="845" cy="187" r="187"/><circle cx="1458" cy="187" r="187"/><path d="M506 498H1120L989 820H801L466 1125H678L425 1765H0Z"/><path d="M1120 498H2000L1870 820H1415L1039 1765H613L989 820Z"/><path d="M1542 940L1870 1765H1445L1329 1465Z"/></svg>MATE LAB</a>
-    <details class="fam-dd"><summary>패밀리 사이트 <span class="car">▲</span></summary><div class="fam-menu"><a href="mokdong.html">목동관</a><a href="gimpo.html">김포관</a><a href="matelab.html" class="act" aria-current="page">메이트랩<span class="ext">현재</span></a><a href="allcare.html">메이트 올케어</a><a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener">온메이트 (YouTube)<span class="ext">↗</span></a></div></details>
+    <details class="fam-dd"><summary>패밀리 사이트 <span class="car">▲</span></summary><div class="fam-menu"><a href="mokdong.html">목동관</a><a href="gimpo.html">김포관</a><a href="matelab.html" class="act" aria-current="page">메이트랩<span class="ext">현재</span></a><a href="allcare.html">메이트 올케어</a><a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener">메이트학원 YouTube 채널<span class="ext">↗</span></a></div></details>
   </div>
   <div class="ft-biz">메이트랩 | 메이트학원 학습콘텐츠연구소 | 메이트학원 목동관 · 김포관</div>
   <div class="ft-copy">Since 2024 · © 메이트학원. All rights reserved.</div>
@@ -467,5 +476,6 @@ section[id]{scroll-margin-top:70px}
   document.addEventListener('click',function(e){document.querySelectorAll('details.fam-dd[open]').forEach(function(d){if(!d.contains(e.target))d.removeAttribute('open');});});
 })();
 </script>
+<script src="js/tabs.js"></script>
 </body>
 </html>
