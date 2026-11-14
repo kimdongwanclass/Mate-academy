@@ -20,42 +20,40 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet"/>
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}a{color:inherit;text-decoration:none}img{display:block}
-body{font-family:'Noto Sans KR',sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-x:clip}
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}a{color:inherit;text-decoration:none}img{display:block}
+body{font-family:'Noto Sans KR',sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-x:clip;background:#F4F4F2;color:#111}
 .wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 28px}
-
-body{background:#fff;color:#111}
-.hero{background:#E8601A;color:#fff;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 0% 100%,rgba(0,0,0,.18),transparent 50%)}
-.hero::after{content:'';position:absolute;width:1100px;height:1100px;right:-420px;top:-560px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.30) 0%,rgba(255,240,220,.14) 30%,transparent 62%);pointer-events:none;animation:sun 14s ease-in-out infinite alternate}
-@keyframes sun{0%{transform:translate(0,0)}50%{transform:translate(-15%,4%)}100%{transform:translate(-29%,1%)}}
-@media(prefers-reduced-motion:reduce){.hero::after{animation:none}}
-.hero .wrap,.hero .team{position:relative;z-index:1}
-.hero .wrap{position:relative}
-.top{display:flex;justify-content:space-between;align-items:center;height:76px}.top .lg{display:flex;align-items:center;gap:10px;font-weight:900;font-size:22px;letter-spacing:-.03em}.top .lg svg{width:38px}
-.top nav{display:flex;gap:22px;font-size:14px;font-weight:700}.top nav a{opacity:.85}
-.hero-in{text-align:center;padding:34px 0 0}
-.eb{font-size:14px;font-weight:800;letter-spacing:.14em;opacity:.85}
-h1{font-size:clamp(46px,8.5vw,108px);font-weight:900;letter-spacing:-.06em;line-height:1.05;margin:10px 0 0}
-.lead{font-size:clamp(17px,2.2vw,22px);font-weight:700;opacity:.92;margin-top:clamp(22px,2.6vw,34px)}
-.team{margin-top:34px;overflow:hidden;--tw:min(100vw,1480px);--c:.5}
-.team img{display:block;width:var(--tw);max-width:none;margin-left:calc(50% - var(--tw) * var(--c))}
-.main{position:relative}
-.brs{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-top:46px}
-.br{display:grid;grid-template-columns:auto 1fr auto;column-gap:22px;align-items:center;border:2px solid #EEE;border-radius:20px;padding:26px 28px;transition:border-color .2s,transform .2s}
-.br:hover{border-color:var(--c);transform:translateY(-3px)}
-.br img{width:84px;grid-row:1/4}.br small{font-size:13px;font-weight:700;color:#888}.br b{font-size:32px;font-weight:900;letter-spacing:-.04em;color:var(--c);line-height:1.2}.br i{font-style:normal;font-size:13px;color:#666}
-.br .ph{white-space:nowrap}
-.br .go{grid-column:3;grid-row:1/4;width:50px;height:50px;border-radius:50%;background:var(--c);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900}
-.exs{margin-top:18px}
-
-footer{background:#fff;color:#888;border-top:1px solid #EEE}footer a{color:#111}
-@media(max-width:720px){.wrap{padding:0 18px}.top{height:64px}.top nav{display:none}.top .lg{font-size:20px}.top .lg svg{width:32px}.hero-in{padding:14px 0 0}.team{margin-top:24px;--tw:calc(100vw / .50);--c:.5404}.hero::after{width:620px;height:620px;right:-300px;top:-330px}
-.brs{grid-template-columns:1fr;padding-top:28px;gap:12px}.br{padding:18px;column-gap:14px}.br img{width:58px}.br b{font-size:26px}.br .ph{display:block}.br .dot{display:none}.br .go{width:40px;height:40px}}
-
-.row{display:flex;justify-content:center;align-items:flex-end;overflow:hidden}
-.row .p{flex:0 0 auto;width:var(--pw);margin:0 calc(var(--pw) * -0.2);filter:drop-shadow(0 6px 12px rgba(0,0,0,.28))}
-.row .p:nth-child(3){position:relative;z-index:3}.row .p:nth-child(2),.row .p:nth-child(4){position:relative;z-index:2}
+.brand{background:#111;color:#fff}
+.brand .wrap{max-width:1240px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:30px;padding-bottom:28px}
+.brand .lg{display:flex;align-items:center;gap:18px}.brand .lg svg{width:76px;height:auto}
+.brand h1{font-size:62px;font-weight:900;letter-spacing:-.05em;line-height:1}.brand h1 span{color:#E8601A}
+.brand .eb{font-size:15px;font-weight:700;color:rgba(255,255,255,.6);margin-top:8px;letter-spacing:.02em}
+.brand .r{text-align:right;font-size:13px;color:rgba(255,255,255,.55);line-height:1.8}.brand .r b{color:#fff}.brand .r a:hover{color:#FFB98F}
+.split{display:grid;grid-template-columns:1fr 1fr}
+.half{position:relative;overflow:hidden;color:#fff;background:var(--c);display:flex;flex-direction:column;padding:48px 0 0;transition:background .5s}
+.half::before{content:'';position:absolute;right:-120px;top:-140px;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.07);transition:transform .7s cubic-bezier(.2,.8,.2,1),background .5s}
+.half::after{content:'';position:absolute;left:-160px;bottom:-200px;width:360px;height:360px;border-radius:50%;background:rgba(255,255,255,.05);transform:scale(.6);opacity:0;transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .5s}
+.half:hover{background:var(--c2)}
+.half:hover::before{transform:translate(-70px,50px) scale(1.35);background:rgba(255,255,255,.11)}
+.half:hover::after{transform:scale(1);opacity:1}
+.half .tx{padding:0 52px;position:relative;z-index:1}
+.half small{font-size:14px;font-weight:700;opacity:.7}.half b{display:block;font-size:56px;font-weight:900;letter-spacing:-.05em;line-height:1.1;margin:4px 0 6px}
+.half i{font-style:normal;font-size:16px;font-weight:800;color:#FFB98F}.half .inf{font-size:14px;opacity:.75;line-height:1.75;margin-top:12px}
+.half .go{display:inline-flex;align-items:center;gap:6px;margin-top:18px;background:#fff;color:var(--c);font-weight:900;font-size:15px;padding:12px 22px;border-radius:99px;transition:background .3s,color .3s,padding .3s}
+.half .go em{font-style:normal;display:inline-block;transition:transform .3s}
+.half:hover .go{background:#E8601A;color:#fff;padding-right:28px}.half:hover .go em{transform:translateX(5px)}
+.half .team{position:relative;z-index:1;margin-top:28px;overflow:hidden}
+.half .team img{width:min(100%,560px);margin:0 auto;transform-origin:50% 100%;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.half:hover .team img{transform:scale(1.05)}
+.slogan{background:#E8601A;color:#fff;text-align:center;font-size:clamp(28px,4.4vw,52px);font-weight:900;letter-spacing:-.04em;padding:26px 16px}
+.more{padding:44px 0 10px}.more h3{font-size:22px;font-weight:900;letter-spacing:-.03em;margin-bottom:16px}
+@media(max-width:900px){.brand h1{font-size:46px}.brand .lg svg{width:58px}.brand .r{display:none}.half .tx{padding:0 30px}.half b{font-size:44px}}
+@media(max-width:720px){.wrap{padding:0 18px}
+.brand .wrap{padding-top:22px;padding-bottom:20px;justify-content:center}.brand .lg{gap:12px}.brand .lg svg{width:50px}.brand h1{font-size:44px}.brand .eb{font-size:13px;margin-top:6px}
+.split{grid-template-columns:1fr}.half{padding-top:26px}.half .tx{padding:0 22px}.half b{font-size:38px}.half .inf{margin-top:6px;font-size:13px}.half .go{margin-top:12px;padding:10px 18px;font-size:14px}.half .team{margin-top:16px}.half .team img{width:100%}
+.slogan{font-size:30px;padding:20px 12px}.more{padding-top:30px}}
+@media(prefers-reduced-motion:reduce){.half,.half *,.half::before,.half::after{transition:none!important}}
 
 .exs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .ex{position:relative;display:flex;flex-direction:column;background:#fff;border-radius:16px;padding:26px 24px 22px;overflow:hidden;border:1px solid #E6E6E2;transition:transform .2s,box-shadow .2s}
@@ -65,11 +63,13 @@ footer{background:#fff;color:#888;border-top:1px solid #EEE}footer a{color:#111}
 .ex b{font-size:19px;font-weight:900;letter-spacing:-.03em}.ex em{font-style:normal;font-size:13px;font-weight:700;color:var(--c);margin-top:3px}.ex p{font-size:13px;color:#777;line-height:1.65;margin-top:8px;flex:1}.ex-go{margin-top:14px;font-size:13px;font-weight:800}
 footer{margin-top:44px;background:#111;color:rgba(255,255,255,.55);padding:22px 0 26px;font-size:12px}footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}footer a{color:#fff;font-weight:800}
 @media(max-width:720px){.exs{grid-template-columns:1fr}.ex{display:grid;grid-template-columns:auto 1fr;column-gap:14px;padding:18px 18px 18px 22px}.ex-ic{grid-row:1/5;margin:0}}
-.ex{border:none;background:color-mix(in srgb,var(--c) 9%,#fff)}.ex::after{display:none}
-footer{background:#fff;color:#888;border-top:1px solid #EEE}footer a{color:#111}
 </style>
 </head>
-<body><section class="hero"><div class="wrap"><div class="top"><div class="lg"><svg viewBox="0 0 2000 1765" aria-hidden="true"><circle cx="845" cy="187" r="187" fill="#fff"/><circle cx="1458" cy="187" r="187" fill="#fff"/><path d="M506 498H1120L989 820H801L466 1125H678L425 1765H0Z" fill="#fff"/><path d="M1120 498H2000L1870 820H1415L1039 1765H613L989 820Z" fill="#fff"/><path d="M1542 940L1870 1765H1445L1329 1465Z" fill="#fff"/></svg>메이트학원</div><nav><a href="mokdong.html">목동관</a><a href="gimpo.html">김포관</a><a href="matelab.html">메이트랩</a><a href="allcare.html">올케어</a><a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener">YouTube ↗</a></nav></div>
-<div class="hero-in"><div class="eb">고등 내신·수능 단과 학원</div><h1>너와 함께, 정상으로!</h1><p class="lead">메이트학원 목동관 · 김포관</p></div></div><div class="team"><img src="img/main/team-1600.webp" srcset="img/main/team-1600.webp 1600w, img/main/team-3200.webp 3200w" sizes="(max-width:720px) 200vw, min(100vw, 1480px)" alt="메이트학원 선생님들"/></div></section>
-<div class="wrap main"><div class="brs"><a class="br" href="mokdong.html" style="--c:#125E32"><img src="img/logo/mokdong-mark.png" alt=""/><small>서울 양천구</small><b>목동관</b><i>에듀메이트학원<span class="ph"><span class="dot"> · </span>02-6736-9505</span></i><span class="go">→</span></a><a class="br" href="gimpo.html" style="--c:#0C357F"><img src="img/logo/gimpo-mark.png" alt=""/><small>경기 김포시</small><b>김포관</b><i>너를위한메이트학원<span class="ph"><span class="dot"> · </span>031-8049-0716</span></i><span class="go">→</span></a></div>
-<div class="exs"><a class="ex lab" href="matelab.html" style="--c:#2E93A6"><span class="ex-ic"><svg viewBox="0 0 2000 1765" aria-hidden="true" fill="currentColor"><circle cx="845" cy="187" r="187"/><circle cx="1458" cy="187" r="187"/><path d="M506 498H1120L989 820H801L466 1125H678L425 1765H0Z"/><path d="M1120 498H2000L1870 820H1415L1039 1765H613L989 820Z"/><path d="M1542 940L1870 1765H1445L1329 1465Z"/></svg></span><b>메이트랩</b><em>자체 교재 · 학습 웹</em><p>국어·영어·인문논술 자체 교재와 어휘 학습 웹</p><span class="ex-go">보러 가기 →</span></a><a class="ex care" href="allcare.html" style="--c:#E2A03F"><span class="ex-ic"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M24 92 V24 L60 60 L96 24 V92" fill="none" stroke="currentColor" stroke-width="20" stroke-linejoin="round"/><path d="M60 60 V92" fill="none" stroke="currentColor" stroke-width="20"/><rect x="14" y="100" width="92" height="10" rx="3" fill="#E2A03F"/></svg></span><b>메이트 올케어</b><em>국·수·영 수강생 학습 관리</em><p>담임 컨설턴트의 주간 학습 관리와 입시 컨설팅</p><span class="ex-go">보러 가기 →</span></a><a class="ex yt" href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener" style="--c:#E8601A"><span class="ex-ic"><svg viewBox="0 0 52 52" aria-hidden="true"><rect x="2" y="8" width="48" height="36" rx="10" fill="none" stroke="currentColor" stroke-width="4"/><path d="M22 18 L35 26 L22 34 Z" fill="currentColor"/></svg></span><b>YouTube 채널</b><em>해설강의 영상</em><p>메이트 선생님들의 해설강의를 영상으로</p><span class="ex-go">채널 열기 ↗</span></a></div></div><footer><div class="wrap"><span>Since 2024 · © 메이트학원</span><span>카카오톡 상담 <a href="http://pf.kakao.com/_AALWX/chat" target="_blank" rel="noopener">목동관</a> · <a href="http://pf.kakao.com/_xfAZaX/chat" target="_blank" rel="noopener">김포관</a></span></div></footer></body></html>
+<body>
+<header class="brand"><div class="wrap"><div class="lg"><svg viewBox="0 0 2000 1765" aria-hidden="true"><circle cx="845" cy="187" r="187" fill="#EA5514"/><circle cx="1458" cy="187" r="187" fill="#fff"/><path d="M506 498H1120L989 820H801L466 1125H678L425 1765H0Z" fill="#EA5514"/><path d="M1120 498H2000L1870 820H1415L1039 1765H613L989 820Z" fill="#fff"/><path d="M1542 940L1870 1765H1445L1329 1465Z" fill="#fff"/></svg><div><h1>메이트<span>학원</span></h1><div class="eb">고등 내신·수능 단과 학원</div></div></div><div class="r">카카오톡 상담<br/><b><a href="http://pf.kakao.com/_AALWX/chat" target="_blank" rel="noopener">목동관</a> · <a href="http://pf.kakao.com/_xfAZaX/chat" target="_blank" rel="noopener">김포관</a></b></div></div></header>
+<main><div class="split"><a class="half mok" href="mokdong.html" style="--c:#125E32;--c2:#17703D"><div class="tx"><small>서울 양천구</small><b>목동관</b><i>에듀메이트학원</i><div class="inf">목동동로8길 17, 3층 · 02-6736-9505</div><span class="go">목동관 홈페이지 <em>→</em></span></div><div class="team"><img src="img/main/team-mokdong-1400.webp" srcset="img/main/team-mokdong-700.webp 700w, img/main/team-mokdong-1400.webp 1400w" sizes="(max-width:720px) 100vw, 560px" alt="목동관 선생님들"/></div></a><a class="half gim" href="gimpo.html" style="--c:#0C357F;--c2:#11449E"><div class="tx"><small>경기 김포시</small><b>김포관</b><i>너를위한메이트학원</i><div class="inf">사우중로 92, 3층 · 031-8049-0716</div><span class="go">김포관 홈페이지 <em>→</em></span></div><div class="team"><img src="img/main/team-gimpo-1400.webp" srcset="img/main/team-gimpo-700.webp 700w, img/main/team-gimpo-1400.webp 1400w" sizes="(max-width:720px) 100vw, 560px" alt="김포관 선생님들"/></div></a></div>
+<div class="slogan">너와 함께, 정상으로!</div>
+<div class="wrap more"><h3>당신을 위한 메이트교육</h3><div class="exs"><a class="ex lab" href="matelab.html" style="--c:#2E93A6"><span class="ex-ic"><svg viewBox="0 0 2000 1765" aria-hidden="true" fill="currentColor"><circle cx="845" cy="187" r="187"/><circle cx="1458" cy="187" r="187"/><path d="M506 498H1120L989 820H801L466 1125H678L425 1765H0Z"/><path d="M1120 498H2000L1870 820H1415L1039 1765H613L989 820Z"/><path d="M1542 940L1870 1765H1445L1329 1465Z"/></svg></span><b>메이트랩</b><em>자체 교재 · 학습 웹</em><p>국어·영어·인문논술 자체 교재와 어휘 학습 웹</p><span class="ex-go">보러 가기 →</span></a><a class="ex care" href="allcare.html" style="--c:#E2A03F"><span class="ex-ic"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M24 92 V24 L60 60 L96 24 V92" fill="none" stroke="currentColor" stroke-width="20" stroke-linejoin="round"/><path d="M60 60 V92" fill="none" stroke="currentColor" stroke-width="20"/><rect x="14" y="100" width="92" height="10" rx="3" fill="#E2A03F"/></svg></span><b>메이트 올케어</b><em>국·수·영 수강생 학습 관리</em><p>담임 컨설턴트의 주간 학습 관리와 입시 컨설팅</p><span class="ex-go">보러 가기 →</span></a><a class="ex yt" href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener" style="--c:#E8601A"><span class="ex-ic"><svg viewBox="0 0 52 52" aria-hidden="true"><rect x="2" y="8" width="48" height="36" rx="10" fill="none" stroke="currentColor" stroke-width="4"/><path d="M22 18 L35 26 L22 34 Z" fill="currentColor"/></svg></span><b>YouTube 채널</b><em>해설강의 영상</em><p>메이트 선생님들의 해설강의를 영상으로</p><span class="ex-go">채널 열기 ↗</span></a></div></div></main>
+<footer><div class="wrap"><span>Since 2024 · © 메이트학원</span><span>카카오톡 상담 <a href="http://pf.kakao.com/_AALWX/chat" target="_blank" rel="noopener">목동관</a> · <a href="http://pf.kakao.com/_xfAZaX/chat" target="_blank" rel="noopener">김포관</a></span></div></footer>
+</body>
+</html>
