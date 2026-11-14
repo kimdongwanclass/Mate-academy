@@ -44,6 +44,7 @@ const GRADE_BASE=['예비고1','고1','고2'];          /* 수업이 없어도 �
 const GRADE_ORDER=['예비고1','고1','고2','고3','N수','방학특강'];
 const VAC_KEY='방학특강';   /* 구분이 겨울·여름인 반은 학년과 상관없이 이 버튼 하나로 모음 (시트 수정 불필요) */
 const GRADE_LABEL={'예비고1':'예비고1·중3'};
+const ALL_GRADE=/^(전\s*학년|전체|공통)$/;   /* 시트 학년 칸이 이 값이면 모든 학년에 표시 */
 const KIND_ORDER={'정규':0,'겨울':1,'여름':2};
 const SEASON={'겨울':{cls:'s-winter',badge:'<span class="sc-badge sc-winter">❄ 겨울방학 특강</span>'},
               '여름':{cls:'s-summer',badge:'<span class="sc-badge sc-summer">☀ 여름방학 특강</span>'}};
@@ -88,9 +89,15 @@ function buildSchedule(data){
     .filter(c=>c&&c.branch===BRANCH&&c.status!=='종강').map(toItem).filter(it=>seasonOpen(it.kind));
   const ko=k=>KIND_ORDER[k]==null?9:KIND_ORDER[k],so=s=>{const i=SUBJ_ORDER.indexOf(s);return i<0?99:i;};
   list.sort((a,b)=>ko(a.kind)-ko(b.kind)||so(a.subj)-so(b.subj));
-  const out={};
-  list.forEach(it=>{if(SEASON[it.kind])(out[VAC_KEY]=out[VAC_KEY]||[]).push(it);else it.grades.forEach(g=>(out[g]=out[g]||[]).push(it));});
+  const out={},every=[];
+  list.forEach(it=>{if(SEASON[it.kind])(out[VAC_KEY]=out[VAC_KEY]||[]).push(it);
+    else if(it.grades.some(g=>ALL_GRADE.test(g)))every.push(it);
+    else it.grades.forEach(g=>(out[g]=out[g]||[]).push(it));});
   SCHEDULE=out;
+  /* 학년이 '전학년'인 반은 따로 버튼을 만들지 않고, 보이는 모든 학년 버튼(방학특강 제외)에 같이 넣음 */
+  if(every.length){
+    gradeKeys().filter(g=>g!==VAC_KEY).forEach(g=>{out[g]=(out[g]||[]).concat(every).sort((a,b)=>ko(a.kind)-ko(b.kind)||so(a.subj)-so(b.subj));});
+  }
 }
 function gradeKeys(){
   const ks=[...GRADE_BASE];
