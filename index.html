@@ -33,9 +33,9 @@ body{background:#fff;color:#111}
 .hero-in{text-align:center;padding:34px 0 0}
 .eb{font-size:14px;font-weight:800;letter-spacing:.14em;opacity:.85}
 h1{font-size:clamp(46px,8.5vw,108px);font-weight:900;letter-spacing:-.06em;line-height:1.05;margin:10px 0 0}
-.lead{font-size:clamp(17px,2.2vw,22px);font-weight:700;opacity:.92;margin-top:14px}
-.team{margin-top:30px;position:relative;overflow:hidden;height:calc(min(100vw,1480px) * .1236)}
-.team img{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(100vw,1480px);max-width:none}
+.lead{font-size:clamp(17px,2.2vw,22px);font-weight:700;opacity:.92;margin-top:clamp(22px,2.6vw,34px)}
+.team{margin-top:34px;overflow:hidden;--tw:min(100vw,1480px)}
+.team img{display:block;width:var(--tw);max-width:none;margin-left:calc(50% - var(--tw) / 2)}
 .main{position:relative}
 .brs{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-top:46px}
 .br{display:grid;grid-template-columns:auto 1fr auto;column-gap:22px;align-items:center;border:2px solid #EEE;border-radius:20px;padding:26px 28px;transition:border-color .2s,transform .2s}
@@ -46,7 +46,7 @@ h1{font-size:clamp(46px,8.5vw,108px);font-weight:900;letter-spacing:-.06em;line-
 .exs{margin-top:18px}
 
 footer{background:#fff;color:#888;border-top:1px solid #EEE}footer a{color:#111}
-@media(max-width:720px){.wrap{padding:0 18px}.top{height:64px}.top nav{display:none}.top .lg{font-size:20px}.top .lg svg{width:32px}.hero-in{padding:14px 0 0}.team{margin-top:22px;height:calc(100vw / .55 * .1236)}.team img{width:calc(100vw / .55)}
+@media(max-width:720px){.wrap{padding:0 18px}.top{height:64px}.top nav{display:none}.top .lg{font-size:20px}.top .lg svg{width:32px}.hero-in{padding:14px 0 0}.team{margin-top:24px;--tw:calc(100vw / .54)}
 .brs{grid-template-columns:1fr;padding-top:28px;gap:12px}.br{padding:18px;column-gap:14px}.br img{width:58px}.br b{font-size:26px}.br .ph{display:block}.br .dot{display:none}.br .go{width:40px;height:40px}}
 
 .row{display:flex;justify-content:center;align-items:flex-end;overflow:hidden}
