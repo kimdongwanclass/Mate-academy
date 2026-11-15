@@ -34,7 +34,7 @@ const TEACHERS=[
   {name:'김동완',filters:['국어','면접·컨설팅'],role:null,
    subjects:['국어','면접·컨설팅'],
    msg:'너의 마지막 입시 메이트',tags:['원장','연세대 국어국문학','국어학 석사과정'],
-   career:['메이트학원 대표원장','연세대학교 국어국문학과 · 정치외교학과','연세대학교 일반대학원 국어학 석사과정','정교사 2급 교원자격증 취득','중앙대학교 · 연세대학교 인문논술 합격','2026년 이투스북 연간검토단','김포 당신을위한유어랩학원 국어 담당'],
+   career:['메이트학원 원장','연세대학교 국어국문학과 · 정치외교학과','연세대학교 일반대학원 국어학 석사과정','정교사 2급 교원자격증 취득','중앙대학교 · 연세대학교 인문논술 합격','2026년 이투스북 연간검토단','김포 당신을위한유어랩학원 국어 담당'],
    subjects_teach:['국어(고3·N수)','면접·컨설팅'],target:'고3 / N수',blogLinks:[{title:'김동완T 강사 소개',url:'https://blog.naver.com/edumate_mokdong/223439213179'},{title:'생기부 기반 면접 대비반 진행 방식',url:'https://blog.naver.com/yourmate_gimpo/224448440567'},{title:'[후기] 국어 김동완T 수강후기',url:'https://blog.naver.com/edumate_mokdong/224207132313'},{title:'[합격수기] 한양대 음대 합격생 합격수기',url:'https://blog.naver.com/edumate_mokdong/224182881117'}]},
   {name:'권세은',filters:['영어'],role:null,subjects:['영어'],
    msg:'감이 아니라 구조로 보는 영어',tags:['영어 전임','과외어플 전국 상위 0.2%'],
@@ -65,7 +65,7 @@ const TEACHERS=[
   {name:'남매논술팀',team:true,filters:['논술'],role:null,subjects:['논술'],
    msg:'네 번의 합격이 말해주는 인문논술의 정답',tags:['김동완 · 김소진','연세대 국어국문학'],
    career:[],careerGroups:[
-    {name:'김동완',items:['메이트학원 대표원장','연세대학교 국어국문학과 · 정치외교학과','연세대학교 일반대학원 국어학 석사과정','중앙대학교 · 연세대학교 인문논술 합격']},
+    {name:'김동완',items:['메이트학원 원장','연세대학교 국어국문학과 · 정치외교학과','연세대학교 일반대학원 국어학 석사과정','중앙대학교 · 연세대학교 인문논술 합격']},
     {name:'김소진',items:['메이트학원 부원장','연세대학교 국어국문학과','이화여자대학교 인문논술 합격','연세대학교 편입논술 합격']}],
    subjects_teach:['인문논술','약술논술'],target:'고3 / N수',blogLinks:[{title:'인문논술 수업 방식',url:'https://blog.naver.com/edumate_mokdong/224350956422'},{title:'[후기] 약술 논술 수강후기',url:'https://blog.naver.com/edumate_mokdong/224184462106'}]}
 ];
