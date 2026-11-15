@@ -80,7 +80,7 @@ const TEACHERS=[
    subjects_teach:['인문논술','약술논술'],target:'고3 / N수',blogLinks:[{title:'인문논술 수업 방식',url:'https://blog.naver.com/edumate_mokdong/224350956422'},{title:'[후기] 약술 논술 수강후기',url:'https://blog.naver.com/edumate_mokdong/224184462106'}]}
 ];
 
-const T_FIRST=['임한비','정예진','김소진','김동완','윤서은','이나경','안호수'];
+const T_FIRST=['안호수','임한비','정예진','김소진','김동완','윤서은','이나경'];
 
 /* 시간표(반·요일·시간·수업 소개)는 이 파일에 적지 않는다.
    「메이트 강의목록」 구글 시트에서 자동으로 읽어 옴 — 시트만 고치면 됨 */
