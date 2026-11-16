@@ -25,18 +25,19 @@
 body{font-family:'Noto Sans KR',sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-x:clip;background:#F4F4F2;color:#111}
 .wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 28px}
 .brand{background:#111;color:#fff}
-.brand .wrap{max-width:1240px;display:flex;align-items:center;justify-content:flex-start;gap:20px;padding-top:20px;padding-bottom:18px}
-.brand .lg{display:flex;align-items:center;gap:14px}.brand .lg svg{width:54px;height:auto}
-.brand h1{font-size:42px;font-weight:900;letter-spacing:-.05em;line-height:1}.brand h1 span{color:#E8601A}
-.brand .eb{font-size:13px;font-weight:700;color:rgba(255,255,255,.6);margin-top:6px;letter-spacing:.02em}
+.brand .wrap{max-width:1240px;display:flex;align-items:center;justify-content:flex-start;gap:20px;padding-top:26px;padding-bottom:24px}
+.brand .lg{display:flex;align-items:center;gap:18px}.brand .lg svg{width:76px;height:auto}
+.brand h1{font-size:58px;font-weight:900;letter-spacing:-.05em;line-height:1}.brand h1 span{color:#E8601A}
+.brand .eb{font-size:17px;font-weight:700;color:rgba(255,255,255,.6);margin-top:8px;letter-spacing:.02em}
 .brand .r{text-align:right;font-size:13px;color:rgba(255,255,255,.55);line-height:1.8}.brand .r b{color:#fff}.brand .r a:hover{color:#FFB98F}
 .split{display:grid;grid-template-columns:1fr 1fr}
 .half{position:relative;overflow:hidden;color:#fff;background:var(--c);display:flex;flex-direction:column;padding:48px 0 0;transition:background .5s}
-.half::before{content:'';position:absolute;right:-120px;top:-140px;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.07);transition:transform .7s cubic-bezier(.2,.8,.2,1),background .5s}
-.half::after{content:'';position:absolute;left:-160px;bottom:-200px;width:360px;height:360px;border-radius:50%;background:rgba(255,255,255,.05);transform:scale(.6);opacity:0;transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .5s}
+.half::before{content:'';position:absolute;right:44px;top:44px;width:360px;height:214px;background:var(--mk) center/contain no-repeat;opacity:.08;transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .5s}
+.half::after{content:'';position:absolute;left:-90px;bottom:-60px;width:340px;height:202px;background:var(--mk) center/contain no-repeat;transform:scale(.6);opacity:0;transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .5s}
+.half.mok{--mk:url(img/logo/bg-mokdong.webp)}.half.gim{--mk:url(img/logo/bg-gimpo.webp)}
 .half:hover{background:var(--c2)}
-.half:hover::before{transform:translate(-70px,50px) scale(1.35);background:rgba(255,255,255,.11)}
-.half:hover::after{transform:scale(1);opacity:1}
+.half:hover::before{transform:translate(-14px,10px) scale(1.08);opacity:.14}
+.half:hover::after{transform:scale(1);opacity:.06}
 .half .tx{padding:0 52px;position:relative;z-index:1}
 .half small{font-size:14px;font-weight:700;opacity:.7}.half b{display:block;font-size:56px;font-weight:900;letter-spacing:-.05em;line-height:1.1;margin:4px 0 6px}
 .half i{font-style:normal;font-size:16px;font-weight:800;color:#FFB98F}.half .inf{font-size:14px;opacity:.75;line-height:1.75;margin-top:12px}
@@ -48,9 +49,10 @@ body{font-family:'Noto Sans KR',sans-serif;-webkit-font-smoothing:antialiased;wo
 .half:hover .team img{transform:scale(1.05)}
 .slogan{background:#E8601A;color:#fff;text-align:center;font-size:clamp(28px,4.4vw,52px);font-weight:900;letter-spacing:-.04em;padding:26px 16px}
 .more{padding:44px 0 10px}.more h3{font-size:22px;font-weight:900;letter-spacing:-.03em;margin-bottom:16px}
-@media(max-width:900px){.brand h1{font-size:38px}.brand .lg svg{width:48px}.brand .r{display:none}.half .tx{padding:0 30px}.half b{font-size:44px}}
+@media(max-width:900px){.brand h1{font-size:48px}.brand .lg svg{width:64px}.brand .r{display:none}.half .tx{padding:0 30px}.half b{font-size:44px}}
 @media(max-width:720px){.wrap{padding:0 18px}
-.brand .wrap{padding-top:22px;padding-bottom:20px;justify-content:center}.brand .lg{gap:12px}.brand .lg svg{width:42px}.brand h1{font-size:34px}.brand .eb{font-size:13px;margin-top:6px}
+.brand .wrap{padding-top:24px;padding-bottom:22px;justify-content:center}.brand .lg{gap:14px}.brand .lg svg{width:54px}.brand h1{font-size:42px}.brand .eb{font-size:15px;margin-top:6px}
+.half::before{right:18px;top:22px;width:190px;height:113px}
 .split{grid-template-columns:1fr}.half{padding-top:26px}.half .tx{padding:0 22px}.half b{font-size:38px}.half .inf{margin-top:6px;font-size:13px}.half .go{margin-top:12px;padding:10px 18px;font-size:14px}.half .team{margin-top:16px}.half .team img{width:100%}
 .slogan{font-size:30px;padding:20px 12px}.more{padding-top:30px}}
 @media(prefers-reduced-motion:reduce){.half,.half *,.half::before,.half::after{transition:none!important}}
