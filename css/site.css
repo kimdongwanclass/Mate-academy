@@ -644,3 +644,22 @@ section[data-tab].tab-on{animation:tabIn .35s ease both}
 .mb-item.on{color:var(--or)}
 .hero-nav-row .hn-btn.on{background:var(--wh);color:var(--bk);border-color:var(--wh)}
 .cu-note{margin-top:14px}
+
+/* ── 블로그 새 글 (js/blog.js) ── */
+#blog{padding:64px 0}
+.bl-top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:22px}
+.bl-more{font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+.bl-list{border-top:2px solid var(--t1)}
+.bl-item{display:flex;align-items:center;gap:12px;min-height:56px;padding:12px 4px;border-bottom:1px solid var(--ln);text-decoration:none;color:var(--t1);transition:background .2s}
+.bl-cat{flex-shrink:0;font-size:11.5px;font-weight:700;color:var(--g);background:var(--g-lt);padding:3px 8px;border-radius:3px;min-width:76px;max-width:120px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bl-title{flex:1;min-width:0;font-size:15px;font-weight:500;line-height:1.5;word-break:keep-all;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bl-new{display:inline-block;margin-left:6px;font-size:10px;font-weight:800;color:#fff;background:var(--or);padding:1px 5px;border-radius:2px;vertical-align:2px}
+.bl-date{flex-shrink:0;font-size:13px;color:var(--t3);font-variant-numeric:tabular-nums}
+.bl-arr{flex-shrink:0;font-size:12px;color:var(--t4);transition:transform .2s,color .2s}
+@media(hover:hover){.bl-item:hover{background:var(--bg)}.bl-item:hover .bl-title{color:var(--g)}.bl-item:hover .bl-arr{color:var(--accent);transform:translate(2px,-2px)}}
+@media(max-width:560px){
+  #blog{padding:48px 0}
+  .bl-item{flex-wrap:wrap;row-gap:4px;column-gap:8px;padding:13px 2px}
+  .bl-title{flex-basis:100%;order:3;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .bl-date{order:2;font-size:12px}.bl-arr{display:none}
+}
