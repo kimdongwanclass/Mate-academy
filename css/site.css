@@ -663,3 +663,36 @@ section[data-tab].tab-on{animation:tabIn .35s ease both}
   .bl-title{flex-basis:100%;order:3;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
   .bl-date{order:2;font-size:12px}.bl-arr{display:none}
 }
+
+/* ══ 2026-11-22 목동·김포 히어로: 메인 단체 사진 + 뒤 로고 은은하게, 버튼 2개 ══ */
+#hero .hero-in{position:static}
+#hero .hero-text{position:relative;z-index:2}
+.hero-cta{gap:10px;margin-top:32px}
+.hero-cta .btn-or,.hero-cta .btn-gh{font-size:15px;padding:13px 24px;min-height:48px}
+.hero-cta .btn-gh{padding:11.5px 22px}
+.hero-team{position:absolute;z-index:1;bottom:0;right:max(36px,calc((100vw - 1160px) / 2 + 36px));width:min(720px,50vw);min-height:0;display:block;pointer-events:none}
+.ht-photo{position:relative;z-index:1;width:100%;height:auto;display:block;animation:ht-in .9s .2s ease-out both}
+.ht-logo{position:absolute;z-index:0;right:-6%;bottom:58%;width:46%;opacity:.12;animation:ht-fade 1.2s .1s ease-out both}
+@keyframes ht-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes ht-fade{from{opacity:0}to{opacity:.12}}
+@media(prefers-reduced-motion:reduce){.ht-photo,.ht-logo{animation:none}}
+@media(max-width:768px){
+  #hero .hero-in{padding-bottom:0;gap:28px}
+  .hero-team{display:block!important;position:relative;right:auto;width:100%;margin:0 auto}
+  .ht-logo{display:none}
+  .hero-cta .btn-or,.hero-cta .btn-gh{flex:1;justify-content:center}
+}
+@media(min-width:481px) and (max-width:768px){.hero-team{width:min(560px,100%)}}
+
+/* 작은·흐린 글씨 키우기 */
+.hero-eyebrow{font-size:12px}
+.sec-label{font-size:12px}
+.t-msg{font-style:normal;color:var(--t2)}
+.t-more{font-size:12px;color:var(--t3)}
+.t-badge{font-size:11px}
+.t-role{font-size:11px}
+.ca-lbl,.cs-sec-lbl{font-size:12px;color:var(--t3)}
+.ca-sub{font-size:12.5px}
+.mb-item{font-size:11px}
+@media(min-width:769px){#hero{min-height:calc(100svh - 40px)}}
+@media(max-width:480px){.hero-eyebrow{font-size:11.5px;letter-spacing:.06em}}
