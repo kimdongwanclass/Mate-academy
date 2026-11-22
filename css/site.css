@@ -724,3 +724,10 @@ section[data-tab].tab-on{animation:tabIn .35s ease both}
 .bl-more{display:inline-flex;align-items:center;min-height:44px;padding:0 2px}
 footer a[href*="blog.naver.com"]{display:inline-flex;align-items:center;min-height:44px}
 #stb{width:44px;height:44px;font-size:12px}
+
+/* ══ 2026-11-22 (3) 시안: 첫 화면 높이 · 하단 탭바 선 아이콘·전화 상담 ══ */
+@media(min-width:769px){#hero{min-height:min(calc(100svh - 40px),740px)}}
+.mb-icon{display:block;width:22px;height:22px}
+.mb-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.mb-tel{color:var(--or)}
+.mb-tel .mb-icon svg{stroke-width:1.9}
