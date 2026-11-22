@@ -235,6 +235,9 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 (function(){
   const KEY=POPUP_KEY,today=new Date().toDateString(),pp=document.getElementById('popup');
   let skip=null;try{skip=localStorage.getItem(KEY);}catch(e){}
+  /* data-until="YYYY-MM-DD" — 그날(한국 시간) 밤 12시가 지나면 팝업을 띄우지 않음 */
+  const until=pp.dataset.until;
+  if(until&&Date.now()>new Date(until+'T23:59:59+09:00').getTime()){pp.remove();return;}
   if(skip!==today)setTimeout(()=>pp.classList.add('show'),500);
   const close=()=>pp.classList.remove('show');
   document.getElementById('pp-close').addEventListener('click',close);

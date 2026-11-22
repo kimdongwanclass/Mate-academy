@@ -731,3 +731,14 @@ footer a[href*="blog.naver.com"]{display:inline-flex;align-items:center;min-heig
 .mb-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .mb-tel{color:var(--or)}
 .mb-tel .mb-icon svg{stroke-width:1.9}
+
+/* ══ 2026-11-22 (4) PC 첫 화면: 글을 세로 가운데 대신 위쪽으로 ══ */
+@media(min-width:769px){
+  #hero{align-items:flex-start}
+  #hero .hero-in{padding-top:clamp(56px,9vh,96px)}
+}
+
+/* ══ 2026-11-22 (5) 강사 상세 창: 돌아가기 버튼 44px, 머리말 12px, 한 줄 소개 이탤릭 해제 ══ */
+.btn-back{min-height:44px;padding-right:8px}
+.d-sec-t{font-size:12px}
+.detail-msg{font-style:normal;color:rgba(255,255,255,.72)}
