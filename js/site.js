@@ -30,6 +30,16 @@ function renderTeachers(filter){
   }).join('');
 }
 renderTeachers('전체');
+/* 강사진 미리보기(탭 밖, 항상 보임) — 2026-11-22 */
+(function(){const row=document.getElementById('tp-row');if(!row)return;
+  row.innerHTML=TEACHERS.map((t,idx)=>{const c=SC[t.subjects[0]]||SC['국어'];const ps=PHOTO_DATA[t.name]||'';
+    const ph=ps?`<img src="${ps}" alt="" loading="lazy"/>`:`<span class="tp-ini" style="background:${c.avatar}">${t.name.charAt(0)}</span>`;
+    return `<button type="button" class="tp-card" onclick="openTeacher(${idx})" aria-label="${t.name} 선생님 프로필"><span class="tp-ph" style="background:${c.bg}">${ph}</span><span class="tp-sub" style="color:${c.text}">${t.subjects[0]}</span><span class="tp-name">${t.name}</span></button>`;}).join('');
+  const step=()=>Math.max(row.clientWidth*.8,160);
+  const upd=()=>{document.querySelector('.tp-prev').disabled=row.scrollLeft<4;document.querySelector('.tp-next').disabled=row.scrollLeft+row.clientWidth>=row.scrollWidth-4;};
+  document.querySelector('.tp-prev').onclick=()=>row.scrollBy({left:-step(),behavior:'smooth'});
+  document.querySelector('.tp-next').onclick=()=>row.scrollBy({left:step(),behavior:'smooth'});
+  row.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();})();
 document.getElementById('t-filter-bar').addEventListener('click',e=>{
   const btn=e.target.closest('.t-filter-btn');if(!btn)return;
   document.querySelectorAll('.t-filter-btn').forEach(b=>b.classList.remove('on'));
@@ -140,7 +150,7 @@ function renderSchedule(){
   const grid=document.getElementById('sched-grid'),subjBar=document.getElementById('subj-btns');
   renderFilters();
   if(schedState==='loading'){subjBar.style.display='none';grid.innerHTML='<div class="sched-empty" style="grid-column:1/-1">시간표를 불러오는 중입니다…</div>';return;}
-  if(schedState==='fail'){subjBar.style.display='none';grid.innerHTML='<div class="sched-empty" style="grid-column:1/-1">시간표 준비 중입니다.<br>블로그 또는 전화로 문의해 주세요.</div>';return;}
+  if(schedState==='fail'){subjBar.style.display='none';grid.innerHTML='<div class="sched-empty" style="grid-column:1/-1">시간표 준비 중입니다.<br>전화 또는 카카오톡으로 문의해 주세요.</div>';return;}
   if(!curGrade){
     subjBar.style.display='none';
     grid.innerHTML='<div class="sched-pick"><div class="sp-t">학년을 선택해 주세요.</div><div class="sp-row">'+gradeKeys().map(g=>{const n=(SCHEDULE[g]||[]).filter(i=>i.status!=='마감').length;return `<button type="button" class="sp-card" data-pick="${esc(g)}"><span class="sp-g">${esc(GRADE_LABEL[g]||g)}</span><span class="sp-n">${n?'수업 '+n+'개 →':'학원 문의 →'}</span></button>`;}).join('')+'</div></div>';
