@@ -22,6 +22,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<script>/* 올케어 1기 모집: 2026-12-04(금) 밤 12시(한국 시간)가 지나면 html.closed — 마감 표시로 바뀜 */
+try{if(Date.now()>new Date('2026-12-04T23:59:59+09:00').getTime())document.documentElement.classList.add('closed')}catch(e){}</script>
+<style>.closed .only-open{display:none!important}html:not(.closed) .only-closed{display:none!important}</style>
 <style>
 :root{
   --nv:#0E1B2C;--nv2:#17283F;--nv3:#2E405A;
@@ -326,6 +329,13 @@ section[id]{scroll-margin-top:70px}
 .tg-card.dk .subjects span{flex-direction:column;gap:4px}
 .tg-card.dk .subjects small{display:block;font-size:11px;font-weight:500;line-height:1.45;color:var(--on1,rgba(255,255,255,.7));padding:0 10px;word-break:keep-all}
 </style>
+<style>/* 2026-11-22 다듬기: 누를 곳 44px, 머리말 12px */
+.tb-r a{display:inline-flex;align-items:center;min-height:40px}
+.ap-tels a{display:inline-flex;align-items:center;min-height:44px}
+.cf-dot{position:relative}.cf-dot::after{content:'';position:absolute;inset:-10px -4px}
+.sec-label{font-size:12px}
+.hero-eyebrow{font-size:12px}
+</style>
 </head>
 <body>
 
@@ -339,7 +349,7 @@ section[id]{scroll-margin-top:70px}
     <div class="tb-b on"><span class="pip"></span> 올케어</div>
     <a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener" class="tb-b"><span class="pip dim"></span> YouTube <span style="font-size:9px;opacity:.6">↗</span></a>
   </div>
-  <div class="tb-r"><span>1기 신청서</span><a href="https://docs.google.com/forms/d/e/1FAIpQLSfhDXcVDbRjApHwlttiiWoYMwtMnzdkvKwziZf65qM6s-9XBg/viewform" target="_blank" rel="noopener">학생용</a><a href="https://docs.google.com/forms/d/e/1FAIpQLSeUWUjFpCOlJcypLxnKLneHO5yQ8jqfVkeOlVNu3yBHZm76Xg/viewform" target="_blank" rel="noopener">학부모용</a></div>
+  <div class="tb-r"><span class="only-closed">1기 모집 마감</span><span class="only-open">1기 신청서</span><a href="https://docs.google.com/forms/d/e/1FAIpQLSfhDXcVDbRjApHwlttiiWoYMwtMnzdkvKwziZf65qM6s-9XBg/viewform" target="_blank" rel="noopener" class="only-open">학생용</a><a href="https://docs.google.com/forms/d/e/1FAIpQLSeUWUjFpCOlJcypLxnKLneHO5yQ8jqfVkeOlVNu3yBHZm76Xg/viewform" target="_blank" rel="noopener" class="only-open">학부모용</a></div>
 </div></div></div>
 
 <!-- HEADER -->
@@ -351,18 +361,18 @@ section[id]{scroll-margin-top:70px}
   <nav class="hd-nav">
     <a href="#program">필요한 이유</a><a href="#system">두 가지 강점</a><a href="#weekly">운영 방식</a><a href="#planner">학습 플래너</a><a href="#feedback">피드백 사례</a><a href="#target">대상·신청</a><a href="#notice">모집 안내문</a><a href="#faq">FAQ</a>
   </nav>
-  <a href="#apply" class="btn-cta">1기 신청</a>
+  <a href="#apply" class="btn-cta only-open">1기 신청</a><a href="#apply" class="btn-cta only-closed">상담 문의</a>
 </div></div></header>
 
 <!-- HERO -->
 <section id="hero"><div class="wrap"><div class="hero-in">
   <div>
     <div class="hero-eyebrow">MATE ALL-CARE PROGRAM</div>
-    <div class="ac-pill">1기 모집 · 11.23(월) ~ 12.4(금)</div>
+    <div class="ac-pill only-open">1기 모집 · 11.23(월) ~ 12.4(금)</div><div class="ac-pill only-closed">1기 모집 마감 · 다음 기수는 데스크 문의</div>
     <h1 class="hero-h1">과목은 셋,<br/>전략은 하나.</h1>
     <p class="hero-sub">국어·수학·영어를 따로따로 관리하지 않습니다.<br/>담임 컨설턴트가 세 과목 선생님과 직접 협의해서,<br/>학생 한 명을 위한 하나의 학습·입시 전략으로 관리합니다.</p>
     <div class="hero-btns">
-      <a href="#apply" class="btn-gd">1기 신청하기</a>
+      <a href="#apply" class="btn-gd only-open">1기 신청하기</a><a href="#apply" class="btn-gd only-closed">상담 문의하기</a>
       <a href="#weekly" class="btn-gh">운영 방식 보기</a>
     </div>
   </div>
@@ -521,7 +531,7 @@ section[id]{scroll-margin-top:70px}
     <div class="tg-card lt">
       <h3>신청 방법</h3>
       <ul class="ac-notes">
-        <li><b>신청 기간: 11월 23일(월) ~ 12월 4일(금)</b></li>
+        <li class="only-closed"><b>1기 신청은 12월 4일(금)에 마감되었습니다.</b></li><li><b>신청 기간: 11월 23일(월) ~ 12월 4일(금)</b></li>
         <li>학생과 학부모님이 신청서를 <b>각각</b> 작성합니다. 올케어를 신청하는 이유 등을 적습니다.</li>
         <li>신청서를 검토한 뒤 선발하고, 결과는 12월 9일(수)에 개별로 안내해 드립니다.</li>
         <li>선발할 때는 성적이 아니라 학생의 의지와 프로그램에 참여할 수 있는지를 중심으로 봅니다.</li>
@@ -567,12 +577,12 @@ section[id]{scroll-margin-top:70px}
 <section id="apply"><div class="wrap"><div class="ap-in">
   <div>
     <div class="sec-label">Apply</div>
-    <h2>메이트 올케어 1기 신청</h2>
-    <p>신청 기간은 11월 23일(월)부터 12월 4일(금)까지입니다.<br/>학생과 학부모님이 신청서를 각각 제출해 주세요.<br/>자세한 내용은 학원 데스크로 문의해 주세요.</p>
+    <h2 class="only-open">메이트 올케어 1기 신청</h2><h2 class="only-closed">메이트 올케어 상담</h2>
+    <p class="only-open">신청 기간은 11월 23일(월)부터 12월 4일(금)까지입니다.<br/>학생과 학부모님이 신청서를 각각 제출해 주세요.<br/>자세한 내용은 학원 데스크로 문의해 주세요.</p><p class="only-closed">1기 신청은 12월 4일(금)에 마감되었습니다.<br/>다음 기수 일정은 학원 데스크로 문의해 주세요.</p>
   </div>
   <div class="ap-r">
-    <div class="ap-tel">온라인 신청서</div>
-    <div class="ap-btns"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfhDXcVDbRjApHwlttiiWoYMwtMnzdkvKwziZf65qM6s-9XBg/viewform" target="_blank" rel="noopener" class="btn-gd">학생용 신청서 ↗</a><a href="https://docs.google.com/forms/d/e/1FAIpQLSeUWUjFpCOlJcypLxnKLneHO5yQ8jqfVkeOlVNu3yBHZm76Xg/viewform" target="_blank" rel="noopener" class="btn-gd">학부모용 신청서 ↗</a></div>
+    <div class="ap-tel only-open">온라인 신청서</div>
+    <div class="ap-btns only-open"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfhDXcVDbRjApHwlttiiWoYMwtMnzdkvKwziZf65qM6s-9XBg/viewform" target="_blank" rel="noopener" class="btn-gd">학생용 신청서 ↗</a><a href="https://docs.google.com/forms/d/e/1FAIpQLSeUWUjFpCOlJcypLxnKLneHO5yQ8jqfVkeOlVNu3yBHZm76Xg/viewform" target="_blank" rel="noopener" class="btn-gd">학부모용 신청서 ↗</a></div>
     <div class="ap-tels">문의 <a href="tel:02-6736-9505">목동관 02-6736-9505</a> · <a href="tel:031-8049-0716">김포관 031-8049-0716</a></div>
   </div>
 </div></div></section>
@@ -583,7 +593,7 @@ section[id]{scroll-margin-top:70px}
     <a href="#hero" class="ft-logo"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M24 92 V24 L60 60 L96 24 V92" fill="none" stroke="#F3F1EB" stroke-width="20" stroke-linejoin="round"/><path d="M60 60 V92" fill="none" stroke="#F3F1EB" stroke-width="20"/><rect x="14" y="100" width="92" height="10" rx="3" fill="#E2A03F"/></svg>MATE ALL-CARE</a>
     <details class="fam-dd"><summary>패밀리 사이트 <span class="car">▲</span></summary><div class="fam-menu"><a href="mokdong.html">목동관</a><a href="gimpo.html">김포관</a><a href="matelab.html">메이트랩</a><a href="allcare.html" class="act" aria-current="page">메이트 올케어<span class="ext">현재</span></a><a href="https://www.youtube.com/@onmate-study" target="_blank" rel="noopener">YouTube 채널<span class="ext">↗</span></a></div></details>
   </div>
-  <div class="ft-biz">메이트 올케어 프로그램 | 메이트학원 목동관 · 김포관 | 1기 신청 11.23(월) ~ 12.4(금)</div>
+  <div class="ft-biz">메이트 올케어 프로그램 | 메이트학원 목동관 · 김포관 | <span class="only-open">1기 신청 11.23(월) ~ 12.4(금)</span><span class="only-closed">1기 모집 마감</span></div>
   <div class="ft-copy">Since 2024 · © 메이트학원. All rights reserved.</div>
 </div></div></footer>
 
