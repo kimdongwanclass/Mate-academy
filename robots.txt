@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mate4u.netlify.app/sitemap.xml
